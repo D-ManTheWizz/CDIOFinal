@@ -25,7 +25,7 @@ public class GWT_CDIO implements EntryPoint {
 	 */					
 	public void onModuleLoad() {
 		OperatorServiceClientImpl clientImpl = new OperatorServiceClientImpl(GWT.getModuleBaseURL() + "operatorservice");
-		
+		System.out.println("Den er fin");
 		RootPanel.get().add(clientImpl.getMainView());
 	}
 }
