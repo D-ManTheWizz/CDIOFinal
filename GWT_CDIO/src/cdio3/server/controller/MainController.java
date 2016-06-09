@@ -1,5 +1,7 @@
 package cdio3.server.controller;
 
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 
@@ -32,6 +34,11 @@ public class MainController {
 		} else {
 //			errormsg.
 		}		
+	}
+	
+	public String/*raavareBatchDTO*/ getRaavareBatchList() {
+//		List</*raavareBatchDTO*/> rbDTO = new ArrayList( .getRaavareBatchList);
+		return null/*rbDTO*/;
 	}
 	
 	/*
