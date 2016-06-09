@@ -23,25 +23,22 @@ public class MainController {
 	}
 	
 	public void changePassword(int oprID, String oldPass, String newPass) /*throws DALException*/ {
-
 		// check if the ID and password is correspondent
-		if (validatePassword(oprID, oldPass) == true) {
-			
+		if (validatePassword(oprID, oldPass) == true) {		
 //			blabla oprDTO = .getOperator(oprID);
 //			oprDTO.setPass(newPass);
-//			.updateOperator(oprDTO);
-					
+//			.updateOperator(oprDTO);				
 		} else {
 //			errormsg.
 		}		
 	}
 	
-	public String/*raavareBatchDTO*/ getRaavareBatchList() {
+	public List getRaavareBatchList() {
 //		List</*raavareBatchDTO*/> rbListDTO = new ArrayList( .getRaavareBatchList());
 		return null/*rbListDTO*/;
 	}
 	
-	public String/*produktBatchDTO*/ getProduktBatchList() {
+	public List getProduktBatchList() {
 //		List</*produktBatchDTO*/> pbListDTO = new ArrayList( .getProduktBatchList());
 		return null/*pbListDTO*/;
 	}
@@ -56,7 +53,7 @@ public class MainController {
 //		.setProduktBatch(pbDTO);
 	}
 	
-	public String getRaavareList() {
+	public List getRaavareList() {
 //		List</*raavareDTO*/> rListDTO = new ArrayList( .getRaavareList());
 		return null/*rListDTO*/;
 	}
@@ -73,6 +70,11 @@ public class MainController {
 	
 	public void updateRaavare(/*raavareDTO raavare*/) {
 //		.updateRaavare(raavare);
+	}
+	
+	public List getReceptList() {
+//		List</*receptDTO*/> recListDTO = new ArrayList( .getReceptList());
+		return null/*recListDTO*/;
 	}
 	
 	/*
