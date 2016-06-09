@@ -20,6 +20,33 @@ public class MainController {
 //		}
 	}
 	
+	private void changePassword() /*throws DALException*/ {
+
+		int oprID = 0;
+		String password = null;
+		String newPassword1 = null;	
+		String newPassword2 = null;
+		
+		// check if the ID and password is correspondent
+		if (validatePassword(oprID, password) == true) {
+			
+			// check if the new password is entered even two times
+			if (newPassword1 == newPassword2) {
+			
+//				oDTO = oDAO.getOperator(oprID);
+//				oDTO.setPassword(newPassword1);
+//				oDAO.updateOperator((OperatorDTO) oDTO);
+
+			} else {
+
+//				changePassword();
+				
+			}			
+		} else {
+	
+		}		
+	}
+	
 	/*
 	 */
 	private void createOperator() /*throws DALException*/ {
@@ -107,35 +134,6 @@ public class MainController {
 	 * providing a valid oprID the operator can change his own password and will
 	 * also be asked to confirm the new password, and/or returning to the mainMenu.
 	 * The new password will not be checked if it "lives up to the standard".
-	*/
-	private void changePassword() /*throws DALException*/ {
-
-		int oprID = 0;
-		String password = null;
-		String newPassword1 = null;	
-		String newPassword2 = null;
-		
-		// check if the ID and password is correspondent
-		if (validatePassword(oprID, password) == true) {
-			
-			// check if the new password is entered even two times
-			if (newPassword1 == newPassword2) {
-			
-//				oDTO = oDAO.getOperator(oprID);
-//				oDTO.setPassword(newPassword1);
-//				oDAO.updateOperator((OperatorDTO) oDTO);
-
-			} else {
-
-//				changePassword();
-				
-			}			
-		} else {
-	
-		}		
-	}
-	
-	/* 
 	*/
 //	private void startWeight() throws DALException {
 //		
