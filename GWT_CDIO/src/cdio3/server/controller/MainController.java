@@ -59,7 +59,7 @@ public class MainController {
 //		rbDAO.updateRaavareBatch(rbDTO);
 	}
 	
-	public void createProduktBatch(/*int, int, String*/) {
+	public void createProduktBatch(int pbId, int status, String receptId) {
 //		ProduktBatchDTO pbDTO = new ProduktBatchDTO(int, int, String);
 //		pbDAO.updateProduktBatch(pbDTO);
 	}
