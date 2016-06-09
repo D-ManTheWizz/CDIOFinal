@@ -94,8 +94,9 @@ public class MainController {
 		return null/*rDTO*/;
 	}
 	
-	public void updateRaavare(/*raavareDTO raavare*/) {
+	public boolean updateRaavare(/*raavareDTO raavare*/) {
 //		rDAO.updateRaavare(raavare);
+		return true;
 	}
 	
 	public List getReceptList() {

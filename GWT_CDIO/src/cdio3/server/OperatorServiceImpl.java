@@ -54,7 +54,10 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return main.getRaavare(raavareId);
 //	}
 	
-	
+//	@Override
+//	public boolean updateRaavare(RaavareDTO raavare) {
+//		return main.updateRaavare(raavare);
+//	}
 	
 	
 	
