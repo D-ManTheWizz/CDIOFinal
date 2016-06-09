@@ -20,30 +20,17 @@ public class MainController {
 //		}
 	}
 	
-	private void changePassword() /*throws DALException*/ {
+	private void changePassword(int oprID, String oldPass, String newPass) /*throws DALException*/ {
 
-		int oprID = 0;
-		String password = null;
-		String newPassword1 = null;	
-		String newPassword2 = null;
-		
 		// check if the ID and password is correspondent
-		if (validatePassword(oprID, password) == true) {
+		if (validatePassword(oprID, oldPass) == true) {
 			
-			// check if the new password is entered even two times
-			if (newPassword1 == newPassword2) {
-			
-//				oDTO = oDAO.getOperator(oprID);
-//				oDTO.setPassword(newPassword1);
-//				oDAO.updateOperator((OperatorDTO) oDTO);
-
-			} else {
-
-//				changePassword();
-				
-			}			
+//			blabla oprDTO = .getOperator(oprID);
+//			oprDTO.setPass(newPass);
+//			.updateOperator(oprDTO);
+					
 		} else {
-	
+//			errormsg.
 		}		
 	}
 	
