@@ -7,6 +7,9 @@ public class OperatoerDTO {
 	private String cpr;
 	private String password;
 	private int stilling;
+	
+	public OperatoerDTO() {
+	}
 
 	public OperatoerDTO(int id, String oprName, String ini, String cpr, String password, int stilling) {
 		this.id = id;
