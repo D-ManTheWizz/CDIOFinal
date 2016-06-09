@@ -105,9 +105,10 @@ public class MainController {
 		return null/*recList*/;
 	}
 	
-	public void createRecept(/*int receptId, String receptNavn, ArrayList<ReceptKompDTO> kompList*/) {
+	public boolean createRecept(/*int receptId, String receptNavn, ArrayList<ReceptKompDTO> kompList*/) {
 //		ReceptDTO recDTO = new ReceptDTO(receptId, receptNavn, kompList);
 //		recDAO.createRecept(recDTO);
+		return true;
 	}
 	
 	public List getOperatorList() {
@@ -118,7 +119,7 @@ public class MainController {
 	
 	/*
 	 */
-	public void createOperator(int id, String firstName, String lastName, String cpr, int stilling) /*throws DALException*/ {
+	public String/*OperatoerDTO*/ createOperator(int id, String firstName, String lastName, String cpr, int stilling) /*throws DALException*/ {
 
 		// make oprName from the first and last name
 		String oprName = firstName + " " + lastName;
@@ -129,6 +130,7 @@ public class MainController {
 		
 //		OperatoerDTO oprDTO = new OperatoerDTO(id, oprName, ini, cpr, password, stilling);
 //		oprDAO.createOperatoer(oprDTO);
+		return null/*oprDTO*/;
 	}
 	
 	public String/*OperatorDTO*/ getOperator(int oprID) {

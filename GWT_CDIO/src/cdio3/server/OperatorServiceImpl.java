@@ -69,6 +69,17 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return main.getOperatorList();
 //	}
 	
+//	@Override
+//	public boolean createRecept(int receptId, String receptNavn, List kompList) {
+//		return main.createRecept(receptId, receptNavn, kompList);
+//	}
+	
+//	@Override
+//	public OperatoerDTO createOperator(int id, String firstName, String lastName, String cpr, int stilling) {
+//		return main.createOperator(int id, String firstName, String lastName, String cpr, int stilling);
+//	}
+	
+	
 	
 	
 	
