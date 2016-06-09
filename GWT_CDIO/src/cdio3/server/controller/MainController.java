@@ -22,7 +22,7 @@ public class MainController {
 	/* 
 	*/
 	public boolean validatePassword(int oprID, String password) /*throws DALException*/ {
-//		blabla oprDTO = .getOperator(oprID);
+//		OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
 //		if(oprDTO.getPass == password) {
 			return true;
 //		} else {
