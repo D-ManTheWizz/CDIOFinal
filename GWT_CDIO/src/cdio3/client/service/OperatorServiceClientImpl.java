@@ -66,7 +66,7 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 					deleted();
 				}
 			} else if (result instanceof OperatoerDTO) {
-				OperatoerDTO doneOpr = (OperatoerDTO) result;
+				OperatoerDTO doneOpr = new OperatoerDTO((OperatoerDTO) result);
 				promptForPrint(doneOpr);
 			}
 		}	
