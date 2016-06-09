@@ -18,6 +18,7 @@ public class MainController {
 //	MySQLRaavareDAO rDAO = new MySQLRaavareDAO();
 	
 //	OperatoerDTO oprDTO;
+//	OperatoerDTO oprDTO2;
 	
 	private ArrayList<String> password = new ArrayList<String>();
 	
@@ -134,7 +135,6 @@ public class MainController {
 		a.add(7);
 		a.add(8);
 		
-		
 		// shuffle the list
 		Collections.shuffle(a); 
 		
@@ -178,8 +178,7 @@ public class MainController {
 				case 8: getRandom();
 						break;
 									
-			}
-			
+			}	
 		}
 		
 		// generate the password from the StringArray: password
@@ -243,32 +242,14 @@ public class MainController {
 		
 	}
 	
-	/*
-	 *  if the admin choose to change some oprInfo, he will be asked what info to change
-	 */
-	public void changeOprInfo() /*throws DALException*/ {
-		String choiceString = null;
-		
-//		if(choiceString.equals("1") || choiceString.equals("2") || choiceString.equals("3")) {
-//
-//			int choice = Integer.parseInt(choiceString);
-//			
-//			switch (choice) {
-//			
-//				case 1: 	changeOprName(); // prompt for valid ID
-//				
-//				case 2:		changeOprCpr(); // prompt for valid ID
-//				
-//				case 3:		adminMenu();
-//			
-//			}
-//			
-//		} else {
-//			
-//			UI.getInput();
-//			changeOprInfo();
-//			
-//		}
+	public String/*OperatorDTO*/ getOperator(int oprID) {
+//		OperatorDTO oprDTO; // eller... = null;???
+//		oprDTO = oprDAO.getRaavareDTO();
+		return null/*oprDTO*/;
+	}
+	
+	public void updateOperator(/*OperatorDTO opr*/) {
+//		oprDAO.updateOperatoer(opr);
 	}
 	
 	/*
