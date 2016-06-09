@@ -255,22 +255,9 @@ public class MainController {
 	/*
 	 *  deleting an Operator containing the ID the admin provides, confirming the deletion.
 	 */
-	public void deleteOprInfo() /*throws DALException*/ {
-		
-//		oDTO = oDAO.getOperator(Integer.parseInt(UI.getInput()));
-//		if(oDTO == null) {	
-
-//			UI.getInput();
-//			adminMenu();			
-//		}
-		
-//		// showing the Operator to be deleted
-//		// deleting the operator IF, and only if, the admin confirm
-//		if (UI.getInput().contains("yes")) {	
-//			oDAO.deleteOperator((OperatorDTO) oDTO); 			
-//		} else {	
-//			adminMenu();		
-//		}
+	public void deleteOperator(/*OperatoerDTO opr*/) /*throws DALException*/ {
+//		opr.setStilling(0);
+//		oprDAO.updateOperator(opr);
 	}
 	
 	/* 
