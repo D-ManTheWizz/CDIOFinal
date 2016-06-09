@@ -62,8 +62,7 @@ public class LogicController {
 				
 				// get a random letter/int/sign and add to the StringArray: password
 				case 8: getRandom();
-						break;
-									
+						break;						
 			}	
 		}
 		
@@ -73,8 +72,7 @@ public class LogicController {
 									password.get(4) + password.get(5) + 
 									password.get(6) + password.get(7);
 
-		return generatedPassword;
-				      
+		return generatedPassword;		      
 	}
 	
 	private void getUppercase() {
@@ -84,7 +82,6 @@ public class LogicController {
 		Collections.shuffle(Arrays.asList(upper));
 		
 		password.add(upper[0]);
-		
 	}
 	
 	private void getLowercase() {
@@ -94,7 +91,6 @@ public class LogicController {
 		Collections.shuffle(Arrays.asList(lower));
 		
 		password.add(lower[0]);
-		
 	}
 	
 	private void getInt() {
@@ -103,7 +99,6 @@ public class LogicController {
 		Collections.shuffle(Arrays.asList(number));
 		
 		password.add(number[0]);
-		
 	}
 	
 	private void getSpecial() {
@@ -112,7 +107,6 @@ public class LogicController {
 		Collections.shuffle(Arrays.asList(special));
 		
 		password.add(special[0]);
-		
 	}
 	
 	private void getRandom() {
@@ -125,8 +119,13 @@ public class LogicController {
 		Collections.shuffle(Arrays.asList(random));
 		
 		password.add(random[0]);
-		
 	}
 	
-
+	/*
+	 *  round the weight to two digits
+	 */
+	private double round(double weight) {
+		double rounded = (double) Math.round(weight * 100) / 100;
+		return rounded;
+	}
 }
