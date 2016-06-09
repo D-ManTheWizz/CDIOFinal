@@ -49,7 +49,10 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return main.createRaavare(raavareId, raavareNavn, leverandoer);
 //	}
 	
-	
+//	@Override
+//	public RaavareDTO getRaavare(int raavareID) {
+//		return main.getRaavare(raavareId);
+//	}
 	
 	
 	
