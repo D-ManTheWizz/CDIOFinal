@@ -93,58 +93,7 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //	public boolean deleteOperator(OperatoerDTO opr) {
 //		return main.deleteOperator(opr);
 //	}
-	
-	
-	
-	
-	
-	
-	
-	
-//	@Override
-//	public OperatorDTO createOperator(String firstName, String lastName, String cpr) {
-//		return OperatorDTO;
-//	}
-//	
-//	@Override
-//	public OperatorDTO getOperator(int id) {
-//		return OperatorDTO;
-//	}
-//	
-//	@Override
-//	public OperatorDTO changeOperator(int id) {
-//		return new OperatorDTO;
-//	}
-//	
-//	@Override
-//	public boolean deleteOperator(int id) {
-//		return true;
-//	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	@Override
 	public String createOperator(String firstName, String lastName, String CPR) {
 		return "created";
