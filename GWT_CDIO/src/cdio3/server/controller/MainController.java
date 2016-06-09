@@ -12,7 +12,12 @@ public class MainController {
 	/* 
 	*/
 	private boolean validatePassword(int oprID, String password) /*throws DALException*/ {
-		return true;
+//		blabla oprDTO = .getOperator(oprID);
+//		if(oprDTO.getPass == password) {
+			return true;
+//		} else {
+//			return false;
+//		}
 	}
 	
 	/*
