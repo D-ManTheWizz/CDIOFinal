@@ -97,8 +97,9 @@ public class MainController {
 	}
 	
 	public List getOperatorList() {
-//		List</*operatorDTO*/> oprListDTO = new ArrayList( .getOperatorList());
-		return null/*oprListDTO*/;
+//		ArrayList<OperatoerDTO> oprList = new ArrayList();
+//		oprList = oprDAO.getOperatoerList();
+		return null/*oprList*/;
 	}
 	
 	/*
