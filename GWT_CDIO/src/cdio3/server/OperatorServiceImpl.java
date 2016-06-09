@@ -89,7 +89,10 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return main.updateOperator(opr);
 //	}
 	
-	
+//	@Override
+//	public boolean deleteOperator(OperatoerDTO opr) {
+//		return main.deleteOperator(opr);
+//	}
 	
 	
 	

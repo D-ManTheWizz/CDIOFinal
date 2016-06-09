@@ -147,9 +147,10 @@ public class MainController {
 	/*
 	 *  deleting an Operator containing the ID the admin provides, confirming the deletion.
 	 */
-	public void deleteOperator(/*OperatoerDTO opr*/) /*throws DALException*/ {
+	public boolean deleteOperator(/*OperatoerDTO opr*/) /*throws DALException*/ {
 //		opr.setStilling(0);
 //		oprDAO.updateOperator(opr);
+		return true;
 	}
 	
 	/* 
