@@ -23,6 +23,9 @@ public class MainController {
 	public MainController() {
 
 	}
+	public int loginAndReturnClearance() {
+		return 0;
+	}
 	
 	/* 
 	*/
@@ -114,8 +117,7 @@ public class MainController {
 		// make 4 char initials, from the first two char in first name and last name
 		String ini = firstName.substring(0, 2) + lastName.substring(0, 2);
 		
-		LogicController logCon = new LogicController();
-		String password = logCon.generatePassword();
+		String password = new LogicController().generatePassword();
 		
 //		OperatoerDTO oprDTO = new OperatoerDTO(id, oprName, ini, cpr, password, stilling);
 //		oprDAO.createOperatoer(oprDTO);
