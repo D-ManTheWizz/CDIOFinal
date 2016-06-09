@@ -16,7 +16,7 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 	
 //	@Override
 //	public boolean changePassword(int oprID, String oldPass, String newPass) {
-//		return main.changePassword(int oprID, String oldPass, String newPass);
+//		return main.changePassword(oprID, oldPass, newPass);
 //	}
 	
 //	@Override
@@ -29,8 +29,15 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return main.getProduktBatchList();
 //	}
 	
+//	@Override
+//	public boolean createRaavareBatch(int rbId, int raavareId, double maengde) {
+//		return main.createRaavareBatch(rbId, raavareId, maengde);
+//	}
 	
-	
+//	@Override
+//	public boolean createProduktBatch(int pbId, int status, String receptId) {
+//		return main.createProduktBatch(pbId, status, receptId);
+//	}
 	
 	
 	

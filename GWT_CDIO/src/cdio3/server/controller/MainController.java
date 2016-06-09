@@ -64,14 +64,16 @@ public class MainController {
 		return null/*pbList*/;
 	}
 	
-	public void createRaavareBatch(int rbId, int raavareId, double maengde) {
+	public boolean createRaavareBatch(int rbId, int raavareId, double maengde) {
 //		RaavareBatchDTO rbDTO = new RaavareBatchDTO(int, int, double);
 //		rbDAO.createRaavareBatch(rbDTO);
+		return true;
 	}
 	
-	public void createProduktBatch(int pbId, int status, String receptId) {
+	public boolean createProduktBatch(int pbId, int status, String receptId) {
 //		ProduktBatchDTO pbDTO = new ProduktBatchDTO(int, int, String);
 //		pbDAO.createProduktBatch(pbDTO);
+		return true;
 	}
 	
 	public List getRaavareList() {
