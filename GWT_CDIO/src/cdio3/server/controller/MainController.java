@@ -61,6 +61,11 @@ public class MainController {
 		return null/*rListDTO*/;
 	}
 	
+	public void createRaavare(/*int, String, String*/) {
+//		RaavareDTO rDTO = new RaavareDTO(int, String, String);
+//		.setRaavare(rDTO);
+	}
+	
 	/*
 	 */
 	public void createOperator() /*throws DALException*/ {
