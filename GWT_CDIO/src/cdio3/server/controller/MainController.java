@@ -37,13 +37,13 @@ public class MainController {
 	}
 	
 	public String/*raavareBatchDTO*/ getRaavareBatchList() {
-//		List</*raavareBatchDTO*/> rbDTO = new ArrayList( .getRaavareBatchList);
-		return null/*rbDTO*/;
+//		List</*raavareBatchDTO*/> rbListDTO = new ArrayList( .getRaavareBatchList);
+		return null/*rbListDTO*/;
 	}
 	
 	public String/*produktBatchDTO*/ getProduktBatchList() {
-//		List</*produktBatchDTO*/> pbDTO = new ArrayList( .getProduktBatchList);
-		return null/*pbDTO*/;
+//		List</*produktBatchDTO*/> pbListDTO = new ArrayList( .getProduktBatchList);
+		return null/*pbListDTO*/;
 	}
 	
 	public void createRaavareBatch(/*int, int, double*/) {
@@ -54,6 +54,11 @@ public class MainController {
 	public void createProduktBatch(/*int, int, String*/) {
 //		ProduktBatchDTO pbDTO = new ProduktBatchDTO(int, int, String);
 //		.setProduktBatch(pbDTO);
+	}
+	
+	public String getRaavareList() {
+//		List</*raavareDTO*/> rListDTO = new ArrayList( .getRaavareList);
+		return null/*rListDTO*/;
 	}
 	
 	/*
