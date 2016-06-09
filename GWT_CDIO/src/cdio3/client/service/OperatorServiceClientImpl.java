@@ -66,7 +66,11 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 					deleted();
 				}
 			} else if (result instanceof OperatoerDTO) {
-				OperatoerDTO doneOpr = new OperatoerDTO((OperatoerDTO) result);
+//				OperatoerDTO doneOpr = new OperatoerDTO((OperatoerDTO) result);
+				OperatoerDTO doneOpr = new OperatoerDTO(((OperatoerDTO) result).getOprId(), ((OperatoerDTO) result).getOprNavn()
+						, ((OperatoerDTO) result).getIni(), ((OperatoerDTO) result).getCpr(), ((OperatoerDTO) result).getPassword()
+						, ((OperatoerDTO) result).getStilling());
+				
 				promptForPrint(doneOpr);
 			}
 		}	
