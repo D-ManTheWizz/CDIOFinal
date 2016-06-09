@@ -71,6 +71,10 @@ public class MainController {
 		return null/*rDTO*/;
 	}
 	
+	public void updateRaavare(/*raavareDTO raavare*/) {
+//		.updateRaavare(raavare);
+	}
+	
 	/*
 	 */
 	public void createOperator() /*throws DALException*/ {
