@@ -139,8 +139,9 @@ public class MainController {
 		return null/*oprDTO*/;
 	}
 	
-	public void updateOperator(/*OperatorDTO opr*/) {
+	public boolean updateOperator(/*OperatorDTO opr*/) {
 //		oprDAO.updateOperatoer(opr);
+		return true;
 	}
 	
 	/*
