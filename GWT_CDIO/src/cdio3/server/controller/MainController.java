@@ -37,12 +37,12 @@ public class MainController {
 	}
 	
 	public String/*raavareBatchDTO*/ getRaavareBatchList() {
-//		List</*raavareBatchDTO*/> rbListDTO = new ArrayList( .getRaavareBatchList);
+//		List</*raavareBatchDTO*/> rbListDTO = new ArrayList( .getRaavareBatchList());
 		return null/*rbListDTO*/;
 	}
 	
 	public String/*produktBatchDTO*/ getProduktBatchList() {
-//		List</*produktBatchDTO*/> pbListDTO = new ArrayList( .getProduktBatchList);
+//		List</*produktBatchDTO*/> pbListDTO = new ArrayList( .getProduktBatchList());
 		return null/*pbListDTO*/;
 	}
 	
@@ -57,13 +57,18 @@ public class MainController {
 	}
 	
 	public String getRaavareList() {
-//		List</*raavareDTO*/> rListDTO = new ArrayList( .getRaavareList);
+//		List</*raavareDTO*/> rListDTO = new ArrayList( .getRaavareList());
 		return null/*rListDTO*/;
 	}
 	
 	public void createRaavare(/*int, String, String*/) {
 //		RaavareDTO rDTO = new RaavareDTO(int, String, String);
 //		.setRaavare(rDTO);
+	}
+	
+	public String/*raavareDTO*/ getRaavare(int raavareID) {
+//		RaavareDTO rDTO = new RaavareDTO( .getRaavareDTO());
+		return null/*rDTO*/;
 	}
 	
 	/*
