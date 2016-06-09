@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 
-import cdio3.server.OperatoerDTO;
+import cdio3.shared.OperatoerDTO;
 
 
 @SuppressWarnings("unused")

@@ -3,7 +3,7 @@ package cdio3.client.service;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-import cdio3.server.OperatoerDTO;
+import cdio3.shared.OperatoerDTO;
 
 /**
  * The client-side stub for the RPC service.

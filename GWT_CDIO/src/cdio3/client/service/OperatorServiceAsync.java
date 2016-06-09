@@ -2,7 +2,7 @@ package cdio3.client.service;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import cdio3.server.OperatoerDTO;
+import cdio3.shared.OperatoerDTO;
 
 public interface OperatorServiceAsync {
 	void login(int id, String pass, AsyncCallback<String> callback)throws IllegalArgumentException;

@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import cdio3.client.service.OperatorServiceClientImpl;
-import cdio3.server.OperatoerDTO;
+import cdio3.shared.OperatoerDTO;
 
 public class MainView extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();

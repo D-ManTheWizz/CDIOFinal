@@ -4,6 +4,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdio3.client.service.OperatorService;
 import cdio3.server.controller.MainController;
+import cdio3.shared.OperatoerDTO;
 
 public class OperatorServiceImpl extends RemoteServiceServlet implements OperatorService {
 	private static final long serialVersionUID = 1L;

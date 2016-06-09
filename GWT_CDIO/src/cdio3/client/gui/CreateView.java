@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import cdio3.server.OperatoerDTO;
+import cdio3.shared.OperatoerDTO;
 
 public class CreateView extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();

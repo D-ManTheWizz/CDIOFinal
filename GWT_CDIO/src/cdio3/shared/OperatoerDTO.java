@@ -1,4 +1,4 @@
-package cdio3.server;
+package cdio3.shared;
 
 public class OperatoerDTO {
 	private int id;

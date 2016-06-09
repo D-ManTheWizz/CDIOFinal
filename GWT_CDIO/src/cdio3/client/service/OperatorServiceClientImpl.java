@@ -5,7 +5,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 import cdio3.client.gui.MainView;
-import cdio3.server.OperatoerDTO;
+import cdio3.shared.OperatoerDTO;
 
 public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 	private OperatorServiceAsync service;
@@ -66,7 +66,8 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 					deleted();
 				}
 			} else if (result instanceof OperatoerDTO) {
-				promptForPrint((OperatoerDTO) result);
+				OperatoerDTO doneOpr = (OperatoerDTO) result;
+				promptForPrint(doneOpr);
 			}
 		}	
 	}
