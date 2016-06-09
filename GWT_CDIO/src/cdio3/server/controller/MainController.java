@@ -86,8 +86,9 @@ public class MainController {
 	}
 	
 	public List getReceptList() {
-//		List</*receptDTO*/> recListDTO = new ArrayList( .getReceptList());
-		return null/*recListDTO*/;
+//		ArrayList<receptDTO> recList = new ArrayList();
+//		recList = recDAO.getReceptList();
+		return null/*recList*/;
 	}
 	
 	public void createRecept(/*int, String, String[]*/) {
