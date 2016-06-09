@@ -74,10 +74,10 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return main.createRecept(receptId, receptNavn, kompList);
 //	}
 	
-//	@Override
-//	public OperatoerDTO createOperator(int id, String firstName, String lastName, String cpr, int stilling) {
-//		return main.createOperator(int id, String firstName, String lastName, String cpr, int stilling);
-//	}
+	@Override
+	public OperatoerDTO createOperator(int id, String firstName, String lastName, String cpr, int stilling) {
+		return main.createOperator(id, firstName, lastName, cpr, stilling);
+	}
 	
 //	@Override
 //	public OperatoerDTO getOperator(int oprID) {
@@ -93,12 +93,7 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //	public boolean deleteOperator(OperatoerDTO opr) {
 //		return main.deleteOperator(opr);
 //	}
-		
-	@Override
-	public String createOperator(String firstName, String lastName, String CPR) {
-		return "created";
-	}
-
+	
 	@Override
 	public String changeOperator(String ID, String firstName, String lastName) {
 		return "changed";

@@ -5,6 +5,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 import cdio3.client.gui.MainView;
+import cdio3.server.OperatoerDTO;
 
 public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 	private OperatorServiceAsync service;
@@ -22,26 +23,31 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 		return this.main;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void login(int id, String pass) throws IllegalArgumentException {
 		this.service.login(id, pass, new DefaultCallback());
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public void createOperator(String firstName, String lastName, String CPR) {
-		this.service.createOperator(firstName, lastName, CPR, new DefaultCallback());
+	public void createOperator(int oprId, String firstName, String lastName, String CPR, int stilling) {
+		this.service.createOperator(oprId, firstName, lastName, CPR, stilling, new DefaultCallback());
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void changeOperator(String ID, String firstName, String lastName) {
 		this.service.changeOperator(ID, firstName, lastName, new DefaultCallback());
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void deleteOperator(String ID) {
 		this.service.deleteOperator(ID, new DefaultCallback());
 	}
 
+	@SuppressWarnings("rawtypes")
 	private class DefaultCallback implements AsyncCallback {
 
 		@Override
@@ -54,23 +60,19 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 			if(result instanceof String) {
 				if(result.toString() == "logged in") {
 					updateLogin();
-				} else if(result.toString() == "created") {
-					created();
 				} else if(result.toString() == "changed") {
 					changed();
 				} else if(result.toString() == "deleted") {
 					deleted();
 				}
-			} 
+			} else if (result instanceof OperatoerDTO) {
+				promptForPrint((OperatoerDTO) result);
+			}
 		}	
 	}
 	
 	private void updateLogin() {
 		this.main.updateLogin();
-	}
-	
-	private void created() {
-		this.main.created();
 	}
 	
 	private void changed() {
@@ -79,5 +81,8 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 	
 	private void deleted() {
 		this.main.deleted();
+	}
+	private void promptForPrint(OperatoerDTO result) {
+		this.main.promptForPrint(result);
 	}
 }

@@ -5,12 +5,11 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import cdio3.client.service.OperatorServiceClientImpl;
+import cdio3.server.OperatoerDTO;
 
 public class MainView extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();
 	private VerticalPanel contentPanel;
-	private int id;
-	private String pass;
 	
 	private OperatorServiceClientImpl serviceClientImpl;
 	private AdminMenu admMenu;
@@ -56,12 +55,8 @@ public class MainView extends Composite {
 		this.admMenu.loginSucces();	
 	}
 
-	public void createOperator(String firstName, String lastName, String CPR) {
-		this.serviceClientImpl.createOperator(firstName, lastName, CPR);
-	}
-
-	public void created() {
-		this.admMenu.created();
+	public void createOperator(int oprId, String firstName, String lastName, String CPR, int stilling) {
+		this.serviceClientImpl.createOperator(oprId, firstName, lastName, CPR, stilling);
 	}
 
 	public void changeOperator(String ID, String firstName, String lastName) {
@@ -78,5 +73,9 @@ public class MainView extends Composite {
 
 	public void deleted() {
 		this.admMenu.deleted();
+	}
+
+	public void promptForPrint(OperatoerDTO result) {
+		this.admMenu.promptForPrint(result);
 	}
 }

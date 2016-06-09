@@ -10,6 +10,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import cdio3.server.OperatoerDTO;
+
 public class CreateView extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();
 	private HorizontalPanel hPanel = new HorizontalPanel();
@@ -97,7 +99,7 @@ public class CreateView extends Composite {
 	}
 	
 	private void createOperator() {
-		this.main.createOperator(firstName, lastName, CPR);
+		this.main.createOperator(10, firstName, lastName, CPR, 0);
 	}
 	
 	private class noClickHandler implements ClickHandler{
@@ -124,7 +126,11 @@ public class CreateView extends Composite {
 		}
 	}
 
-	public void created() {
-		this.lbl3_1.setText("CREATED!!!");
+//	public void created() {
+//		this.lbl3_1.setText("CREATED!!!");
+//	}
+
+	public void promptForPrint(OperatoerDTO result) {
+		this.lbl3_1.setText(result.getPassword());		
 	}
 }

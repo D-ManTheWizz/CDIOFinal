@@ -124,6 +124,7 @@ public class LogicController {
 	/*
 	 *  round the weight to two digits
 	 */
+	@SuppressWarnings("unused")
 	private double round(double weight) {
 		double rounded = (double) Math.round(weight * 100) / 100;
 		return rounded;

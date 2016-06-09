@@ -4,30 +4,30 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import cdio3.server.OperatoerDTO;
+
 public class CreateMenu extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();
 	private VerticalPanel contentPanel;
 	
 	private MainView main;
-	private AdminMenu adminMenu;
 	private CreateView createView;
 	
-	public CreateMenu(AdminMenu adminMenu, MainView main){
+	public CreateMenu(MainView main){
 		initWidget(vPanel);
 		this.main = main;
-		this.adminMenu = adminMenu;
 		
 		Label txt = new Label("Create Menu");
 		vPanel.add(txt);
 		
-		createView = new CreateView(main);
+		createView = new CreateView(this.main);
 		this.vPanel.add(createView);
 		
 		this.contentPanel = new VerticalPanel();
 		this.vPanel.add(contentPanel);
 	}
 
-	public void created() {
-		this.createView.created();
+	public void promptForPrint(OperatoerDTO result) {
+		this.createView.promptForPrint(result);
 	}
 }

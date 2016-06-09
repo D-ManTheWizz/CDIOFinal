@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 
+import cdio3.server.OperatoerDTO;
+
 
 @SuppressWarnings("unused")
 public class MainController {
@@ -119,7 +121,7 @@ public class MainController {
 	
 	/*
 	 */
-	public String/*OperatoerDTO*/ createOperator(int id, String firstName, String lastName, String cpr, int stilling) /*throws DALException*/ {
+	public OperatoerDTO createOperator(int id, String firstName, String lastName, String cpr, int stilling) /*throws DALException*/ {
 
 		// make oprName from the first and last name
 		String oprName = firstName + " " + lastName;
@@ -128,9 +130,9 @@ public class MainController {
 		
 		String password = new LogicController().generatePassword();
 		
-//		OperatoerDTO oprDTO = new OperatoerDTO(id, oprName, ini, cpr, password, stilling);
+		OperatoerDTO oprDTO = new OperatoerDTO(id, oprName, ini, cpr, password, stilling);
 //		oprDAO.createOperatoer(oprDTO);
-		return null/*oprDTO*/;
+		return oprDTO;
 	}
 	
 	public String/*OperatorDTO*/ getOperator(int oprID) {
