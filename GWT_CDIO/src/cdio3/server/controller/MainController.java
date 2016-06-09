@@ -46,6 +46,11 @@ public class MainController {
 		return null/*pbDTO*/;
 	}
 	
+	public void createRaavareBatch(/*int, int, double*/) {
+//		RaavareBatchDTO rbDTO = new RaavareBatchDTO(int, int, double);
+//		.setRaavare(rbDTO);
+	}
+	
 	/*
 	 */
 	private void createOperator() /*throws DALException*/ {
