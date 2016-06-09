@@ -41,6 +41,11 @@ public class MainController {
 		return null/*rbDTO*/;
 	}
 	
+	public String/*produktBatchDTO*/ getProduktBatchList() {
+//		List</*produktBatchDTO*/> pbDTO = new ArrayList( .getProduktBatchList);
+		return null/*pbDTO*/;
+	}
+	
 	/*
 	 */
 	private void createOperator() /*throws DALException*/ {
