@@ -8,12 +8,6 @@ public class MainController {
 	public MainController() {
 
 	}
-
-	/* 
-	*/
-
-	/*
-	*/
 	
 	/* 
 	*/
@@ -55,7 +49,9 @@ public class MainController {
 //    	}		    	
 	}
 	
-	// if the admin choose to change some oprInfo, he will be asked what info to change
+	/*
+	 *  if the admin choose to change some oprInfo, he will be asked what info to change
+	 */
 	private void changeOprInfo() /*throws DALException*/ {
 		String choiceString = null;
 		
@@ -81,9 +77,9 @@ public class MainController {
 //		}
 	}
 	
-	/* 
-	*/
-	// deleting an Operator containing the ID the admin provides, confirming the deletion.
+	/*
+	 *  deleting an Operator containing the ID the admin provides, confirming the deletion.
+	 */
 	private void deleteOprInfo() /*throws DALException*/ {
 		
 //		oDTO = oDAO.getOperator(Integer.parseInt(UI.getInput()));
@@ -173,20 +169,15 @@ public class MainController {
 //			startWeight();
 //			
 //		} else {
-//			
-//			controllerText.setWeightWrongID();
-//			
-//			UI.getInput();
-//			startMenu();
+	
 //		}
 //	}
 	
-	// round the weight to two digits
+	/*
+	 *  round the weight to two digits
+	 */
 	private double round(double weight) {
-		
 		double rounded = (double) Math.round(weight * 100) / 100;
-		
 		return rounded;
-		
 	}
 }
