@@ -13,7 +13,7 @@ public class MainController {
 	
 	/* 
 	*/
-	private boolean validatePassword(int oprID, String password) /*throws DALException*/ {
+	public boolean validatePassword(int oprID, String password) /*throws DALException*/ {
 //		blabla oprDTO = .getOperator(oprID);
 //		if(oprDTO.getPass == password) {
 			return true;
@@ -22,7 +22,7 @@ public class MainController {
 //		}
 	}
 	
-	private void changePassword(int oprID, String oldPass, String newPass) /*throws DALException*/ {
+	public void changePassword(int oprID, String oldPass, String newPass) /*throws DALException*/ {
 
 		// check if the ID and password is correspondent
 		if (validatePassword(oprID, oldPass) == true) {
@@ -48,12 +48,17 @@ public class MainController {
 	
 	public void createRaavareBatch(/*int, int, double*/) {
 //		RaavareBatchDTO rbDTO = new RaavareBatchDTO(int, int, double);
-//		.setRaavare(rbDTO);
+//		.setRaavareBatch(rbDTO);
+	}
+	
+	public void createProduktBatch(/*int, int, String*/) {
+//		ProduktBatchDTO pbDTO = new ProduktBatchDTO(int, int, String);
+//		.setProduktBatch(pbDTO);
 	}
 	
 	/*
 	 */
-	private void createOperator() /*throws DALException*/ {
+	public void createOperator() /*throws DALException*/ {
 
 		String oprFirstName = null;
 		String oprLastName = null;		
@@ -88,7 +93,7 @@ public class MainController {
 	/*
 	 *  if the admin choose to change some oprInfo, he will be asked what info to change
 	 */
-	private void changeOprInfo() /*throws DALException*/ {
+	public void changeOprInfo() /*throws DALException*/ {
 		String choiceString = null;
 		
 //		if(choiceString.equals("1") || choiceString.equals("2") || choiceString.equals("3")) {
@@ -116,7 +121,7 @@ public class MainController {
 	/*
 	 *  deleting an Operator containing the ID the admin provides, confirming the deletion.
 	 */
-	private void deleteOprInfo() /*throws DALException*/ {
+	public void deleteOprInfo() /*throws DALException*/ {
 		
 //		oDTO = oDAO.getOperator(Integer.parseInt(UI.getInput()));
 //		if(oDTO == null) {	
