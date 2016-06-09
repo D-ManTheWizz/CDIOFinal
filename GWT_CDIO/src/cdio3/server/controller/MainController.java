@@ -36,9 +36,9 @@ public class MainController {
 	
 	public void changePassword(int oprID, String oldPass, String newPass) /*throws DALException*/ {
 		// check if the ID and password is correspondent
-		if (validatePassword(oprID, oldPass) == true) {		
-//			oprDTO.setPassword(newPass);
-//			oprDAO.updateOperatoer(oprDTO);				
+		if (validatePassword(oprID, oldPass)) {		
+//			this.oprDTO.setPassword(newPass);
+//			oprDAO.updateOperatoer(this.oprDTO);				
 		} else {
 //			errormsg.
 		}		
@@ -54,14 +54,14 @@ public class MainController {
 		return null/*pbList*/;
 	}
 	
-	public void createRaavareBatch(/*int, int, double*/) {
+	public void createRaavareBatch(int rbId, int raavareId, double maengde) {
 //		RaavareBatchDTO rbDTO = new RaavareBatchDTO(int, int, double);
-//		.setRaavareBatch(rbDTO);
+//		rbDAO.updateRaavareBatch(rbDTO);
 	}
 	
 	public void createProduktBatch(/*int, int, String*/) {
 //		ProduktBatchDTO pbDTO = new ProduktBatchDTO(int, int, String);
-//		.setProduktBatch(pbDTO);
+//		pbDAO.updateProduktBatch(pbDTO);
 	}
 	
 	public List getRaavareList() {
