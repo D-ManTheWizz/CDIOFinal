@@ -4,7 +4,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import cdio3.server.OperatoerDTO;
+
 
 public class CreateMenu extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();
@@ -25,9 +25,5 @@ public class CreateMenu extends Composite {
 		
 		this.contentPanel = new VerticalPanel();
 		this.vPanel.add(contentPanel);
-	}
-
-	public void promptForPrint(OperatoerDTO result) {
-		this.createView.promptForPrint(result);
 	}
 }

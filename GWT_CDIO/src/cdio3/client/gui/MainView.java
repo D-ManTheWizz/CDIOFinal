@@ -13,6 +13,7 @@ public class MainView extends Composite {
 	
 	private OperatorServiceClientImpl serviceClientImpl;
 	private AdminMenu admMenu;
+	private CreateView createView;
 	
 	public MainView(OperatorServiceClientImpl serviceImpl){
 		initWidget(this.vPanel);
@@ -55,7 +56,8 @@ public class MainView extends Composite {
 		this.admMenu.loginSucces();	
 	}
 
-	public void createOperator(int oprId, String firstName, String lastName, String CPR, int stilling) {
+	public void createOperator(int oprId, String firstName, String lastName, String CPR, int stilling, CreateView createView) {
+		this.createView = createView;
 		this.serviceClientImpl.createOperator(oprId, firstName, lastName, CPR, stilling);
 	}
 
@@ -76,6 +78,6 @@ public class MainView extends Composite {
 	}
 
 	public void promptForPrint(OperatoerDTO result) {
-		this.admMenu.promptForPrint(result);
+		this.createView.promptForPrint(result);
 	}
 }
