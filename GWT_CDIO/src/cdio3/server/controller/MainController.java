@@ -82,9 +82,10 @@ public class MainController {
 		return null/*rList*/;
 	}
 	
-	public void createRaavare(int raavareId, String raavareNavn, String leverandoer) {
+	public boolean createRaavare(int raavareId, String raavareNavn, String leverandoer) {
 //		RaavareDTO rDTO = new RaavareDTO(raavareId, raavareNavn, leverandoer);
 //		rDTO.createRaavare(rDTO);
+		return true;
 	}
 	
 	public String/*RaavareDTO*/ getRaavare(int raavareID) {
