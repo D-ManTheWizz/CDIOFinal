@@ -72,7 +72,7 @@ public class MainController {
 	
 	public void createRaavare(/*int, String, String*/) {
 //		RaavareDTO rDTO = new RaavareDTO(int, String, String);
-//		.setRaavare(rDTO);
+//		rDTO.updateRaavare(rDTO);
 	}
 	
 	public String/*raavareDTO*/ getRaavare(int raavareID) {
