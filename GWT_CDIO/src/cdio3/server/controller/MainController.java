@@ -56,12 +56,12 @@ public class MainController {
 	
 	public void createRaavareBatch(int rbId, int raavareId, double maengde) {
 //		RaavareBatchDTO rbDTO = new RaavareBatchDTO(int, int, double);
-//		rbDAO.updateRaavareBatch(rbDTO);
+//		rbDAO.createRaavareBatch(rbDTO);
 	}
 	
 	public void createProduktBatch(int pbId, int status, String receptId) {
 //		ProduktBatchDTO pbDTO = new ProduktBatchDTO(int, int, String);
-//		pbDAO.updateProduktBatch(pbDTO);
+//		pbDAO.createProduktBatch(pbDTO);
 	}
 	
 	public List getRaavareList() {
@@ -71,8 +71,8 @@ public class MainController {
 	}
 	
 	public void createRaavare(int raavareId, String raavareNavn, String leverandoer) {
-//		RaavareDTO rDTO = new RaavareDTO(int, String, String);
-//		rDTO.updateRaavare(rDTO);
+//		RaavareDTO rDTO = new RaavareDTO(raavareId, raavareNavn, leverandoer);
+//		rDTO.createRaavare(rDTO);
 	}
 	
 	public String/*RaavareDTO*/ getRaavare(int raavareID) {
@@ -91,9 +91,9 @@ public class MainController {
 		return null/*recList*/;
 	}
 	
-	public void createRecept(/*int, String, String[]*/) {
-//		ReceptDTO recDTO = new ReceptDTO(int, String, String[]);
-//		.setRecept(recDTO);
+	public void createRecept(/*int receptId, String receptNavn, ArrayList<ReceptKompDTO> kompList*/) {
+//		ReceptDTO recDTO = new ReceptDTO(receptId, receptNavn, kompList);
+//		recDAO.createRecept(recDTO);
 	}
 	
 	public List getOperatorList() {
