@@ -6,6 +6,14 @@ import java.util.Iterator;
 
 
 public class MainController {
+
+//	MySQLOperatorDAO oprDAO = new MySQLOperatorDAO();
+//	MySQLProduktBatchDAO pbDAO = new MySQLProduktBatchDAO();
+//	MySQLProduktBatchKompDAO pbkDAO = new MySQLProduktBatchKompDAO();
+//	MySQLReceptDAO recDAO = new MySQLReceptDAO();
+//	MySQLReceptKompDAO reckomDAO = new MySQLReceptKompDAO();
+//	MySQLRaavareBatchDAO rbDAO = new MySQLRaavareBatchDAO();
+//	MySQLRaavareDAO rDAO = new MySQLRaavareDAO();
 	
 	public MainController() {
 
