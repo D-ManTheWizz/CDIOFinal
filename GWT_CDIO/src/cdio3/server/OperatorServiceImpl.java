@@ -15,6 +15,25 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //	}
 	
 //	@Override
+//	public boolean changePassword(int oprID, String oldPass, String newPass) {
+//		return main.changePassword(int oprID, String oldPass, String newPass);
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	@Override
 //	public OperatorDTO createOperator(String firstName, String lastName, String cpr) {
 //		return OperatorDTO;
 //	}
