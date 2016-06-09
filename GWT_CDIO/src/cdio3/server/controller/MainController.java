@@ -17,6 +17,7 @@ public class MainController {
 	
 //	OperatoerDTO oprDTO;
 //	ArrayList<RaavareBatchDTO> rbList;
+//	ArrayList<ProduktBatchDTO> pbList;
 	
 	public MainController() {
 
@@ -49,8 +50,8 @@ public class MainController {
 	}
 	
 	public List getProduktBatchList() {
-//		List</*produktBatchDTO*/> pbListDTO = new ArrayList( .getProduktBatchList());
-		return null/*pbListDTO*/;
+//		pbList = pbDAO.getProduktBatchList();
+		return null/*pbList*/;
 	}
 	
 	public void createRaavareBatch(/*int, int, double*/) {
