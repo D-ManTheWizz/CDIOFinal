@@ -19,7 +19,10 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return main.changePassword(int oprID, String oldPass, String newPass);
 //	}
 	
-	
+//	@Override
+//	public List getRaavareBatchList() {
+//		return main.getRaavareBatchList();
+//	}
 	
 	
 	
