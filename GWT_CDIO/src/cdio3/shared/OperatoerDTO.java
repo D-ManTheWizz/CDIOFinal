@@ -48,4 +48,5 @@ public class OperatoerDTO {
 	public void setPassword(String password) { this.password = password; }
 	public int getStilling() { return stilling; }
 	public void setStilling(int stilling) { this.stilling = stilling; }
+	public String toString() { return id + "\t" + oprName + "\t" + ini + "\t" + cpr + "\t" + password + "\t" + stilling; }
 }
