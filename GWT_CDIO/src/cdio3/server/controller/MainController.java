@@ -82,7 +82,7 @@ public class MainController {
 	}
 	
 	public void updateRaavare(/*raavareDTO raavare*/) {
-//		.updateRaavare(raavare);
+//		rDAO.updateRaavare(raavare);
 	}
 	
 	public List getReceptList() {
