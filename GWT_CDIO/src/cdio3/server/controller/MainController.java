@@ -15,6 +15,8 @@ public class MainController {
 //	MySQLRaavareBatchDAO rbDAO = new MySQLRaavareBatchDAO();
 //	MySQLRaavareDAO rDAO = new MySQLRaavareDAO();
 	
+//	OperatoerDTO oprDTO;
+	
 	public MainController() {
 
 	}
@@ -22,7 +24,7 @@ public class MainController {
 	/* 
 	*/
 	public boolean validatePassword(int oprID, String password) /*throws DALException*/ {
-//		OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
+//		this.oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
 //		if(oprDTO.getPass == password) {
 			return true;
 //		} else {
@@ -33,9 +35,8 @@ public class MainController {
 	public void changePassword(int oprID, String oldPass, String newPass) /*throws DALException*/ {
 		// check if the ID and password is correspondent
 		if (validatePassword(oprID, oldPass) == true) {		
-//			blabla oprDTO = .getOperator(oprID);
-//			oprDTO.setPass(newPass);
-//			.updateOperator(oprDTO);				
+//			oprDTO.setPassword(newPass);
+//			oprDAO.updateOperatoer(oprDTO);				
 		} else {
 //			errormsg.
 		}		
