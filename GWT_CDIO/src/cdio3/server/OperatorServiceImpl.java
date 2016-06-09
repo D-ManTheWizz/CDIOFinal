@@ -3,16 +3,17 @@
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdio3.client.service.OperatorService;
+import cdio3.server.controller.MainController;
 
 public class OperatorServiceImpl extends RemoteServiceServlet implements OperatorService {
 	private static final long serialVersionUID = 1L;
+	MainController main = new MainController();
 	
-	@Override
-	public String login(int id, String pass) {
-//		controller.login();
-		return "logged in";
-	}
-//	
+//	@Override
+//	public OperatorDTO login(int id, String pass) {
+//		return main.login(id, pass);
+//	}
+	
 //	@Override
 //	public OperatorDTO createOperator(String firstName, String lastName, String cpr) {
 //		return OperatorDTO;
@@ -33,6 +34,30 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return true;
 //	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public String createOperator(String firstName, String lastName, String CPR) {
 		return "created";
@@ -46,5 +71,11 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 	@Override
 	public String deleteOperator(String ID) {
 		return "deleted";
+	}
+
+	@Override
+	public String login(int id, String pass) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

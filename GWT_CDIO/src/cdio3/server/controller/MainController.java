@@ -18,20 +18,23 @@ public class MainController {
 //	MySQLRaavareBatchDAO rbDAO = new MySQLRaavareBatchDAO();
 //	MySQLRaavareDAO rDAO = new MySQLRaavareDAO();
 	
-//	OperatoerDTO oprDTO;
-	
 	public MainController() {
 
 	}
-	public int loginAndReturnClearance() {
-		return 0;
+	public int/*OperatoerDTO*/ login(int id, String pass) {
+		if (validatePassword(id, pass)) {
+//			OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(id));
+			return 0/*oprDTO*/;
+		} else {
+			return 404;
+		}
 	}
 	
 	/* 
 	*/
-	public boolean validatePassword(int oprID, String password) /*throws DALException*/ {
-//		this.oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
-//		if(oprDTO.getPass == password) {
+	private boolean validatePassword(int oprID, String pass) /*throws DALException*/ {
+//		OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
+//		if(oprDTO.getPass == pass) {
 			return true;
 //		} else {
 //			return false;
@@ -40,9 +43,10 @@ public class MainController {
 	
 	public void changePassword(int oprID, String oldPass, String newPass) /*throws DALException*/ {
 		// check if the ID and password is correspondent
-		if (validatePassword(oprID, oldPass)) {		
-//			this.oprDTO.setPassword(newPass);
-//			oprDAO.updateOperatoer(this.oprDTO);				
+		if (validatePassword(oprID, oldPass)) {	
+//			OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
+//			oprDTO.setPassword(newPass);
+//			oprDAO.updateOperatoer(oprDTO);				
 		} else {
 //			errormsg.
 		}		
