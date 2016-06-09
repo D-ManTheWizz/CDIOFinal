@@ -9,6 +9,12 @@ public class OperatoerDTO {
 	private int stilling;
 	
 	public OperatoerDTO() {
+		this.id = 0;
+		this.oprName = null;
+		this.ini = null;
+		this.cpr = null;
+		this.password = null;
+		this.stilling = 0;
 	}
 
 	public OperatoerDTO(int id, String oprName, String ini, String cpr, String password, int stilling) {
