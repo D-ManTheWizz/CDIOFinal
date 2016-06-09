@@ -77,6 +77,11 @@ public class MainController {
 		return null/*recListDTO*/;
 	}
 	
+	public void createRecept(/*int, String, String[]*/) {
+//		ReceptDTO recDTO = new ReceptDTO(int, String, String[]);
+//		.setRecept(recDTO);
+	}
+	
 	/*
 	 */
 	public void createOperator() /*throws DALException*/ {
