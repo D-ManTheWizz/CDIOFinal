@@ -39,7 +39,10 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return main.createProduktBatch(pbId, status, receptId);
 //	}
 	
-	
+//	@Override
+//	public List getRaavareList() {
+//		return main.getRaavareList();
+//	}
 	
 	
 	
