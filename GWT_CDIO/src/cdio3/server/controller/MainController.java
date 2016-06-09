@@ -16,6 +16,7 @@ public class MainController {
 //	MySQLRaavareDAO rDAO = new MySQLRaavareDAO();
 	
 //	OperatoerDTO oprDTO;
+//	ArrayList<RaavareBatchDTO> rbList;
 	
 	public MainController() {
 
@@ -43,8 +44,8 @@ public class MainController {
 	}
 	
 	public List getRaavareBatchList() {
-//		List</*raavareBatchDTO*/> rbListDTO = new ArrayList( .getRaavareBatchList());
-		return null/*rbListDTO*/;
+//		rbList = rbDAO.getRaavareBatchList();
+		return null/*rbList*/;
 	}
 	
 	public List getProduktBatchList() {
