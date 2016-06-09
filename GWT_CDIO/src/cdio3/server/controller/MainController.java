@@ -82,6 +82,11 @@ public class MainController {
 //		.setRecept(recDTO);
 	}
 	
+	public List getOperatorList() {
+//		List</*operatorDTO*/> oprListDTO = new ArrayList( .getOperatorList());
+		return null/*oprListDTO*/;
+	}
+	
 	/*
 	 */
 	public void createOperator() /*throws DALException*/ {
