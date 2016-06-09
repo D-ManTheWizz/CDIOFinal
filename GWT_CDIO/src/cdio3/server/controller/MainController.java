@@ -70,13 +70,14 @@ public class MainController {
 		return null/*rList*/;
 	}
 	
-	public void createRaavare(/*int, String, String*/) {
+	public void createRaavare(int raavareId, String raavareNavn, String leverandoer) {
 //		RaavareDTO rDTO = new RaavareDTO(int, String, String);
 //		rDTO.updateRaavare(rDTO);
 	}
 	
-	public String/*raavareDTO*/ getRaavare(int raavareID) {
-//		RaavareDTO rDTO = new RaavareDTO( .getRaavareDTO());
+	public String/*RaavareDTO*/ getRaavare(int raavareID) {
+//		RaavareDTO rDTO; // eller... = null;???
+//		rDTO = rDAO.getRaavareDTO();
 		return null/*rDTO*/;
 	}
 	
