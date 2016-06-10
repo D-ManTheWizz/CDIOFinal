@@ -131,6 +131,6 @@ public class CreateView extends Composite {
 //	}
 
 	public void promptForPrint(OperatoerDTO result) {
-		this.lbl3_1.setText(result.getPassword());		
+		this.lbl3_1.setText(result.toString());		
 	}
 }
