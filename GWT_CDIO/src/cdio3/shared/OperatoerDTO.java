@@ -40,6 +40,16 @@ public class OperatoerDTO implements Serializable{
     	this.stilling = opr.getStilling();
     }
 	
+	public OperatoerDTO(Object opr)
+    {
+    	this.id = ((OperatoerDTO) opr).getOprId();
+    	this.oprName = ((OperatoerDTO) opr).getOprNavn();
+    	this.ini = ((OperatoerDTO) opr).getIni();
+    	this.cpr = ((OperatoerDTO) opr).getCpr();
+    	this.password = ((OperatoerDTO) opr).getPassword();
+    	this.stilling = ((OperatoerDTO) opr).getStilling();
+    }
+	
 	public int getOprId() { return id; }
 	public void setOprId(int id) { this.id = id; }
 	public String getOprNavn() { return oprName; }

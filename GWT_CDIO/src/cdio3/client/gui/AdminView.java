@@ -10,6 +10,8 @@ import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import cdio3.shared.OperatoerDTO;
+
 public class AdminView extends Composite{
 	private VerticalPanel vPanel = new VerticalPanel();
 	private HorizontalPanel hPanel = new HorizontalPanel();
@@ -45,7 +47,7 @@ public class AdminView extends Composite{
 
 	}
 
-	public void loginSucces(){
+	public void loginSucces(OperatoerDTO oprDTO){
 		System.out.println("LOGIN SUCCES");
 		this.login = true;
 		this.lbl2 = new Label("Login Succesful");
@@ -107,6 +109,12 @@ public class AdminView extends Composite{
 	}
 	
 	private void login(int id, String pass) {
-		this.main.login(id, pass);
+		this.main.login(id, pass, this);
 	}
+
+	public void confirmLogin(OperatoerDTO oprDTO) {
+		loginSucces(oprDTO);
+	}
+	
+	
 }

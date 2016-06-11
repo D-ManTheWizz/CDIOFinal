@@ -23,15 +23,19 @@ public class MainController {
 	public MainController() {
 
 	}
-	public int/*OperatoerDTO*/ login(int id, String pass) {
+	public OperatoerDTO login(int id, String pass) {
 		if (validatePassword(id, pass)) {
-//			OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(id));
-			return 0/*oprDTO*/;
+			OperatoerDTO oprDTO = new OperatoerDTO(makeOneOperatoerForTesting()/*oprDAO.getOperatoer(id)*/);
+			return oprDTO;
 		} else {
-			return 404;
+			return null;
 		}
 	}
 	
+	private OperatoerDTO makeOneOperatoerForTesting() {
+		OperatoerDTO oprDTO = new OperatoerDTO(10, "Admin Jensen", "AdJe", "123456-1234", "1234Pass", 5);
+		return oprDTO;
+	}
 	/* 
 	*/
 	private boolean validatePassword(int oprID, String pass) /*throws DALException*/ {

@@ -3,6 +3,8 @@ package cdio3.client.gui;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
+
+import cdio3.shared.OperatoerDTO;
 	
 public class AdminMenu extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();
@@ -51,10 +53,6 @@ public class AdminMenu extends Composite {
 		deleteMenu = new DeleteMenu(this, main);
 		this.contentPanel.add(deleteMenu);
 		
-	}
-
-	public void loginSucces() {
-		this.adminView.loginSucces();	
 	}
 
 	public void changed() {

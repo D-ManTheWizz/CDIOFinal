@@ -106,8 +106,8 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 	}
 
 	@Override
-	public String login(int id, String pass) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
+	public OperatoerDTO login(int id, String pass) throws IllegalArgumentException {
+		OperatoerDTO oprDTO = main.login(id, pass);
+		return oprDTO;
 	}
 }

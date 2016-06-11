@@ -58,14 +58,16 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 		@Override
 		public void onSuccess(Object result) {
 			if(result instanceof String) {
-				if(result.toString() == "logged in") {
-					updateLogin();
-				} else if(result.toString() == "changed") {
+				if(result.toString() == "changed") {
 					changed();
 				} else if(result.toString() == "deleted") {
 					deleted();
 				}
 			} else if (result instanceof OperatoerDTO) {
+				if(((OperatoerDTO) result).getOprId()==10) {
+					OperatoerDTO oprDTO = new OperatoerDTO(result);
+					comfirmLogin(oprDTO);
+				}
 //				OperatoerDTO doneOpr = new OperatoerDTO((OperatoerDTO) result);
 				OperatoerDTO doneOpr = new OperatoerDTO(((OperatoerDTO) result).getOprId(), ((OperatoerDTO) result).getOprNavn()
 						, ((OperatoerDTO) result).getIni(), ((OperatoerDTO) result).getCpr(), ((OperatoerDTO) result).getPassword()
@@ -74,10 +76,6 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 				promptForPrint(doneOpr);
 			}
 		}	
-	}
-	
-	private void updateLogin() {
-		this.main.updateLogin();
 	}
 	
 	private void changed() {
@@ -89,5 +87,8 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 	}
 	private void promptForPrint(OperatoerDTO result) {
 		this.main.promptForPrint(result);
+	}
+	private void comfirmLogin(OperatoerDTO oprDTO) {
+		this.main.confirmLogin(oprDTO);
 	}
 }
