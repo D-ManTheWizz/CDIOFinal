@@ -7,12 +7,16 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import cdio3.server.DB.DAO.MySQLOperatoerDAO;
+import cdio3.server.DB.DAO.MySQLTestingDAO;
 import cdio3.shared.DALException;
 import cdio3.shared.OperatoerDTO;
 
 
 @SuppressWarnings("unused")
 public class MainController {
+	
+	MySQLTestingDAO testingDAO = new MySQLTestingDAO();
+	boolean testing = true;
 
 	MySQLOperatoerDAO oprDAO = new MySQLOperatoerDAO();
 //	MySQLProduktBatchDAO pbDAO = new MySQLProduktBatchDAO();
@@ -23,14 +27,21 @@ public class MainController {
 //	MySQLRaavareDAO rDAO = new MySQLRaavareDAO();
 	
 	public MainController() {
-
 	}
+	
 	public OperatoerDTO login(int id, String pass) throws DALException {
-		if (validatePassword(id, pass)) {
-			OperatoerDTO oprDTO = new OperatoerDTO(makeOneOperatoerForTesting());
-			return /*oprDAO.getOperatoer(id)*/oprDTO;
+		if(testing) {
+			if(validatePassword(id, pass)) {
+				return testingDAO.getOperatoer(id);
+			} else {
+				return null;
+			}
 		} else {
-			return null;
+			if(validatePassword(id, pass)) {
+				return oprDAO.getOperatoer(id);
+			} else {
+				return null;
+			}
 		}
 	}
 	
