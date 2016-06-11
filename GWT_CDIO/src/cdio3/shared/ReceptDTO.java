@@ -1,5 +1,7 @@
 package cdio3.shared;
 
+import java.io.Serializable;
+
 /**
  * Recept Data Objekt
  * 
@@ -7,8 +9,10 @@ package cdio3.shared;
  * @version 1.2
  */
 
-public class ReceptDTO 
+public class ReceptDTO  implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
 	/** Recept nr i omraadet 1-99999999 */
 	int receptId;
 	/** Receptnavn min. 2 max. 20 karakterer */

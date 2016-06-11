@@ -1,7 +1,11 @@
 package cdio3.shared;
 
-public class ProduktBatchKompDTO 
+import java.io.Serializable;
+
+public class ProduktBatchKompDTO  implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
 	int pbId; 	  // produktbatchets id
 	int rbId;        // i omraadet 1-99999999
 	double tara;

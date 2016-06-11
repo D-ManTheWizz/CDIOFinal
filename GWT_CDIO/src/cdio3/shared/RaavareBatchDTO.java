@@ -1,7 +1,11 @@
 package cdio3.shared;
 
-public class RaavareBatchDTO
+import java.io.Serializable;
+
+public class RaavareBatchDTO  implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
 	int rbId;                     // i omraadet 1-99999999
 	int raavareId;             // i omraadet 1-99999999
 	double maengde;             // kan vaere negativ 

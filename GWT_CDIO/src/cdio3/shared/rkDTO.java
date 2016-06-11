@@ -1,7 +1,11 @@
 package cdio3.shared;
 
-public class rkDTO
+import java.io.Serializable;
+
+public class rkDTO  implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
 	int receptId;                  // auto genereres fra 1..n   
 	int raavareId;             // i omraadet 1-99999999
 	double nomNetto;            // skal vaere positiv og passende stor

@@ -1,5 +1,7 @@
 package cdio3.shared;
 
+import java.io.Serializable;
+
 /**
  * Raavare Data Objekt
  * 
@@ -7,9 +9,11 @@ package cdio3.shared;
  * @version 1.2
  */
 
-public class RaavareDTO 
+public class RaavareDTO  implements Serializable
 {
-    /** i omraadet 1-99999999 vaelges af brugerne */
+	private static final long serialVersionUID = 1L;
+	
+	/** i omraadet 1-99999999 vaelges af brugerne */
     int raavareId;                     
     /** min. 2 max. 20 karakterer */
     String raavareNavn;                
