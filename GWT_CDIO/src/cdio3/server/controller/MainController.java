@@ -45,22 +45,36 @@ public class MainController {
 		}
 	}
 	
-	private OperatoerDTO makeOneOperatoerForTesting() {
-		OperatoerDTO oprDTO = new OperatoerDTO(10, "Admin Jensen", "AdJe", "123456-1234", "1234Pass", 5);
-		return oprDTO;
-	}
 	/* 
 	*/
 	private boolean validatePassword(int oprID, String pass) throws DALException {
-//		OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
-//		if(oprDTO.getPass == pass) {
-			return true;
-//		} else {
-//			return false;
-//		}
+		if(testing) {
+			OperatoerDTO oprDTO = new OperatoerDTO(testingDAO.getOperatoer(oprID));
+			if(oprDTO.getPassword() == pass) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
+			if(oprDTO.getPassword() == pass) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 	
 	public void changePassword(int oprID, String oldPass, String newPass) throws DALException {
+		if(testing) {
+			if (validatePassword(oprID, oldPass)) {	
+				OperatoerDTO oprDTO = new OperatoerDTO(testingDAO.getOperatoer(oprID));
+				oprDTO.setPassword(newPass);
+				testingDAO.updateOperatoer(oprDTO);				
+			} else {
+//				return false();
+			}
+		}
 		// check if the ID and password is correspondent
 		if (validatePassword(oprID, oldPass)) {	
 //			OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
