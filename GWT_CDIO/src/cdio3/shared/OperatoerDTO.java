@@ -1,6 +1,10 @@
 package cdio3.shared;
 
-public class OperatoerDTO {
+import java.io.Serializable;
+
+public class OperatoerDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private String oprName;
 	private String ini;
