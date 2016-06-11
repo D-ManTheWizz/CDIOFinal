@@ -33,11 +33,13 @@ public class AdminView extends Composite{
 		this.lbl1 = new Label("Enter Operator-ID");
 		vPanel.add(this.lbl1);	
 		this.txt1 = new TextBox();
+		this.txt1.setText("10");
 		vPanel.add(this.txt1);
 		
 		this.lbl1 = new Label("Enter Operator Password");
 		vPanel.add(this.lbl1);	
 		this.txt2 = new PasswordTextBox();
+		this.txt2.setText("1234Pass");
 		vPanel.add(this.txt2);
 		
 		loginBtn = new Button("Login");
