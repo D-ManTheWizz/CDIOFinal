@@ -27,8 +27,8 @@ public class MainController {
 	}
 	public OperatoerDTO login(int id, String pass) throws DALException {
 		if (validatePassword(id, pass)) {
-//			OperatoerDTO oprDTO = new OperatoerDTO(makeOneOperatoerForTesting());
-			return oprDAO.getOperatoer(id)/*oprDTO*/;
+			OperatoerDTO oprDTO = new OperatoerDTO(makeOneOperatoerForTesting());
+			return /*oprDAO.getOperatoer(id)*/oprDTO;
 		} else {
 			return null;
 		}
