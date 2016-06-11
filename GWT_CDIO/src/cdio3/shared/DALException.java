@@ -1,4 +1,4 @@
-package cdio3.server.DB.Interfaces;
+package cdio3.shared;
 
 public class DALException extends Exception
 {

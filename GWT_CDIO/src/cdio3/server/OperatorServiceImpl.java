@@ -4,6 +4,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdio3.client.service.OperatorService;
 import cdio3.server.controller.MainController;
+import cdio3.shared.DALException;
 import cdio3.shared.OperatoerDTO;
 
 public class OperatorServiceImpl extends RemoteServiceServlet implements OperatorService {
@@ -106,7 +107,7 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 	}
 
 	@Override
-	public OperatoerDTO login(int id, String pass) throws IllegalArgumentException {
+	public OperatoerDTO login(int id, String pass) throws IllegalArgumentException, DALException {
 		OperatoerDTO oprDTO = main.login(id, pass);
 		return oprDTO;
 	}

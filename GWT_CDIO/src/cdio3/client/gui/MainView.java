@@ -75,8 +75,8 @@ public class MainView extends Composite {
 		this.admMenu.deleted();
 	}
 
-	public void promptForPrint(OperatoerDTO result) {
-		this.createView.promptForPrint(result);
+	public void promptForPrint(OperatoerDTO oprDTO) {
+		this.createView.promptForPrint(oprDTO);
 	}
 
 	public void confirmLogin(OperatoerDTO oprDTO) {

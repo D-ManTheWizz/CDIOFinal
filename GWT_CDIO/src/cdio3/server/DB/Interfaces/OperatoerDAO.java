@@ -2,6 +2,7 @@ package cdio3.server.DB.Interfaces;
 
 import java.util.List;
 
+import cdio3.shared.DALException;
 import cdio3.shared.OperatoerDTO;
 
 public interface OperatoerDAO {

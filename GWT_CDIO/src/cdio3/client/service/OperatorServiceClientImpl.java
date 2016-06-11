@@ -85,8 +85,8 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 	private void deleted() {
 		this.main.deleted();
 	}
-	private void promptForPrint(OperatoerDTO result) {
-		this.main.promptForPrint(result);
+	private void promptForPrint(OperatoerDTO oprDTO) {
+		this.main.promptForPrint(oprDTO);
 	}
 	private void comfirmLogin(OperatoerDTO oprDTO) {
 		this.main.confirmLogin(oprDTO);

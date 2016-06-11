@@ -6,13 +6,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 
+import cdio3.server.DB.DAO.MySQLOperatoerDAO;
+import cdio3.shared.DALException;
 import cdio3.shared.OperatoerDTO;
 
 
 @SuppressWarnings("unused")
 public class MainController {
 
-//	MySQLOperatorDAO oprDAO = new MySQLOperatorDAO();
+	MySQLOperatoerDAO oprDAO = new MySQLOperatoerDAO();
 //	MySQLProduktBatchDAO pbDAO = new MySQLProduktBatchDAO();
 //	MySQLProduktBatchKompDAO pbkDAO = new MySQLProduktBatchKompDAO();
 //	MySQLReceptDAO recDAO = new MySQLReceptDAO();
@@ -23,10 +25,10 @@ public class MainController {
 	public MainController() {
 
 	}
-	public OperatoerDTO login(int id, String pass) {
+	public OperatoerDTO login(int id, String pass) throws DALException {
 		if (validatePassword(id, pass)) {
-			OperatoerDTO oprDTO = new OperatoerDTO(makeOneOperatoerForTesting()/*oprDAO.getOperatoer(id)*/);
-			return oprDTO;
+//			OperatoerDTO oprDTO = new OperatoerDTO(makeOneOperatoerForTesting());
+			return oprDAO.getOperatoer(id)/*oprDTO*/;
 		} else {
 			return null;
 		}
@@ -38,7 +40,7 @@ public class MainController {
 	}
 	/* 
 	*/
-	private boolean validatePassword(int oprID, String pass) /*throws DALException*/ {
+	private boolean validatePassword(int oprID, String pass) throws DALException {
 //		OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
 //		if(oprDTO.getPass == pass) {
 			return true;
@@ -47,7 +49,7 @@ public class MainController {
 //		}
 	}
 	
-	public void changePassword(int oprID, String oldPass, String newPass) /*throws DALException*/ {
+	public void changePassword(int oprID, String oldPass, String newPass) throws DALException {
 		// check if the ID and password is correspondent
 		if (validatePassword(oprID, oldPass)) {	
 //			OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));

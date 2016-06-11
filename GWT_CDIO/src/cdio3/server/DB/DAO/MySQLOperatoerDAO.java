@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.ArrayList;
 
 import cdio3.server.DB.connector.Connector;
-import cdio3.server.DB.Interfaces.DALException;
 import cdio3.server.DB.Interfaces.OperatoerDAO;
+import cdio3.shared.DALException;
 import cdio3.shared.OperatoerDTO;
 
 public class MySQLOperatoerDAO implements OperatoerDAO {
+	
 	public OperatoerDTO getOperatoer(int oprId) throws DALException {
 		Connector connector = new Connector();
 
