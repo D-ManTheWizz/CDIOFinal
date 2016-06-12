@@ -1,8 +1,10 @@
 package cdio3.server.DB.DAO;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import cdio3.shared.OperatoerDTO;
+import cdio3.shared.ProduktBatchDTO;
 import cdio3.shared.RaavareBatchDTO;
 
 public class MySQLTestingDAO {
@@ -19,6 +21,13 @@ public class MySQLTestingDAO {
 	RaavareBatchDTO rbDTO_3;
 	RaavareBatchDTO rbDTO_4;
 	ArrayList<RaavareBatchDTO> raaBatchList = new ArrayList<RaavareBatchDTO>();
+	
+	ProduktBatchDTO pbDTO_0;
+	ProduktBatchDTO pbDTO_1;
+	ProduktBatchDTO pbDTO_2;
+	ProduktBatchDTO pbDTO_3;
+	ProduktBatchDTO pbDTO_4;
+	ArrayList<ProduktBatchDTO> prodBatchList = new ArrayList<ProduktBatchDTO>();
 	
 	public MySQLTestingDAO() {
 		setup();
@@ -38,10 +47,18 @@ public class MySQLTestingDAO {
 		this.raaBatchList.add(this.rbDTO_2 = new RaavareBatchDTO(2, 2, 2.22));
 		this.raaBatchList.add(this.rbDTO_3 = new RaavareBatchDTO(3, 3, 3.33));
 		this.raaBatchList.add(this.rbDTO_4 = new RaavareBatchDTO(4, 4, 4.44));
+		
+		// A List of 5 ProduktBatches, named after ID.
+		this.prodBatchList.add(this.pbDTO_0 = new ProduktBatchDTO(0, 0, 0, 0, 0));
+		this.prodBatchList.add(this.pbDTO_1 = new ProduktBatchDTO(1, 1, 0, 1, 1));
+		this.prodBatchList.add(this.pbDTO_2 = new ProduktBatchDTO(2, 2, 0, 2, 2));
+		this.prodBatchList.add(this.pbDTO_3 = new ProduktBatchDTO(3, 3, 0, 3, 3));
+		this.prodBatchList.add(this.pbDTO_4 = new ProduktBatchDTO(4, 4, 0, 4, 4));
 	}
 
 	public OperatoerDTO getOperatoer(int id) {return oprList.get(id);}
 	public ArrayList<RaavareBatchDTO> getRaavareBatchList() {return raaBatchList;}
+	public ArrayList<ProduktBatchDTO> getProduktBatchList() {return prodBatchList;}
 
 	public void updateOperatoer(OperatoerDTO oprDTO) {
 		oprList.get(oprDTO.getOprId()).setOprNavn(oprDTO.getOprNavn());

@@ -7,10 +7,12 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import cdio3.server.DB.DAO.MySQLOperatoerDAO;
+import cdio3.server.DB.DAO.MySQLProduktBatchDAO;
 import cdio3.server.DB.DAO.MySQLRaavareBatchDAO;
 import cdio3.server.DB.DAO.MySQLTestingDAO;
 import cdio3.shared.DALException;
 import cdio3.shared.OperatoerDTO;
+import cdio3.shared.ProduktBatchDTO;
 import cdio3.shared.RaavareBatchDTO;
 
 
@@ -21,7 +23,7 @@ public class MainController {
 	boolean testing = true;
 
 	MySQLOperatoerDAO oprDAO = new MySQLOperatoerDAO();
-//	MySQLProduktBatchDAO pbDAO = new MySQLProduktBatchDAO();
+	MySQLProduktBatchDAO pbDAO = new MySQLProduktBatchDAO();
 //	MySQLProduktBatchKompDAO pbkDAO = new MySQLProduktBatchKompDAO();
 //	MySQLReceptDAO recDAO = new MySQLReceptDAO();
 //	MySQLReceptKompDAO reckomDAO = new MySQLReceptKompDAO();
@@ -100,10 +102,14 @@ public class MainController {
 		}
 	}
 	
-	public List getProduktBatchList() {
-//		ArrayList<ProduktBatchDTO> pbList = new ArrayList();
-//		pbList = pbDAO.getProduktBatchList();
-		return null/*pbList*/;
+	public ArrayList<ProduktBatchDTO> getProduktBatchList() throws DALException {
+		if(testing) {
+			ArrayList<ProduktBatchDTO> pbList = new ArrayList<ProduktBatchDTO>(testingDAO.getProduktBatchList());
+			return pbList;
+		} else {
+			ArrayList<ProduktBatchDTO> pbList = new ArrayList<ProduktBatchDTO>(pbDAO.getProduktBatchList());
+			return pbList;
+		}
 	}
 	
 	public boolean createRaavareBatch(int rbId, int raavareId, double maengde) {
