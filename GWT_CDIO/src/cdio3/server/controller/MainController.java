@@ -3,6 +3,7 @@ package cdio3.server.controller;
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Iterator;
 
@@ -137,8 +138,8 @@ public class MainController {
 	}
 	
 	private int getDatoInt() {
-		
-		return 0;
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		return year;
 	}
 
 	public ArrayList<RaavareDTO> getRaavareList() throws DALException {

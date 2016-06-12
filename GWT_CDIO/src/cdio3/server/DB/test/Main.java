@@ -1,14 +1,23 @@
 package cdio3.server.DB.test;
 
+import com.ibm.icu.util.Calendar;
+
 import cdio3.server.DB.DAO.MySQLOperatoerDAO;
+import cdio3.server.DB.DAO.MySQLProduktBatchDAO;
 import cdio3.shared.DALException;
 import cdio3.shared.OperatoerDTO;
 
 public class Main {
 	public static void main(String[] args) {
-		MySQLOperatoerDAO opr = new MySQLOperatoerDAO();
-		try { System.out.println(opr.getOperatoerList()); }
+		
+		MySQLProduktBatchDAO pb = new MySQLProduktBatchDAO();
+		try { System.out.println(pb.getProduktBatch(1).getPro_start()); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
+		
+		
+//		MySQLOperatoerDAO opr = new MySQLOperatoerDAO();
+//		try { System.out.println(opr.getOperatoerList()); }
+//		catch (DALException e) { System.out.println(e.getMessage()); }
 
 //		System.out.println("Operatoer nummer 3:");
 //		MySQLOperatoerDAO opr = new MySQLOperatoerDAO();
