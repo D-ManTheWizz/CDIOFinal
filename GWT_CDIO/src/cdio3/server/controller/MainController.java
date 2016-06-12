@@ -40,13 +40,13 @@ public class MainController {
 	public OperatoerDTO login(int id, String pass) throws DALException {
 		if(testing) {
 			if(validatePassword(id, pass)) {
-				return testingDAO.getOperatoer(id);
+				return getOperator(id);
 			} else {
 				return null;
 			}
 		} else {
 			if(validatePassword(id, pass)) {
-				return oprDAO.getOperatoer(id);
+				return getOperator(id);
 			} else {
 				return null;
 			}
@@ -230,15 +230,12 @@ public class MainController {
 		return oprDTO;
 	}
 	
-	public String/*OperatorDTO*/ getOperator(int oprID) {
+	public OperatoerDTO getOperator(int oprID) throws DALException {
 		if(testing) {
-			
+				return testingDAO.getOperatoer(oprID);
 		} else {
-			
+				return oprDAO.getOperatoer(oprID);
 		}
-//		OperatorDTO oprDTO; // eller... = null;???
-//		oprDTO = oprDAO.getRaavareDTO();
-		return null/*oprDTO*/;
 	}
 	
 	public boolean updateOperator(/*OperatorDTO opr*/) {
