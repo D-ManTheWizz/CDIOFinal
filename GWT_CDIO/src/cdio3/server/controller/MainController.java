@@ -10,12 +10,14 @@ import cdio3.server.DB.DAO.MySQLOperatoerDAO;
 import cdio3.server.DB.DAO.MySQLProduktBatchDAO;
 import cdio3.server.DB.DAO.MySQLRaavareBatchDAO;
 import cdio3.server.DB.DAO.MySQLRaavareDAO;
+import cdio3.server.DB.DAO.MySQLReceptDAO;
 import cdio3.server.DB.DAO.MySQLTestingDAO;
 import cdio3.shared.DALException;
 import cdio3.shared.OperatoerDTO;
 import cdio3.shared.ProduktBatchDTO;
 import cdio3.shared.RaavareBatchDTO;
 import cdio3.shared.RaavareDTO;
+import cdio3.shared.ReceptDTO;
 
 
 @SuppressWarnings("unused")
@@ -27,7 +29,7 @@ public class MainController {
 	MySQLOperatoerDAO oprDAO = new MySQLOperatoerDAO();
 	MySQLProduktBatchDAO pbDAO = new MySQLProduktBatchDAO();
 //	MySQLProduktBatchKompDAO pbkDAO = new MySQLProduktBatchKompDAO();
-//	MySQLReceptDAO recDAO = new MySQLReceptDAO();
+	MySQLReceptDAO recDAO = new MySQLReceptDAO();
 //	MySQLReceptKompDAO reckomDAO = new MySQLReceptKompDAO();
 	MySQLRaavareBatchDAO rbDAO = new MySQLRaavareBatchDAO();
 	MySQLRaavareDAO rDAO = new MySQLRaavareDAO();
@@ -177,15 +179,14 @@ public class MainController {
 		return true;
 	}
 	
-	public List getReceptList() {
+	public ArrayList<ReceptDTO> getReceptList() throws DALException {
 		if(testing) {
-			
+			ArrayList<ReceptDTO> recList = new ArrayList<ReceptDTO>(testingDAO.getReceptList());
+			return recList;
 		} else {
-			
+			ArrayList<ReceptDTO> recList = new ArrayList<ReceptDTO>(recDAO.getReceptList());
+			return recList;
 		}
-//		ArrayList<receptDTO> recList = new ArrayList();
-//		recList = recDAO.getReceptList();
-		return null/*recList*/;
 	}
 	
 	public boolean createRecept(/*int receptId, String receptNavn, ArrayList<ReceptKompDTO> kompList*/) {

@@ -1,12 +1,12 @@
 package cdio3.server.DB.DAO;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import cdio3.shared.OperatoerDTO;
 import cdio3.shared.ProduktBatchDTO;
 import cdio3.shared.RaavareBatchDTO;
 import cdio3.shared.RaavareDTO;
+import cdio3.shared.ReceptDTO;
 
 public class MySQLTestingDAO {
 	OperatoerDTO oprDTO_0;
@@ -22,6 +22,13 @@ public class MySQLTestingDAO {
 	RaavareDTO raaDTO_3;
 	RaavareDTO raaDTO_4;
 	ArrayList<RaavareDTO> raaList = new ArrayList<RaavareDTO>();
+	
+	ReceptDTO recDTO_0;
+	ReceptDTO recDTO_1;
+	ReceptDTO recDTO_2;
+	ReceptDTO recDTO_3;
+	ReceptDTO recDTO_4;
+	ArrayList<ReceptDTO> recList = new ArrayList<ReceptDTO>();
 	
 	RaavareBatchDTO rbDTO_0;
 	RaavareBatchDTO rbDTO_1;
@@ -56,6 +63,13 @@ public class MySQLTestingDAO {
 		this.raaList.add(this.raaDTO_3 = new RaavareDTO(3, "Fjerde Vare", "4."));
 		this.raaList.add(this.raaDTO_4 = new RaavareDTO(4, "Femte Vare", "5."));
 		
+		// A List of 5 Recepter, named after .
+		this.recList.add(this.recDTO_0 = new ReceptDTO(0, "Første Recept"));
+		this.recList.add(this.recDTO_1 = new ReceptDTO(1, "Anden Recept"));
+		this.recList.add(this.recDTO_2 = new ReceptDTO(2, "Tredie Recept"));
+		this.recList.add(this.recDTO_3 = new ReceptDTO(3, "Fjerde Recept"));
+		this.recList.add(this.recDTO_4 = new ReceptDTO(4, "Femte Recept"));
+		
 		// A List of 5 RaavareBatches, named after IDnumber.
 		this.raaBatchList.add(this.rbDTO_0 = new RaavareBatchDTO(0, 0, 0.00));
 		this.raaBatchList.add(this.rbDTO_1 = new RaavareBatchDTO(1, 1, 1.11));
@@ -74,6 +88,7 @@ public class MySQLTestingDAO {
 	public OperatoerDTO getOperatoer(int oprID) {return oprList.get(oprID);}
 	public RaavareDTO getRaavare(int raaID) {return raaList.get(raaID);}
 	public ArrayList<RaavareDTO> getRaavareList() {return raaList;}
+	public ArrayList<ReceptDTO> getReceptList() {return recList;}
 	public ArrayList<RaavareBatchDTO> getRaavareBatchList() {return raaBatchList;}
 	public ArrayList<ProduktBatchDTO> getProduktBatchList() {return prodBatchList;}
 
