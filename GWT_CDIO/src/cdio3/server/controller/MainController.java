@@ -7,9 +7,11 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import cdio3.server.DB.DAO.MySQLOperatoerDAO;
+import cdio3.server.DB.DAO.MySQLRaavareBatchDAO;
 import cdio3.server.DB.DAO.MySQLTestingDAO;
 import cdio3.shared.DALException;
 import cdio3.shared.OperatoerDTO;
+import cdio3.shared.RaavareBatchDTO;
 
 
 @SuppressWarnings("unused")
@@ -23,7 +25,7 @@ public class MainController {
 //	MySQLProduktBatchKompDAO pbkDAO = new MySQLProduktBatchKompDAO();
 //	MySQLReceptDAO recDAO = new MySQLReceptDAO();
 //	MySQLReceptKompDAO reckomDAO = new MySQLReceptKompDAO();
-//	MySQLRaavareBatchDAO rbDAO = new MySQLRaavareBatchDAO();
+	MySQLRaavareBatchDAO rbDAO = new MySQLRaavareBatchDAO();
 //	MySQLRaavareDAO rDAO = new MySQLRaavareDAO();
 	
 	public MainController() {
@@ -88,10 +90,14 @@ public class MainController {
 		}
 	}
 	
-	public List getRaavareBatchList() {
-//		ArrayList<RaavareBatchDTO> rbList = new ArrayList();
-//		rbList = rbDAO.getRaavareBatchList();
-		return null/*rbList*/;
+	public ArrayList<RaavareBatchDTO> getRaavareBatchList() throws DALException {
+		if(testing) {
+			ArrayList<RaavareBatchDTO> rbList = new ArrayList<RaavareBatchDTO>(testingDAO.getRaavareBatchList());
+			return rbList;
+		} else {
+			ArrayList<RaavareBatchDTO> rbList = new ArrayList<RaavareBatchDTO>(rbDAO.getRaavareBatchList());
+			return rbList;
+		}
 	}
 	
 	public List getProduktBatchList() {

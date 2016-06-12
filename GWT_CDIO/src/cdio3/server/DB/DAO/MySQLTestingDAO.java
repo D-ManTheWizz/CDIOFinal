@@ -3,6 +3,7 @@ package cdio3.server.DB.DAO;
 import java.util.ArrayList;
 
 import cdio3.shared.OperatoerDTO;
+import cdio3.shared.RaavareBatchDTO;
 
 public class MySQLTestingDAO {
 	OperatoerDTO oprDTO_0;
@@ -11,6 +12,13 @@ public class MySQLTestingDAO {
 	OperatoerDTO oprDTO_3;
 	OperatoerDTO oprDTO_4;
 	ArrayList<OperatoerDTO> oprList = new ArrayList<OperatoerDTO>();
+	
+	RaavareBatchDTO rbDTO_0;
+	RaavareBatchDTO rbDTO_1;
+	RaavareBatchDTO rbDTO_2;
+	RaavareBatchDTO rbDTO_3;
+	RaavareBatchDTO rbDTO_4;
+	ArrayList<RaavareBatchDTO> raaBatchList = new ArrayList<RaavareBatchDTO>();
 	
 	public MySQLTestingDAO() {
 		setup();
@@ -24,9 +32,16 @@ public class MySQLTestingDAO {
 		this.oprList.add(this.oprDTO_3 = new OperatoerDTO(3, "Farma Ceut", "FaCe", "345678-3456", "3456Pass", 3));
 		this.oprList.add(this.oprDTO_4 = new OperatoerDTO(4, "Admin Jensen", "AdJe", "456789-4567", "4567Pass", 4));
 		
+		// A List of 5 RaavareBatches, named after IDnumber.
+		this.raaBatchList.add(this.rbDTO_0 = new RaavareBatchDTO(0, 0, 0.00));
+		this.raaBatchList.add(this.rbDTO_1 = new RaavareBatchDTO(1, 1, 1.11));
+		this.raaBatchList.add(this.rbDTO_2 = new RaavareBatchDTO(2, 2, 2.22));
+		this.raaBatchList.add(this.rbDTO_3 = new RaavareBatchDTO(3, 3, 3.33));
+		this.raaBatchList.add(this.rbDTO_4 = new RaavareBatchDTO(4, 4, 4.44));
 	}
 
 	public OperatoerDTO getOperatoer(int id) {return oprList.get(id);}
+	public ArrayList<RaavareBatchDTO> getRaavareBatchList() {return raaBatchList;}
 
 	public void updateOperatoer(OperatoerDTO oprDTO) {
 		oprList.get(oprDTO.getOprId()).setOprNavn(oprDTO.getOprNavn());
