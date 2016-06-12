@@ -200,15 +200,14 @@ public class MainController {
 		return true;
 	}
 	
-	public List getOperatorList() {
+	public ArrayList<OperatoerDTO> getOperatorList() throws DALException {
 		if(testing) {
-			
+			ArrayList<OperatoerDTO> oprList = new ArrayList<OperatoerDTO>(testingDAO.getOperatoerList());
+			return oprList;
 		} else {
-			
+			ArrayList<OperatoerDTO> oprList = new ArrayList<OperatoerDTO>(oprDAO.getOperatoerList());
+			return oprList;
 		}
-//		ArrayList<OperatoerDTO> oprList = new ArrayList();
-//		oprList = oprDAO.getOperatoerList();
-		return null/*oprList*/;
 	}
 	
 	/*
