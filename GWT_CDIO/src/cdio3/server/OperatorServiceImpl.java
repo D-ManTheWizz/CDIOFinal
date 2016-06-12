@@ -16,10 +16,10 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return main.login(id, pass);
 //	}
 	
-//	@Override
-//	public boolean changePassword(int oprID, String oldPass, String newPass) {
-//		return main.changePassword(oprID, oldPass, newPass);
-//	}
+	@Override
+	public boolean changePassword(int oprID, String oldPass, String newPass) throws DALException {
+		return main.changePassword(oprID, oldPass, newPass);
+	}
 	
 //	@Override
 //	public List getRaavareBatchList() {

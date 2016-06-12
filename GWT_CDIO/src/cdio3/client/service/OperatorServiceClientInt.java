@@ -5,4 +5,5 @@ public interface OperatorServiceClientInt {
 	void changeOperator(String ID, String firstName, String lastName);
 	void deleteOperator(String ID);
 	void createOperator(int oprId, String firstName, String lastName, String CPR, int stilling);
+	void changePassword(int oprID, String oldPass, String newPass);
 }

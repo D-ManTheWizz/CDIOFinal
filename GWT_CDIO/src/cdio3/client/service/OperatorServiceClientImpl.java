@@ -46,6 +46,12 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 	public void deleteOperator(String ID) {
 		this.service.deleteOperator(ID, new DefaultCallback());
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void changePassword(int oprID, String oldPass, String newPass) {
+		this.service.changePassword(oprID, oldPass, newPass, new DefaultCallback());
+	}
 
 	@SuppressWarnings("rawtypes")
 	private class DefaultCallback implements AsyncCallback {
@@ -64,18 +70,28 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 					deleted();
 				}
 			} else if (result instanceof OperatoerDTO) {
-				if(((OperatoerDTO) result).getOprId()==10) {
-					OperatoerDTO oprDTO = new OperatoerDTO(result);
-					comfirmLogin(oprDTO);
-				}
-//				OperatoerDTO doneOpr = new OperatoerDTO((OperatoerDTO) result);
-				OperatoerDTO doneOpr = new OperatoerDTO(((OperatoerDTO) result).getOprId(), ((OperatoerDTO) result).getOprNavn()
-						, ((OperatoerDTO) result).getIni(), ((OperatoerDTO) result).getCpr(), ((OperatoerDTO) result).getPassword()
-						, ((OperatoerDTO) result).getStilling());
+				OperatoerDTO oprDTO = makeOperatoerDTO(result);
 				
-				promptForPrint(doneOpr);
+				if(oprDTO.getOprId()==4) {
+					
+					comfirmLogin(oprDTO);
+					promptForPrint(oprDTO);
+				}						
+			} else if (result instanceof boolean[]) {
+				boolean res = (boolean) result;
+				
+				if(res==true) {
+					//METODE DER SENDER TRUE TIL CHANGE PASSWORD//
+				}
 			}
 		}	
+	}
+	
+	private OperatoerDTO makeOperatoerDTO(Object result) {
+		OperatoerDTO doneOprDTO = new OperatoerDTO(((OperatoerDTO) result).getOprId(), ((OperatoerDTO) result).getOprNavn()
+				, ((OperatoerDTO) result).getIni(), ((OperatoerDTO) result).getCpr(), ((OperatoerDTO) result).getPassword()
+				, ((OperatoerDTO) result).getStilling());
+		return doneOprDTO;
 	}
 	
 	private void changed() {

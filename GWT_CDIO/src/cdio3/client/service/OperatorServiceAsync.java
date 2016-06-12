@@ -10,4 +10,5 @@ public interface OperatorServiceAsync {
 			AsyncCallback<OperatoerDTO> callback);
 	void changeOperator(String ID, String firstName, String lastName, AsyncCallback<String> callback);
 	void deleteOperator(String ID, AsyncCallback<String> callback);
+	void changePassword(int oprID, String oldPass, String newPass, AsyncCallback<Boolean> callback);
 }

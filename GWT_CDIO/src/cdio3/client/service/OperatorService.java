@@ -15,4 +15,5 @@ public interface OperatorService extends RemoteService {
 	OperatoerDTO createOperator(int oprId, String firstName, String lastName, String CPR, int stilling);
 	String changeOperator(String ID, String firstName, String lastName);
 	String deleteOperator(String ID);
+	boolean changePassword(int oprID, String oldPass, String newPass) throws DALException;
 }

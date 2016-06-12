@@ -65,24 +65,27 @@ public class MainController {
 		}
 	}
 	
-	public void changePassword(int oprID, String oldPass, String newPass) throws DALException {
+	public boolean changePassword(int oprID, String oldPass, String newPass) throws DALException {
 		if(testing) {
 			if (validatePassword(oprID, oldPass)) {	
 				OperatoerDTO oprDTO = new OperatoerDTO(testingDAO.getOperatoer(oprID));
 				oprDTO.setPassword(newPass);
-				testingDAO.updateOperatoer(oprDTO);				
+				testingDAO.updateOperatoer(oprDTO);	
+				return true;
 			} else {
-//				return false();
+				return false;
+			}
+		} else {
+			// check if the ID and password is correspondent
+			if (validatePassword(oprID, oldPass)) {	
+				OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
+				oprDTO.setPassword(newPass);
+				oprDAO.updateOperatoer(oprDTO);		
+				return true;
+			} else {
+				return false;
 			}
 		}
-		// check if the ID and password is correspondent
-		if (validatePassword(oprID, oldPass)) {	
-//			OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
-//			oprDTO.setPassword(newPass);
-//			oprDAO.updateOperatoer(oprDTO);				
-		} else {
-//			errormsg.
-		}		
 	}
 	
 	public List getRaavareBatchList() {
