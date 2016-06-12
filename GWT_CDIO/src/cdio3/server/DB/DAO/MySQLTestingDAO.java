@@ -71,7 +71,8 @@ public class MySQLTestingDAO {
 		this.prodBatchList.add(this.pbDTO_4 = new ProduktBatchDTO(4, 4, 0, 4, 4));
 	}
 
-	public OperatoerDTO getOperatoer(int id) {return oprList.get(id);}
+	public OperatoerDTO getOperatoer(int oprID) {return oprList.get(oprID);}
+	public RaavareDTO getRaavare(int raaID) {return raaList.get(raaID);}
 	public ArrayList<RaavareDTO> getRaavareList() {return raaList;}
 	public ArrayList<RaavareBatchDTO> getRaavareBatchList() {return raaBatchList;}
 	public ArrayList<ProduktBatchDTO> getProduktBatchList() {return prodBatchList;}

@@ -157,15 +157,14 @@ public class MainController {
 		return true;
 	}
 	
-	public String/*RaavareDTO*/ getRaavare(int raavareID) {
+	public RaavareDTO getRaavare(int raavareID) throws DALException {
 		if(testing) {
-			
+			RaavareDTO raaDTO = new RaavareDTO(testingDAO.getRaavare(raavareID));
+			return raaDTO;
 		} else {
-			
+			RaavareDTO raaDTO = new RaavareDTO(rDAO.getRaavare(raavareID));
+			return raaDTO;
 		}
-//		RaavareDTO rDTO; // eller... = null;???
-//		rDTO = rDAO.getRaavareDTO();
-		return null/*rDTO*/;
 	}
 	
 	public boolean updateRaavare(/*raavareDTO raavare*/) {

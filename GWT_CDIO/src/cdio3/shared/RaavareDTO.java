@@ -27,6 +27,13 @@ public class RaavareDTO  implements Serializable
 		this.leverandoer = leverandoer;
 	}
 	
+	public RaavareDTO(RaavareDTO raaDTO)
+    {
+		this.raavareId = raaDTO.getRaavareID();
+		this.raavareNavn = raaDTO.getRaavareNavn();
+		this.leverandoer = raaDTO.getLeverandoer();
+    }
+	
     public int getRaavareID() { return raavareId; }
     public void setRaavareID(int raavareId) { this.raavareId = raavareId; }
     public String getRaavareNavn() { return raavareNavn; }
