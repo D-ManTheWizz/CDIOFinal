@@ -113,53 +113,98 @@ public class MainController {
 	}
 	
 	public boolean createRaavareBatch(int rbId, int raavareId, double maengde) {
+		if(testing) {
+			
+		} else {
+			
+		}
 //		RaavareBatchDTO rbDTO = new RaavareBatchDTO(int, int, double);
 //		rbDAO.createRaavareBatch(rbDTO);
 		return true;
 	}
 	
 	public boolean createProduktBatch(int pbId, int status, String receptId) {
+		if(testing) {
+			
+		} else {
+			
+		}
 //		ProduktBatchDTO pbDTO = new ProduktBatchDTO(int, int, String);
 //		pbDAO.createProduktBatch(pbDTO);
 		return true;
 	}
 	
 	public List getRaavareList() {
+		if(testing) {
+			
+		} else {
+			
+		}
 //		ArrayList<raavareDTO> rList = new ArrayList();
 //		rList = rDAO.getRaavareList();
 		return null/*rList*/;
 	}
 	
 	public boolean createRaavare(int raavareId, String raavareNavn, String leverandoer) {
+		if(testing) {
+			
+		} else {
+			
+		}
 //		RaavareDTO rDTO = new RaavareDTO(raavareId, raavareNavn, leverandoer);
 //		rDTO.createRaavare(rDTO);
 		return true;
 	}
 	
 	public String/*RaavareDTO*/ getRaavare(int raavareID) {
+		if(testing) {
+			
+		} else {
+			
+		}
 //		RaavareDTO rDTO; // eller... = null;???
 //		rDTO = rDAO.getRaavareDTO();
 		return null/*rDTO*/;
 	}
 	
 	public boolean updateRaavare(/*raavareDTO raavare*/) {
+		if(testing) {
+			
+		} else {
+			
+		}
 //		rDAO.updateRaavare(raavare);
 		return true;
 	}
 	
 	public List getReceptList() {
+		if(testing) {
+			
+		} else {
+			
+		}
 //		ArrayList<receptDTO> recList = new ArrayList();
 //		recList = recDAO.getReceptList();
 		return null/*recList*/;
 	}
 	
 	public boolean createRecept(/*int receptId, String receptNavn, ArrayList<ReceptKompDTO> kompList*/) {
+		if(testing) {
+			
+		} else {
+			
+		}
 //		ReceptDTO recDTO = new ReceptDTO(receptId, receptNavn, kompList);
 //		recDAO.createRecept(recDTO);
 		return true;
 	}
 	
 	public List getOperatorList() {
+		if(testing) {
+			
+		} else {
+			
+		}
 //		ArrayList<OperatoerDTO> oprList = new ArrayList();
 //		oprList = oprDAO.getOperatoerList();
 		return null/*oprList*/;
@@ -168,7 +213,11 @@ public class MainController {
 	/*
 	 */
 	public OperatoerDTO createOperator(int id, String firstName, String lastName, String cpr, int stilling) /*throws DALException*/ {
-
+		if(testing) {
+			
+		} else {
+			
+		}
 		// make oprName from the first and last name
 		String oprName = firstName + " " + lastName;
 		// make 4 char initials, from the first two char in first name and last name
@@ -182,12 +231,22 @@ public class MainController {
 	}
 	
 	public String/*OperatorDTO*/ getOperator(int oprID) {
+		if(testing) {
+			
+		} else {
+			
+		}
 //		OperatorDTO oprDTO; // eller... = null;???
 //		oprDTO = oprDAO.getRaavareDTO();
 		return null/*oprDTO*/;
 	}
 	
 	public boolean updateOperator(/*OperatorDTO opr*/) {
+		if(testing) {
+			
+		} else {
+			
+		}
 //		oprDAO.updateOperatoer(opr);
 		return true;
 	}
@@ -196,6 +255,11 @@ public class MainController {
 	 *  deleting an Operator containing the ID the admin provides, confirming the deletion.
 	 */
 	public boolean deleteOperator(/*OperatoerDTO opr*/) /*throws DALException*/ {
+		if(testing) {
+			
+		} else {
+			
+		}
 //		opr.setStilling(0);
 //		oprDAO.updateOperator(opr);
 		return true;
