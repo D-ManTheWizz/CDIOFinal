@@ -1,7 +1,6 @@
 package cdio3.server.DB.DAO;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import cdio3.shared.OperatoerDTO;
 import cdio3.shared.ProduktBatchDTO;
@@ -88,11 +87,15 @@ public class MySQLTestingDAO {
 
 	public OperatoerDTO getOperatoer(int oprID) {return oprList.get(oprID);}
 	public RaavareDTO getRaavare(int raaID) {return raaList.get(raaID);}
+	
 	public ArrayList<OperatoerDTO> getOperatoerList() {return oprList;}
 	public ArrayList<RaavareDTO> getRaavareList() {return raaList;}
 	public ArrayList<ReceptDTO> getReceptList() {return recList;}
 	public ArrayList<RaavareBatchDTO> getRaavareBatchList() {return raaBatchList;}
 	public ArrayList<ProduktBatchDTO> getProduktBatchList() {return prodBatchList;}
+	
+	public void createRaavareBatch(RaavareBatchDTO raavareBatchDTO) {this.raaBatchList.add(raavareBatchDTO.getRbId(), raavareBatchDTO);}
+	public void createProduktBatch(ProduktBatchDTO produktBatchDTO) {this.prodBatchList.add(produktBatchDTO.getPbId(), produktBatchDTO);}
 
 	public void updateOperatoer(OperatoerDTO oprDTO) {
 		oprList.get(oprDTO.getOprId()).setOprNavn(oprDTO.getOprNavn());

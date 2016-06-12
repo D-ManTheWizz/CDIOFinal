@@ -116,28 +116,31 @@ public class MainController {
 		}
 	}
 	
-	public boolean createRaavareBatch(int rbId, int raavareId, double maengde) {
+	public boolean createRaavareBatch(int rbId, int raaId, double maengde) throws DALException {
 		if(testing) {
-			
+			testingDAO.createRaavareBatch(new RaavareBatchDTO(rbId, raaId, maengde));
+			return true;
 		} else {
-			
+			rbDAO.createRaavareBatch(new RaavareBatchDTO(rbId, raaId, maengde));
+			return true;
 		}
-//		RaavareBatchDTO rbDTO = new RaavareBatchDTO(int, int, double);
-//		rbDAO.createRaavareBatch(rbDTO);
-		return true;
 	}
 	
-	public boolean createProduktBatch(int pbId, int status, String receptId) {
+	public boolean createProduktBatch(int pbId, int status, int receptId) throws DALException {
 		if(testing) {
-			
+			testingDAO.createProduktBatch(new ProduktBatchDTO(pbId, receptId, status, getDatoInt(), 0));
+			return true;
 		} else {
-			
+			pbDAO.createProduktBatch(new ProduktBatchDTO(pbId, receptId, status, getDatoInt(), 0));
+			return true;
 		}
-//		ProduktBatchDTO pbDTO = new ProduktBatchDTO(int, int, String);
-//		pbDAO.createProduktBatch(pbDTO);
-		return true;
 	}
 	
+	private int getDatoInt() {
+		
+		return 0;
+	}
+
 	public ArrayList<RaavareDTO> getRaavareList() throws DALException {
 		if(testing) {
 			ArrayList<RaavareDTO> raaList = new ArrayList<RaavareDTO>(testingDAO.getRaavareList());
@@ -238,14 +241,14 @@ public class MainController {
 		}
 	}
 	
-	public boolean updateOperator(/*OperatorDTO opr*/) {
+	public boolean updateOperator(OperatoerDTO opr) throws DALException {
 		if(testing) {
-			
+			testingDAO.updateOperatoer(opr);
+			return true;
 		} else {
-			
+			oprDAO.updateOperatoer(opr);
+			return true;
 		}
-//		oprDAO.updateOperatoer(opr);
-		return true;
 	}
 	
 	/*
