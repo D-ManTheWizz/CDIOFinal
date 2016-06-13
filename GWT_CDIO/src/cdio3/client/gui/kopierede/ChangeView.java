@@ -1,4 +1,4 @@
-package cdio3.client.gui;
+package cdio3.client.gui.kopierede;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -9,14 +9,16 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class DeleteView extends Composite {
-
+public class ChangeView extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();
 	private HorizontalPanel hPanel = new HorizontalPanel();
 	private TextBox txt1;
+	private TextBox txt2;
+	private TextBox txt3;
 	private Label lbl1;
 	private Label lbl2;
 	private Label lbl3;
+	private Label lbl4;
 	boolean CPRContainNumbers = false;
 	boolean createOperator = false;
 	String firstName;
@@ -24,30 +26,36 @@ public class DeleteView extends Composite {
 	String ID;
 	
 	private MainView main;
-	private DeleteMenu deleteMenu;
 	
-	public DeleteView(DeleteMenu deleteMenu, MainView main){
+	public ChangeView(MainView main){
 		initWidget(vPanel);
 		this.main = main;
-		this.deleteMenu = deleteMenu;
 		
 		this.lbl1 = new Label("Enter Operator ID");
 		vPanel.add(this.lbl1);	
 		this.txt1 = new TextBox();
 		vPanel.add(this.txt1);
 		
+		this.lbl2 = new Label("Enter New Operator Firstname");
+		vPanel.add(this.lbl2);	
+		this.txt2 = new TextBox();
+		vPanel.add(this.txt2);
 		
-		Button deleteBtn = new Button("Delete Operator");
-		deleteBtn.addClickHandler(new deleteClickHandler());
-		this.vPanel.add(deleteBtn);
-
+		this.lbl3 = new Label("Enter New Operator Lastname");
+		vPanel.add(this.lbl3);	
+		this.txt3 = new TextBox();
+		vPanel.add(this.txt3);
+		
+		Button changeBtn = new Button("Change Operator");
+		changeBtn.addClickHandler(new changeClickHandler());
+		this.vPanel.add(changeBtn);
 	}
 
-	public void deleteRequest(){
-		this.lbl2 = new Label("Are You Sure You Want To Delete Operator With ID: " + ID);
-		this.vPanel.add(lbl2);
-		this.lbl2 = new Label("Name: "); //get operator name
-		this.vPanel.add(lbl2);
+	public void changeRequest(){	
+		this.lbl3 = new Label("Are You Sure You Want To Cange Operator With ID: " + ID);
+		this.vPanel.add(lbl3);
+		this.lbl3 = new Label("To " + firstName + " " + lastName);
+		this.vPanel.add(lbl3);
 
 		Button yesBtn = new Button("Yes");
 		yesBtn.addClickHandler(new yesClickHandler());
@@ -60,18 +68,19 @@ public class DeleteView extends Composite {
 		this.vPanel.add(hPanel);
 		
 		this.txt1.setText("");
+		this.txt2.setText("");
+		this.txt3.setText("");
 	}
-	
-	public void noDeleteSucces(){
-		this.lbl3 = new Label("Operator Creation Unsuccesfull");
-		this.vPanel.add(lbl3);
+	public void noChangeSucces(){
+		this.lbl4 = new Label("Operator Creation Unsuccesfull");
+		this.vPanel.add(lbl4);
 	}
 	
 	private class yesClickHandler implements ClickHandler{
 
 		@Override
 		public void onClick(ClickEvent event) {
-			deleteOperator(ID);
+			changeOperator(ID, firstName, lastName);
 		}		
 	}
 	
@@ -79,29 +88,31 @@ public class DeleteView extends Composite {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			noDeleteSucces();
+			noChangeSucces();
 		}		
 	}
 	
-	private class deleteClickHandler implements ClickHandler{
+	private class changeClickHandler implements ClickHandler{
 
 		@Override
 		public void onClick(ClickEvent event) {
 			ID = txt1.getText();
-
-			if(ID.isEmpty()==false){
-				deleteRequest();			
+			firstName = txt2.getText();
+			lastName = txt3.getText();
+			
+			if(firstName.isEmpty()==false || lastName.isEmpty()==false || ID.isEmpty()==false){
+				changeRequest();
 			}
 			else
-				noDeleteSucces();
-		}
+				noChangeSucces();
+		}	
 	}
 	
-	private void deleteOperator(String ID) {
-		main.deleteOperator(ID);
+	private void changeOperator(String ID, String firstName, String lastName) {
+		this.main.changeOperator(ID, firstName, lastName);
 	}
 
-	public void deleted() {
-		this.lbl2.setText("DELETED!");
+	public void changed() {
+		this.lbl3.setText("CHANGED!");
 	}
 }

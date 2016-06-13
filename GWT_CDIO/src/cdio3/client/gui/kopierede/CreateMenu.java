@@ -1,4 +1,4 @@
-package cdio3.client.gui;
+package cdio3.client.gui.kopierede;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;

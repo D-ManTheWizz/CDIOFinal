@@ -1,31 +1,25 @@
-package cdio3.client.gui;
+package cdio3.client.gui.kopierede;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class ChangeMenu extends Composite {
+public class PasswordMenu extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();
 	private VerticalPanel contentPanel;
-	
 	private MainView main;
-	private AdminMenu adminMenu;
-	private ChangeView changeView; 
 	
-	public ChangeMenu(AdminMenu adminMenu, MainView main){
+	public PasswordMenu(MainView main){
 		initWidget(vPanel);
+		this.main = main;		
 		
-		Label txt = new Label("Change Menu");
+		Label txt = new Label("Password Menu");
 		vPanel.add(txt);
 		
-		changeView = new ChangeView(main);
-		this.vPanel.add(changeView);
+		PasswordView passwordView = new PasswordView(this.main);
+		this.vPanel.add(passwordView);
 		
 		this.contentPanel = new VerticalPanel();
 		this.vPanel.add(contentPanel);
-	}
-
-	public void changed() {
-		this.changeView.changed();
 	}
 }

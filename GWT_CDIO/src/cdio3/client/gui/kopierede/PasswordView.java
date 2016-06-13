@@ -1,4 +1,4 @@
-package cdio3.client.gui;
+package cdio3.client.gui.kopierede;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
