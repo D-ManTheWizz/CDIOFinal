@@ -70,9 +70,8 @@ public class MainView extends Composite {
 	
 	public void login(int id, String pass, LoginView login) {
 		this.login = login;
-		OperatoerDTO oprDTO = new OperatoerDTO(4, "Hans Svendsen", "HaSv", "frepf-fsese", "4567Pass", 4);
-		confirmLogin(oprDTO);
-//		this.serviceClientImpl.login(id, pass);
+
+		this.serviceClientImpl.login(id, pass);
 	}
 	
 	public void confirmLogin(OperatoerDTO oprDTO) {
@@ -115,9 +114,5 @@ public class MainView extends Composite {
 //
 	public void deleted() {
 //		this.admMenu.deleted();
-	}
-//
-	public void promptForPrint(OperatoerDTO oprDTO) {
-//		this.createView.promptForPrint(oprDTO);
 	}
 }

@@ -71,7 +71,7 @@ public class MenuView extends Composite {
 	}
 
 	private void op() {
-		Button passBtn = new Button("Ændre Password");
+		Button passBtn = new Button("Aendre Password");
 		passBtn.addClickHandler(new opClickHandler());
 		this.hPanel.add(passBtn);
 		

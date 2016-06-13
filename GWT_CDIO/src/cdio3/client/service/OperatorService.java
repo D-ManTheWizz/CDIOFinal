@@ -3,6 +3,7 @@ package cdio3.client.service;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import cdio3.client.gui.LoginView;
 import cdio3.shared.DALException;
 import cdio3.shared.OperatoerDTO;
 

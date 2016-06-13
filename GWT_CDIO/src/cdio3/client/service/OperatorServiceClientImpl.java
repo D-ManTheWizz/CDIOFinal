@@ -4,6 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
+import cdio3.client.gui.LoginView;
 import cdio3.client.gui.MainView;
 import cdio3.shared.OperatoerDTO;
 
@@ -70,11 +71,7 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 					deleted();
 				}
 			} else if (result instanceof OperatoerDTO) {
-				OperatoerDTO oprDTO = makeOperatoerDTO(result);
-			
-				comfirmLogin(oprDTO);
-//				promptForPrint(oprDTO);
-									
+				comfirmLogin((OperatoerDTO) result);			
 			} else if (result instanceof boolean[]) {
 				boolean res = (boolean) result;
 				
@@ -99,9 +96,7 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 	private void deleted() {
 		this.main.deleted();
 	}
-	private void promptForPrint(OperatoerDTO oprDTO) {
-		this.main.promptForPrint(oprDTO);
-	}
+
 	private void comfirmLogin(OperatoerDTO oprDTO) {
 		this.main.confirmLogin(oprDTO);
 	}
