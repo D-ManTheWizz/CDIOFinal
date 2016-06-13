@@ -40,14 +40,17 @@ public class MainController {
 	
 	public OperatoerDTO login(int id, String pass) throws DALException {
 		if(testing) {
-			if(validatePassword(id, pass)) {
-				return getOperator(id);
+			OperatoerDTO oprDTO = new OperatoerDTO(testingDAO.getOperatoer(id)/*4, "Admin Jensen", "AdJe", "456789-4567", "4567Pass", 4*/);
+//			oprDTO.setOprNavn(oprDTO.getPassword());
+			if(/*true*/pass.equals(oprDTO.getPassword())) {
+				return oprDTO;
 			} else {
 				return null;
 			}
 		} else {
 			if(validatePassword(id, pass)) {
-				return getOperator(id);
+				OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(id));
+				return oprDTO;
 			} else {
 				return null;
 			}
@@ -58,12 +61,12 @@ public class MainController {
 	*/
 	private boolean validatePassword(int oprID, String pass) throws DALException {
 		if(testing) {
-			OperatoerDTO oprDTO = new OperatoerDTO(testingDAO.getOperatoer(oprID));
-			if(oprDTO.getPassword() == pass) {
+//			OperatoerDTO oprDTO = new OperatoerDTO(/*testingDAO.getOperatoer(oprID)*/4, "Admin Jensen", "AdJe", "456789-4567", "4567Pass", 4);
+//			if(oprDTO.getPassword() == pass) {
 				return true;
-			} else {
-				return false;
-			}
+//			} else {
+//				return false;
+//			}
 		} else {
 			OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
 			if(oprDTO.getPassword() == pass) {

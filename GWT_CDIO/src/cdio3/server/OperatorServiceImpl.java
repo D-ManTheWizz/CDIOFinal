@@ -108,7 +108,7 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 	}
 
 	@Override
-	public OperatoerDTO login(int id, String pass) throws IllegalArgumentException, DALException {
+	public OperatoerDTO login(int id, String pass) throws IllegalArgumentException, DALException{
 		OperatoerDTO oprDTO = new OperatoerDTO(main.login(id, pass)/*4, "Hans Jensen", "HaJe", "lkjbkbj", "4567Pass", 4*/);
 		return oprDTO;
 	}
