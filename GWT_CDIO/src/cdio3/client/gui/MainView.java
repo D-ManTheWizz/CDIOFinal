@@ -52,7 +52,7 @@ public class MainView extends Composite {
 	
 	public void openAdminMenu(){
 		this.contentPanel.clear();
-		admMenu = new AdminMenu(this);
+		admMenu = new AdmMenu(this);
 		this.contentPanel.add(admMenu);		
 	}
 	

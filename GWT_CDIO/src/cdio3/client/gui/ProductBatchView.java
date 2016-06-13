@@ -9,9 +9,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import project.client.RaavareBatchView.noClickHandler;
-import project.client.RaavareBatchView.yesClickHandler;
-
 public class ProductBatchView extends Composite{
 	private VerticalPanel vPanel = new VerticalPanel();
 	private HorizontalPanel hPanel = new HorizontalPanel();

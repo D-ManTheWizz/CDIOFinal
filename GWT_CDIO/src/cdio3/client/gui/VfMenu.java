@@ -7,8 +7,12 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class VfMenu extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();
 	private VerticalPanel contentPanel;
-	public VfMenu(){
+	
+	private MainView main;
+	
+	public VfMenu(MainView main){
 		initWidget(vPanel);
+		this.main = main;
 		
 		VfView vfView = new VfView(this);
 		this.vPanel.add(vfView);
