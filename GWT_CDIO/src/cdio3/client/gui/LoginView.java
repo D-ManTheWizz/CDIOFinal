@@ -16,8 +16,8 @@ public class LoginView extends Composite{
 	private VerticalPanel vPanel = new VerticalPanel();
 	private VerticalPanel vPanelLoggedIn = new VerticalPanel();
 	private HorizontalPanel hPanelLoggedIn = new HorizontalPanel();
-	private TextBox txt1;
-	private PasswordTextBox txt2;
+	public TextBox txt1;
+	public PasswordTextBox txt2;
 	private Label lbl1;
 	private Label lbl2;
 	boolean login = false;

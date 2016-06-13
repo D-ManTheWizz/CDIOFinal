@@ -42,35 +42,37 @@ public class MainView extends Composite {
 	}
 	
 	public void openAdminMenu(){
-		this.contentPanel.clear();
+		this.vPanel.clear();
 		admMenu = new AdmMenu(this);
-		this.contentPanel.add(admMenu);		
+		this.vPanel.add(admMenu);	
 	}
 	
 	public void openFarmaMenu(){
-		this.contentPanel.clear();
+		this.vPanel.clear();
 		farmaMenu = new FarmaMenu(this);
-		this.contentPanel.add(farmaMenu);
+		this.vPanel.add(farmaMenu);
 		
 	}
 	
 	public void openVfMenu(){
-		this.contentPanel.clear();
+		this.vPanel.clear();
 		VfMenu vfMenu = new VfMenu(this);
-		this.contentPanel.add(vfMenu);
+		this.vPanel.add(vfMenu);
 		
 	}
 	
 	public void openOpMenu(){
-		this.contentPanel.clear();
+		this.vPanel.clear();
 		OpMenu opMenu = new OpMenu(this);
-		this.contentPanel.add(opMenu);
+		this.vPanel.add(opMenu);
 		
 	}
 	
 	public void login(int id, String pass, LoginView login) {
 		this.login = login;
-		this.serviceClientImpl.login(id, pass);
+		OperatoerDTO oprDTO = new OperatoerDTO(4, "Hans Svendsen", "HaSv", "frepf-fsese", "4567Pass", 4);
+		confirmLogin(oprDTO);
+//		this.serviceClientImpl.login(id, pass);
 	}
 	
 	public void confirmLogin(OperatoerDTO oprDTO) {
