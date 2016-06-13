@@ -1,13 +1,12 @@
-package controller;
+package cdio3.server.ASE.controller;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
 
-import interfaces.IWeightController;
+import cdio3.server.ASE.Interfaces.IWeightController;
 
 public class WeightController implements IWeightController{
 
@@ -33,7 +32,6 @@ public class WeightController implements IWeightController{
 			outputStream = new DataOutputStream(socket.getOutputStream());
 		
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -48,7 +46,6 @@ public class WeightController implements IWeightController{
 			outputStream.flush();
 			return inputStream.readLine();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return output;

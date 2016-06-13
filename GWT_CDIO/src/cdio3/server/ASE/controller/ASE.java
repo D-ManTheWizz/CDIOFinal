@@ -1,8 +1,8 @@
-package controller;
+package cdio3.server.ASE.controller;
 
 import java.io.IOException;
 
-import interfaces.IASE;
+import cdio3.server.ASE.Interfaces.IASE;
 
 
 public class ASE implements IASE {

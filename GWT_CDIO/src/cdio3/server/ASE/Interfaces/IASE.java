@@ -1,4 +1,4 @@
-package interfaces;
+package cdio3.server.ASE.Interfaces;
 
 public interface IASE {
 

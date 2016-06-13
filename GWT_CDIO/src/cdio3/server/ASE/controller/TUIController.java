@@ -1,9 +1,9 @@
-package controller;
+package cdio3.server.ASE.controller;
 
 import java.io.IOException;
 
-import boundary.TUI;
-import interfaces.ITUIController;
+import cdio3.server.ASE.boundary.TUI;
+import cdio3.server.ASE.Interfaces.ITUIController;
 
 public class TUIController implements ITUIController {
 	TUI tui = new TUI();

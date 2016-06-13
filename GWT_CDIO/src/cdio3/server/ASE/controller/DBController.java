@@ -1,9 +1,9 @@
-package controller;
+package cdio3.server.ASE.controller;
 
-import connector01917.Connector;
-import daoimpl01917.*;
-import daointerfaces01917.DALException;
-import interfaces.IDBController;
+import cdio3.server.DB.connector.Connector;
+import cdio3.server.DB.DAO.*;
+import cdio3.shared.*;
+import cdio3.server.ASE.Interfaces.IDBController;
 
 public class DBController implements IDBController {
 	Connector connect;
@@ -185,10 +185,6 @@ public class DBController implements IDBController {
 
 	@Override
 	public void writeTaraAtPBK(int input) {
-		//PBKDAO.updateProduktBatchKomp(produktbatchkomponent);
-		
+		//PBKDAO.updateProduktBatchKomp(produktbatchkomponent);	
 	}
-	
-	
-	
 }

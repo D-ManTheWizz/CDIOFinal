@@ -1,10 +1,10 @@
-package boundary;
+package cdio3.server.ASE.boundary;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import interfaces.ITUI;
+import cdio3.server.ASE.Interfaces.ITUI;
 
 public class TUI implements ITUI {
 	private BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
