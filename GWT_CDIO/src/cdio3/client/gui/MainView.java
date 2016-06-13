@@ -111,23 +111,23 @@ public class MainView extends Composite {
 //		this.serviceClientImpl.changeOperator(ID, firstName, lastName);
 //	}
 //
-//	public void changed() {
+	public void changed() {
 //		this.admMenu.changed();
-//	}
+	}
 //
 //	public void deleteOperator(String ID) {
 //		this.serviceClientImpl.deleteOperator(ID);
 //	}
 //
-//	public void deleted() {
+	public void deleted() {
 //		this.admMenu.deleted();
-//	}
+	}
 //
-//	public void promptForPrint(OperatoerDTO oprDTO) {
+	public void promptForPrint(OperatoerDTO oprDTO) {
 //		this.createView.promptForPrint(oprDTO);
-//	}
+	}
 //
-//	public void confirmLogin(OperatoerDTO oprDTO) {
+	public void confirmLogin(OperatoerDTO oprDTO) {
 //		this.admView.confirmLogin(oprDTO);
-//	}
+	}
 }
