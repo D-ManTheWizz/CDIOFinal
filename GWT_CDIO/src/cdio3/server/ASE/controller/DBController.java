@@ -7,28 +7,14 @@ import cdio3.server.ASE.Interfaces.IDBController;
 
 public class DBController implements IDBController {
 	Connector connect;
-	public MySQLOperatoerDAO ODAO;
-	public MySQLProduktBatchDAO PBDAO;
-	public MySQLProduktBatchKompDAO PBKDAO;
-	public MySQLReceptDAO RCDAO;
-	public MySQLReceptKompDAO RCKDAO;
-	public MySQLRaavareBatchDAO RAABDAO;
-	public MySQLRaavareDAO RAADAO;
+	public MySQLOperatoerDAO ODAO = new  MySQLOperatoerDAO();
+	public MySQLProduktBatchDAO PBDAO = new MySQLProduktBatchDAO();
+	public MySQLProduktBatchKompDAO PBKDAO = new  MySQLProduktBatchKompDAO();
+	public MySQLReceptDAO RCDAO = new MySQLReceptDAO();
+	public MySQLReceptKompDAO RCKDAO = new  MySQLReceptKompDAO();
+	public MySQLRaavareBatchDAO RAABDAO = new MySQLRaavareBatchDAO();
+	public MySQLRaavareDAO RAADAO = new MySQLRaavareDAO();
 	
-	@Override
-	public void connectToDatabase() {
-		connect = new Connector();
-		
-		ODAO = new  MySQLOperatoerDAO();
-		PBDAO = new MySQLProduktBatchDAO();
-		PBKDAO = new  MySQLProduktBatchKompDAO();
-		RCDAO = new MySQLReceptDAO();
-		RCKDAO = new  MySQLReceptKompDAO();
-		RAABDAO = new MySQLRaavareBatchDAO();
-		RAADAO = new MySQLRaavareDAO();
-		
-	}
-
 	@Override
 	public String getOperatorName(int input) {
 		// TODO Auto-generated method stub

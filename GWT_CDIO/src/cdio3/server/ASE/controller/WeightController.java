@@ -26,9 +26,11 @@ public class WeightController implements IWeightController{
 	public void connectToWeight() {
 		
 		try {
+			System.out.println("1");
 			socket = new Socket(ip, port);
-
+			System.out.println("2");
 			inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			System.out.println("3");
 			outputStream = new DataOutputStream(socket.getOutputStream());
 		
 		} catch (IOException e) {

@@ -15,7 +15,6 @@ public class ASE implements IASE {
 	double tolerance = 0, nomNetto = 0, currentWeight  = 0, posTole = 0, negTole = 0,TARA = 0, finalWeight = 0;
 	
 	public void run(){
-		connectToDatabase();
 		chooseWeight();
 		runProduction(0);
 	}
@@ -129,10 +128,6 @@ public class ASE implements IASE {
 		
 	}
 
-	@Override
-	public void connectToDatabase() {
-		dbc.connectToDatabase();	
-	}
 	@Override
 	public void endProduction() {
 		dbc.setPBStatus(pbID, 2);

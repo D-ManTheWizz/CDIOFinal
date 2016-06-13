@@ -2,7 +2,6 @@ package cdio3.server.ASE.Interfaces;
 
 public interface IDBController {
 
-	public void connectToDatabase();
 	public String getOperatorName(int input);
 	public String checkUserID(int input);
 	public String getRCName(int input);
