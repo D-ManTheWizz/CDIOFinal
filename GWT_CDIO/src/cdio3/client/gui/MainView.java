@@ -8,46 +8,37 @@ import cdio3.client.service.OperatorServiceClientImpl;
 import cdio3.shared.OperatoerDTO;
 
 public class MainView extends Composite {
-	// Old
-//	private VerticalPanel vPanel = new VerticalPanel();
-//	private VerticalPanel contentPanel;
-	
-	// New
 	private VerticalPanel vPanel = new VerticalPanel();
 	private VerticalPanel contentPanel;
-	private int clearanceLvl = 0;
-//	private int k;
-//	private MenuView oMenu = new MenuView(this, k);
 	
+	private MenuView menu;
 	private FarmaMenu farmaMenu;
 	private VfMenu vfMenu;
 	private OpMenu opMenu;
+	private LoginView login;
 	
 	// Old
 	private OperatorServiceClientImpl serviceClientImpl;
 	private AdmMenu admMenu;
-//	private AdminView admView;
-//	private CreateView createView;
 	
 	public MainView(OperatorServiceClientImpl serviceImpl){
-		Login login = new Login(this); // HER ELLER EFTER initWIDGET?????!!??
 		initWidget(this.vPanel);
 		this.serviceClientImpl = serviceImpl;
 		this.vPanel.setBorderWidth(1);
-				
-		MenuView menu = new MenuView(this, clearanceLvl);
-		this.vPanel.add(menu);
+		
+		Login login = new Login(this);
+		this.vPanel.add(login);
 		
 		this.contentPanel = new VerticalPanel();
 		this.vPanel.add(contentPanel);
-		
-		// Old
-//		Label textLabel = new Label("Click Wanted Menu");
-//		this.contentPanel.add(textLabel);
 	}
 	
-	public void setClearance(int clearanceLvl) {
-		this.clearanceLvl = clearanceLvl;
+	public void setClearance(OperatoerDTO oprDTO) {
+		
+		this.vPanel.clear();
+//		this.contentPanel.clear();
+		menu = new MenuView(this, oprDTO);
+		this.vPanel.add(menu);
 	}
 	
 	public void openAdminMenu(){
@@ -77,8 +68,14 @@ public class MainView extends Composite {
 		
 	}
 	
+	public void login(int id, String pass, LoginView login) {
+		this.login = login;
+		this.serviceClientImpl.login(id, pass);
+	}
 	
-	
+	public void confirmLogin(OperatoerDTO oprDTO) {
+		setClearance(oprDTO);
+	}
 	
 	
 	
@@ -95,11 +92,6 @@ public class MainView extends Composite {
 //		this.contentPanel.clear();
 //		WeighMenu weighMenu = new WeighMenu();
 //		this.contentPanel.add(weighMenu);
-//	}
-//	
-//	public void login(int id, String pass, AdminView admView) {
-//		this.admView = admView;
-//		this.serviceClientImpl.login(id, pass);
 //	}
 //
 //	public void createOperator(int oprId, String firstName, String lastName, String CPR, int stilling, CreateView createView) {
@@ -125,9 +117,5 @@ public class MainView extends Composite {
 //
 	public void promptForPrint(OperatoerDTO oprDTO) {
 //		this.createView.promptForPrint(oprDTO);
-	}
-//
-	public void confirmLogin(OperatoerDTO oprDTO) {
-//		this.admView.confirmLogin(oprDTO);
 	}
 }

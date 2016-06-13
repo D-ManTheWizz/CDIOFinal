@@ -10,6 +10,8 @@ import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import cdio3.shared.OperatoerDTO;
+
 public class LoginView extends Composite{
 	private VerticalPanel vPanel = new VerticalPanel();
 	private VerticalPanel vPanelLoggedIn = new VerticalPanel();
@@ -21,24 +23,24 @@ public class LoginView extends Composite{
 	boolean login = false;
 	
 	private MainView main;
-	private Login loginMenu;
 	
-	public LoginView(Login loginMenu, MainView main){
+	public LoginView(MainView main){
 		initWidget(vPanel);
 		this.main = main;
-		this.loginMenu = loginMenu;
 		
-		this.lbl1 = new Label("Admin Menu");
+		this.lbl1 = new Label("Login");
 		vPanel.add(lbl1);
 		
-		this.lbl1 = new Label("Enter Operator-ID");
+		this.lbl1 = new Label("Indtast Operatoer-ID");
 		vPanel.add(this.lbl1);	
 		this.txt1 = new TextBox();
+		this.txt1.setText("4");
 		vPanel.add(this.txt1);
 		
-		this.lbl1 = new Label("Enter Operator Password");
+		this.lbl1 = new Label("Indtast Operatoer Password");
 		vPanel.add(this.lbl1);	
 		this.txt2 = new PasswordTextBox();
+		this.txt2.setText("4567Pass");
 		vPanel.add(this.txt2);
 		
 		Button loginBtn = new Button("Login");
@@ -47,54 +49,18 @@ public class LoginView extends Composite{
 
 	}
 
-	public void loginSucces(){
-		this.vPanelLoggedIn.clear();
-		this.hPanelLoggedIn.clear();
-		
-		this.login = true;
-		this.lbl2 = new Label("Login Succesful");
-		this.vPanelLoggedIn.add(lbl2);
-		this.txt1.setText("");
-		this.txt2.setText("");
-		
-		vPanel.add(vPanelLoggedIn);
-		vPanel.add(hPanelLoggedIn);
-	}
-	
-	public void loggedIn(){
-		this.txt1.setText("");
-		this.txt2.setText("");
-	}
-	
-	
 	private class loginClickHandler implements ClickHandler{
 
 		@Override
 		public void onClick(ClickEvent event) {
-			String ID = txt1.getText();
-			String Password = txt2.getText();
-			if(login){
-				loggedIn();
-			}
-			else if(ID.equals("10") && Password.equals("1234")){
-				loginSucces();
-				loginMenu.openMenu(1);	
-				
-			}
-			else if(ID.equals("11") && Password.equals("1234")){	
-				loginSucces();
-				loginMenu.openMenu(2);	
-			}
-			else if(ID.equals("12") && Password.equals("1234")){	
-				loginSucces();
-				loginMenu.openMenu(3);	
-			}
-			else if(ID.equals("13") && Password.equals("1234")){
-				loginSucces();
-				loginMenu.openMenu(4);	
-			}
-			
-		}
+			int id = Integer.parseInt(txt1.getText());
+			String password = txt2.getText();
 		
+			login(id, password);
+		}
+	}
+
+	private void login(int id, String password) {
+		this.main.login(id, password, this);
 	}
 }

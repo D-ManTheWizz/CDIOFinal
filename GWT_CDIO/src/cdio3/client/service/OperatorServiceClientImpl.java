@@ -71,12 +71,10 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 				}
 			} else if (result instanceof OperatoerDTO) {
 				OperatoerDTO oprDTO = makeOperatoerDTO(result);
-				
-				if(oprDTO.getOprId()==4) {
-					
-					comfirmLogin(oprDTO);
-					promptForPrint(oprDTO);
-				}						
+			
+				comfirmLogin(oprDTO);
+//				promptForPrint(oprDTO);
+									
 			} else if (result instanceof boolean[]) {
 				boolean res = (boolean) result;
 				

@@ -5,14 +5,24 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
+
+import cdio3.shared.OperatoerDTO;
 
 public class MenuView extends Composite {
 	private HorizontalPanel hPanel = new HorizontalPanel();
+	private Label lbl1;
+	
 	private MainView main;
 	
-	public MenuView(MainView main, int clearanceLvl){
+	public MenuView(MainView main, OperatoerDTO oprDTO){
 		initWidget(this.hPanel);
 		this.main = main;
+		
+		int clearanceLvl = oprDTO.getStilling();
+		
+//		this.lbl1 = new Label("Indtast Operatoer-ID: " + oprDTO.getOprNavn());
+//		hPanel.add(this.lbl1);	
 		
 		// New
 		if (clearanceLvl==1){

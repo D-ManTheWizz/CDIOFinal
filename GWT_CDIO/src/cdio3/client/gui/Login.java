@@ -16,18 +16,10 @@ public class Login extends Composite {
 		this.vPanel.setBorderWidth(1);
 		
 		
-		LoginView menu = new LoginView(this, main);
+		LoginView menu = new LoginView(this.main);
 		this.vPanel.add(menu);
 		
 		this.contentPanel = new VerticalPanel();
-		this.vPanel.add(contentPanel);
-				
-	}
-	public void openMenu(int i){
-		this.contentPanel.clear();
-		this.main.setClearance(i); // New method instead of opening a new Main
-//		MainView mainView = new MainView(i);  // This is now outcommented (but saved for ref.)
-//		this.contentPanel.add(mainView);
-		
+		this.vPanel.add(contentPanel);			
 	}
 }
