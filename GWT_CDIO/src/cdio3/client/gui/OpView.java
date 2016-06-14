@@ -109,6 +109,12 @@ public class OpView extends Composite {
 		clearText();
 	}
 	
+	private void notSameOldPassword(){
+		this.lbl3 = new Label("Du indtastede et forkert Password, prøv igen eller kontakt systemadministratoren");
+		this.vPanel.add(lbl3);
+		clearText();
+	}
+	
 	private void clearText() {
 		this.txt2.setText("");
 		this.txt3.setText("");
@@ -123,6 +129,7 @@ public class OpView extends Composite {
 			notSameNewPasswords();
 			return false;
 		}
+		notSameOldPassword();
 		return false;
 	}
 	
@@ -152,17 +159,10 @@ public class OpView extends Composite {
 			PasswordNew2 = txt4.getText();
 			
 			if(validateInput()) {
-				
+				createSucces();
+			} else {
+				noCreateSucces();
 			}
-//					PasswordNew1.equals(PasswordNew2)==false)
-//				notSamePassword();
-			
-//			if(PasswordNew1.equals(PasswordNew2) && ID.isEmpty()==false && PasswordOld.isEmpty()==false){
-//				createSucces();	
-//				//passwordMenu.openPopout();
-//			}
-//			else
-//			noCreateSucces();	
 		}
 	}
 	
