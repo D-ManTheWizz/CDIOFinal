@@ -15,6 +15,7 @@ public class OpView extends Composite {
 
 	private VerticalPanel vPanel = new VerticalPanel();
 	private HorizontalPanel hPanel = new HorizontalPanel();
+	private HorizontalPanel h2Panel = new HorizontalPanel();
 	private HorizontalPanel hPanelChange = new HorizontalPanel();
 	private VerticalPanel vPanelChange = new VerticalPanel();
 	private VerticalPanel vPanelError = new VerticalPanel();
@@ -58,14 +59,14 @@ public class OpView extends Composite {
 		this.txt4 = new PasswordTextBox();
 		vPanel.add(this.txt4);
 		
-		
 		Button changeBtn = new Button("Aendre Password");
 		changeBtn.addClickHandler(new passwordClickHandler());
-		this.vPanel.add(changeBtn);
+		this.h2Panel.add(changeBtn);
 		
 		Button deleteBtn = new Button("Slet tekst");
 		deleteBtn.addClickHandler(new deleteClickHandler());
-		this.vPanel.add(deleteBtn);
+		this.h2Panel.add(deleteBtn);
+		vPanel.add(h2Panel);
 	}
 
 	public void createSucces(){
@@ -148,7 +149,14 @@ public class OpView extends Composite {
 
 		@Override
 		public void onClick(ClickEvent event) {
-
+			clearText();
 		}		
+	}
+	
+	
+	private void clearText() {
+		this.txt2.setText("");
+		this.txt3.setText("");
+		this.txt4.setText("");
 	}
 }
