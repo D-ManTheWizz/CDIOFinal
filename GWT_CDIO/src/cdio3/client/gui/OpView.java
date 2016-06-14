@@ -95,19 +95,37 @@ public class OpView extends Composite {
 		this.txt2.setText("");
 		this.txt3.setText("");
 		this.txt4.setText("");
-
-		
-		
 	}
-	public void noCreateSucces(){
+	
+	private void noCreateSucces(){
 		this.lbl3 = new Label("Password Change Unsuccesfull");
 		this.vPanelError.add(lbl3);
 		this.vPanel.add(vPanelError);
 	}
-	public void notSamePassword(){
-		this.lbl3 = new Label("You Didn't Enter The Same Password Twice");
+	
+	private void notSameNewPasswords(){
+		this.lbl3 = new Label("Du indtastede ikke samme Password 2 gange i træk");
 		this.vPanel.add(lbl3);
+		clearText();
 	}
+	
+	private void clearText() {
+		this.txt2.setText("");
+		this.txt3.setText("");
+		this.txt4.setText("");
+	}
+	
+	private boolean validateInput() {
+		if(this.operatingOperator.getPassword() == this.PasswordOld) {
+			if(this.PasswordNew1 == this.PasswordNew2) {
+				return true;
+			}
+			notSameNewPasswords();
+			return false;
+		}
+		return false;
+	}
+	
 	
 	private class yesClickHandler implements ClickHandler{
 
@@ -133,15 +151,18 @@ public class OpView extends Composite {
 			PasswordNew1 = txt3.getText();
 			PasswordNew2 = txt4.getText();
 			
-			if(PasswordNew1.equals(PasswordNew2)==false)
-				notSamePassword();
-			
-			if(PasswordNew1.equals(PasswordNew2) && ID.isEmpty()==false && PasswordOld.isEmpty()==false){
-				createSucces();	
-				//passwordMenu.openPopout();
+			if(validateInput()) {
+				
 			}
-			else
-			noCreateSucces();	
+//					PasswordNew1.equals(PasswordNew2)==false)
+//				notSamePassword();
+			
+//			if(PasswordNew1.equals(PasswordNew2) && ID.isEmpty()==false && PasswordOld.isEmpty()==false){
+//				createSucces();	
+//				//passwordMenu.openPopout();
+//			}
+//			else
+//			noCreateSucces();	
 		}
 	}
 	
@@ -151,12 +172,5 @@ public class OpView extends Composite {
 		public void onClick(ClickEvent event) {
 			clearText();
 		}		
-	}
-	
-	
-	private void clearText() {
-		this.txt2.setText("");
-		this.txt3.setText("");
-		this.txt4.setText("");
 	}
 }
