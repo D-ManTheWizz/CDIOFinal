@@ -16,6 +16,8 @@ public interface IWeightController {
 	public String getWeight();
 	
 }
+package cdio3.ASE.controller;
 
+public interface IWeightController {
 
-
+}

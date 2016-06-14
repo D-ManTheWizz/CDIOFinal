@@ -1,4 +1,4 @@
-package cdio3.ASE.interfaces;
+package cdio3.ASE.controller;
 
 import java.io.IOException;
 

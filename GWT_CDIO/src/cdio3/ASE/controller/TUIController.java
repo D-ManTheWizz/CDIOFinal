@@ -1,20 +1,20 @@
-package controller;
+package cdio3.ASE.controller;
 
 import java.io.IOException;
 
-import boundary.TUI;
-import interfaces.ITUIController;
+import cdio3.ASE.boundary.TUI;
+import cdio3.ASE.interfaces.ITUIController;
 
 public class TUIController implements ITUIController {
 	TUI tui = new TUI();
 	
-	@Override
+	
 	public void printMessage(String input) {
 		tui.printMessage(input);
 		
 	}
 
-	@Override
+	
 	public String getString() throws IOException {
 		String temp = "";
 		

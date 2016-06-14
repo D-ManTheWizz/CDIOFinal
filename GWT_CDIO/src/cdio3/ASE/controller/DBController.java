@@ -1,9 +1,15 @@
-package controller;
+package cdio3.ASE.controller;
 
-import connector01917.Connector;
-import daoimpl01917.*;
-import daointerfaces01917.DALException;
-import interfaces.IDBController;
+import cdio3.ASE.interfaces.IDBController;
+import cdio3.server.DB.DAO.MySQLOperatoerDAO;
+import cdio3.server.DB.DAO.MySQLProduktBatchDAO;
+import cdio3.server.DB.DAO.MySQLProduktBatchKompDAO;
+import cdio3.server.DB.DAO.MySQLRaavareBatchDAO;
+import cdio3.server.DB.DAO.MySQLRaavareDAO;
+import cdio3.server.DB.DAO.MySQLReceptDAO;
+import cdio3.server.DB.DAO.MySQLReceptKompDAO;
+import cdio3.server.DB.connector.Connector;
+import cdio3.shared.DALException;
 
 public class DBController implements IDBController {
 	Connector connect;

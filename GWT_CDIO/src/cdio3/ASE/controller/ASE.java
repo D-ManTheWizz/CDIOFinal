@@ -1,11 +1,12 @@
-package controller;
+package cdio3.ASE.controller;
 
 import java.io.IOException;
 
-import interfaces.IASE;
+import cdio3.ASE.interfaces.IASE;
 
 
-public class ASE implements IASE {
+
+public class ASE<WeightController> implements IASE {
 	
 	DBController dbc = new DBController();
 	WeightController wc;

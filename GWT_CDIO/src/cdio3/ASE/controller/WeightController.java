@@ -1,13 +1,12 @@
-package controller;
+package cdio3.ASE.controller;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
 
-import interfaces.IWeightController;
+import cdio3.ASE.interfaces.IWeightController;
 
 public class WeightController implements IWeightController{
 
@@ -23,7 +22,6 @@ public class WeightController implements IWeightController{
 		this.port = port;
 	}
 	
-	@Override
 	public void connectToWeight() {
 		
 		try {
@@ -40,7 +38,7 @@ public class WeightController implements IWeightController{
 		
 	}
 
-	@Override
+	
 	public String writeToSocket(String output) {
 
 		try {
@@ -54,7 +52,6 @@ public class WeightController implements IWeightController{
 		return output;
 	}
 
-	@Override
 	public String readSocket() {
 		String input = "";
 		
@@ -67,7 +64,6 @@ public class WeightController implements IWeightController{
 		return input;
 	}
 
-	@Override
 	public int askForUserID(String output) {
 
 		writeToSocket("RM20 8 " +output);
@@ -78,12 +74,10 @@ public class WeightController implements IWeightController{
 		return intInput;
 	}
 
-	@Override
 	public void sendMessage(String output) {
 		writeToSocket("D " + output + "\r\n");
 	}
 
-	@Override
 	public int askForPBID(String output) {
 		
 		writeToSocket("RM20 8 " + output);
@@ -93,7 +87,6 @@ public class WeightController implements IWeightController{
 		return intInput;
 	}
 
-	@Override
 	public String checkIfEmpty(String output) {
 		
 		writeToSocket("RM20 8 " +output);
@@ -108,7 +101,7 @@ public class WeightController implements IWeightController{
 		return input;
 	}
 
-	@Override
+	
 	public String askUserToTaraWeight(String output) {
 		
 		writeToSocket("RM20 8 " +output);
@@ -123,7 +116,7 @@ public class WeightController implements IWeightController{
 		return input;
 	}
 
-	@Override
+	
 	public int getRBID(String output) {
 		
 		writeToSocket("RM20 8 " +output);
@@ -134,7 +127,7 @@ public class WeightController implements IWeightController{
 		return intInput;
 	}
 
-	@Override
+	
 	public String completeWeighing(String output) {
 		writeToSocket("RM20 8 " +output);
 		String input = readSocket();
@@ -148,7 +141,7 @@ public class WeightController implements IWeightController{
 		return input;
 	}
 
-	@Override
+	
 	public String taraWeight() {
 		writeToSocket("T\r\n");
 		String input = readSocket();
@@ -156,7 +149,7 @@ public class WeightController implements IWeightController{
 		return input;
 	}
 
-	@Override
+	
 	public String getWeight() {
 		writeToSocket("S\r\n");
 		String input = readSocket();
