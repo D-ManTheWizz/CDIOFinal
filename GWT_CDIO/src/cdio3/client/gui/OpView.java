@@ -2,8 +2,10 @@ package cdio3.client.gui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
@@ -12,25 +14,24 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import cdio3.shared.OperatoerDTO;
 
 public class OpView extends Composite {
-
+	private String PasswordOld;
+	private String PasswordNew1;
+	private String PasswordNew2;
+	
 	private VerticalPanel vPanel = new VerticalPanel();
 	private HorizontalPanel hPanel = new HorizontalPanel();
 	private HorizontalPanel h2Panel = new HorizontalPanel();
 	private HorizontalPanel hPanelChange = new HorizontalPanel();
 	private VerticalPanel vPanelChange = new VerticalPanel();
-	private VerticalPanel vPanelError = new VerticalPanel();
+	
 	private PasswordTextBox txt2;
 	private PasswordTextBox txt3;
 	private PasswordTextBox txt4;
 	private Label lbl1;
 	private Label lbl2;
-	private Label lbl3;
-	boolean CPRContainNumbers = false;
-	boolean createOperator = false;
-	String PasswordOld;
-	String PasswordNew1;
-	String PasswordNew2;
-	String ID;
+	private Label lbl3 = new Label("");
+	
+    private DialogBox dialogBox = new DialogBox();
 	
 	private MainView main;
 	private OperatoerDTO operatingOperator;
@@ -67,52 +68,49 @@ public class OpView extends Composite {
 		deleteBtn.addClickHandler(new deleteClickHandler());
 		this.h2Panel.add(deleteBtn);
 		vPanel.add(h2Panel);
+		
+		vPanel.add(lbl3);
 	}
 
 	public void createSucces(){
 		this.vPanelChange.clear();
 		this.hPanelChange.clear();
-		this.vPanelError.clear();
 		
-		this.lbl2 = new Label("Are You Sure You Want To Change Password");
+		this.lbl2 = new Label("Er du sikker paa at du vil aendre dit Password");
 		this.vPanelChange.add(lbl2);
-		this.lbl2 = new Label("Old Password " + PasswordOld); //get operator name
-		this.vPanelChange.add(lbl2);
-		this.lbl2 = new Label("New Password " + PasswordNew1); //get operator name
+		this.lbl2 = new Label("");
 		this.vPanelChange.add(lbl2);
 
-		Button yesBtn = new Button("Yes");
+		Button yesBtn = new Button("Ja");
 		yesBtn.addClickHandler(new yesClickHandler());
 		this.hPanelChange.add(yesBtn);
 		
-		Button noBtn = new Button("No");
+		Button noBtn = new Button("Nej");
 		noBtn.addClickHandler(new noClickHandler());
 		this.hPanelChange.add(noBtn);
 		
 		this.vPanel.add(vPanelChange);
 		this.vPanel.add(hPanelChange);
 		
-		this.txt2.setText("");
-		this.txt3.setText("");
-		this.txt4.setText("");
-	}
-	
-	private void noCreateSucces(){
-		this.lbl3 = new Label("Password Change Unsuccesfull");
-		this.vPanelError.add(lbl3);
-		this.vPanel.add(vPanelError);
+		clearText();
 	}
 	
 	private void notSameNewPasswords(){
-		this.lbl3 = new Label("Du indtastede ikke samme Password 2 gange i træk");
+		this.lbl3.setText("Du indtastede ikke samme Password 2 gange i traek");
 		this.vPanel.add(lbl3);
 		clearText();
 	}
 	
 	private void notSameOldPassword(){
-		this.lbl3 = new Label("Du indtastede et forkert Password, prøv igen eller kontakt systemadministratoren");
+		this.lbl3.setText("Du indtastede et forkert Password, proev igen eller kontakt systemadministratoren");
 		this.vPanel.add(lbl3);
 		clearText();
+	}
+	
+	private void getText() {
+		this.PasswordOld = txt2.getText();
+		this.PasswordNew1 = txt3.getText();
+		this.PasswordNew2 = txt4.getText();
 	}
 	
 	private void clearText() {
@@ -120,6 +118,53 @@ public class OpView extends Composite {
 		this.txt3.setText("");
 		this.txt4.setText("");
 	}
+	
+	private void clearLbl3() {
+		this.lbl3.setText("");
+	}
+	
+	private void clearChangePanels() {
+		this.vPanelChange.clear();
+		this.hPanelChange.clear();
+	}
+	
+	private void popUp() {
+		setDialogBox();    
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+   * Create the dialog box for this example.
+   *
+   * @return the new dialog box
+   */
+  private void setDialogBox() {
+    this.dialogBox.setText("dialogBox.setText()");
+    this.dialogBox.setGlassEnabled(true);
+    this.dialogBox.setAnimationEnabled(true);
+    this.dialogBox.center();
+    this.dialogBox.show();
+    
+  }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	private boolean validateInput() {
 		if(this.operatingOperator.getPassword() == this.PasswordOld) {
@@ -146,7 +191,9 @@ public class OpView extends Composite {
 
 		@Override
 		public void onClick(ClickEvent event) {
-
+			clearChangePanels();
+			popUp();
+			// Pop-up - "You did not..."
 		}		
 	}
 	
@@ -154,14 +201,13 @@ public class OpView extends Composite {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			PasswordOld = txt2.getText();
-			PasswordNew1 = txt3.getText();
-			PasswordNew2 = txt4.getText();
+			clearLbl3();
+			getText();
 			
 			if(validateInput()) {
 				createSucces();
 			} else {
-				noCreateSucces();
+				// Nothing!
 			}
 		}
 	}
