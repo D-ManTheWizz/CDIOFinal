@@ -4,6 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
+import cdio3.client.events.DataEvent;
 import cdio3.client.gui.LoginView;
 import cdio3.client.gui.MainView;
 import cdio3.shared.OperatoerDTO;
@@ -30,32 +31,32 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 		this.service.login(id, pass, new DefaultCallback());
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public void createOperator(int oprId, String firstName, String lastName, String CPR, int stilling) {
-		this.service.createOperator(oprId, firstName, lastName, CPR, stilling, new DefaultCallback());
-	}
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public void createOperator(int oprId, String firstName, String lastName, String CPR, int stilling) {
+//		this.service.createOperator(oprId, firstName, lastName, CPR, stilling, new DefaultCallback());
+//	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public void changeOperator(String ID, String firstName, String lastName) {
-		this.service.changeOperator(ID, firstName, lastName, new DefaultCallback());
-	}
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public void changeOperator(String ID, String firstName, String lastName) {
+//		this.service.changeOperator(ID, firstName, lastName, new DefaultCallback());
+//	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public void deleteOperator(String ID) {
-		this.service.deleteOperator(ID, new DefaultCallback());
-	}
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public void deleteOperator(String ID) {
+//		this.service.deleteOperator(ID, new DefaultCallback());
+//	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public void changePassword(int oprID, String oldPass, String newPass) {
-		this.service.changePassword(oprID, oldPass, newPass, new DefaultCallback());
-	}
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public void changePassword(int oprID, String oldPass, String newPass) {
+//		this.service.changePassword(oprID, oldPass, newPass, new DefaultCallback());
+//	}
 
 	@SuppressWarnings("rawtypes")
-	private class DefaultCallback implements AsyncCallback {
+	private class DefaultCallback implements AsyncCallback<DataEvent> {
 
 		@Override
 		public void onFailure(Throwable caught) {
@@ -63,30 +64,26 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 		}
 
 		@Override
-		public void onSuccess(Object result) {
-			if(result instanceof String) {
-				if(result.toString() == "changed") {
-					changed();
-				} else if(result.toString() == "deleted") {
-					deleted();
-				}
-			} else if (result instanceof OperatoerDTO) {
-				comfirmLogin((OperatoerDTO) result);			
-			} else if (result instanceof boolean[]) {
-				boolean res = (boolean) result;
-				
-				if(res==true) {
-					//METODE DER SENDER TRUE TIL CHANGE PASSWORD//
-				}
-			}
+		public void onSuccess(DataEvent result) {
+			main.handleEvent(result);
+//			if(result instanceof DataEvent) {
+//				
+//			} else if(result instanceof String) {
+//				if(result.toString() == "changed") {
+//					changed();
+//				} else if(result.toString() == "deleted") {
+//					deleted();
+//				}
+//			} else if (result instanceof OperatoerDTO) {
+//				comfirmLogin((OperatoerDTO) result);			
+//			} else if (result instanceof boolean[]) {
+//				boolean res = (boolean) result;
+//				
+//				if(res==true) {
+//					//METODE DER SENDER TRUE TIL CHANGE PASSWORD//
+//				}
+//			}
 		}	
-	}
-	
-	private OperatoerDTO makeOperatoerDTO(Object result) {
-		OperatoerDTO doneOprDTO = new OperatoerDTO(((OperatoerDTO) result).getOprId(), ((OperatoerDTO) result).getOprNavn()
-				, ((OperatoerDTO) result).getIni(), ((OperatoerDTO) result).getCpr(), ((OperatoerDTO) result).getPassword()
-				, ((OperatoerDTO) result).getStilling());
-		return doneOprDTO;
 	}
 	
 	private void changed() {

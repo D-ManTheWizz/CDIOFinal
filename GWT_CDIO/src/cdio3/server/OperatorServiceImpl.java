@@ -2,6 +2,8 @@
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import cdio3.client.events.DataEvent;
+import cdio3.client.events.LoginEvent;
 import cdio3.client.gui.LoginView;
 import cdio3.client.service.OperatorService;
 import cdio3.server.controller.MainController;
@@ -17,10 +19,10 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return main.login(id, pass);
 //	}
 	
-	@Override
-	public boolean changePassword(int oprID, String oldPass, String newPass) throws DALException {
-		return main.changePassword(oprID, oldPass, newPass);
-	}
+//	@Override
+//	public boolean changePassword(int oprID, String oldPass, String newPass) throws DALException {
+//		return main.changePassword(oprID, oldPass, newPass);
+//	}
 	
 //	@Override
 //	public List getRaavareBatchList() {
@@ -77,10 +79,10 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return main.createRecept(receptId, receptNavn, kompList);
 //	}
 	
-	@Override
-	public OperatoerDTO createOperator(int id, String firstName, String lastName, String cpr, int stilling) {
-		return main.createOperator(id, firstName, lastName, cpr, stilling);
-	}
+//	@Override
+//	public OperatoerDTO createOperator(int id, String firstName, String lastName, String cpr, int stilling) {
+//		return main.createOperator(id, firstName, lastName, cpr, stilling);
+//	}
 	
 //	@Override
 //	public OperatoerDTO getOperator(int oprID) {
@@ -97,19 +99,22 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return main.deleteOperator(opr);
 //	}
 	
-	@Override
-	public String changeOperator(String ID, String firstName, String lastName) {
-		return "changed";
-	}
+//	@Override
+//	public String changeOperator(String ID, String firstName, String lastName) {
+//		return "changed";
+//	}
+
+//	@Override
+//	public String deleteOperator(String ID) {
+//		return "deleted";
+//	}
 
 	@Override
-	public String deleteOperator(String ID) {
-		return "deleted";
-	}
-
-	@Override
-	public OperatoerDTO login(int id, String pass) throws IllegalArgumentException, DALException{
+	public DataEvent login(int id, String pass) throws IllegalArgumentException, DALException{
 		OperatoerDTO oprDTO = new OperatoerDTO(main.login(id, pass)/*4, "Hans Jensen", "HaJe", "lkjbkbj", "4567Pass", 4*/);
-		return oprDTO;
+		LoginEvent loginEvent = new LoginEvent();
+		loginEvent.setOprDTO(oprDTO);
+		
+		return loginEvent;
 	}
 }

@@ -4,6 +4,8 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import cdio3.client.events.DataEvent;
+import cdio3.client.events.LoginEvent;
 import cdio3.client.service.OperatorServiceClientImpl;
 import cdio3.shared.OperatoerDTO;
 
@@ -31,6 +33,15 @@ public class MainView extends Composite {
 		
 		this.contentPanel = new VerticalPanel();
 		this.vPanel.add(contentPanel);
+	}
+	
+	public void handleEvent(DataEvent event) {
+		if(event instanceof LoginEvent) {
+			confirmLogin(((LoginEvent) event).getOprDTO());
+//			private void comfirmLogin(OperatoerDTO oprDTO) {
+//				this.main.confirmLogin(oprDTO);
+//			}
+		}
 	}
 	
 	public void setClearance(OperatoerDTO oprDTO) {
