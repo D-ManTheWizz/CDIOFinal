@@ -3,27 +3,15 @@ package cdio3.client.gui;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import cdio3.shared.OperatoerDTO;
+
 public class OpMenu extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();
-	private VerticalPanel contentPanel;
 	
-	private MainView main;
-	
-	public OpMenu(MainView main){
+	public OpMenu(MainView main, OperatoerDTO operatingOperator){
 		initWidget(vPanel);
-		this.main = main;
 		
-		OpView passwordView = new OpView(this);
+		OpView passwordView = new OpView(main, operatingOperator);
 		this.vPanel.add(passwordView);
-		
-		this.contentPanel = new VerticalPanel();
-		this.vPanel.add(contentPanel);
 	}
-	
-//	public void openPopout(){
-//		this.contentPanel.clear();
-//		PopupPanel pop = new PopupPanel();
-//		this.contentPanel.add(pop);
-//		
-//	}
 }

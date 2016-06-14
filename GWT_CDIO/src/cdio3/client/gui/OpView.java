@@ -9,6 +9,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import cdio3.shared.OperatoerDTO;
+
 public class OpView extends Composite {
 
 	private VerticalPanel vPanel = new VerticalPanel();
@@ -24,40 +26,46 @@ public class OpView extends Composite {
 	private Label lbl3;
 	boolean CPRContainNumbers = false;
 	boolean createOperator = false;
-	private OpMenu passwordMenu;
 	String PasswordOld;
 	String PasswordNew1;
 	String PasswordNew2;
 	String ID;
 	
-	public OpView(OpMenu passwordMenu){
+	private MainView main;
+	private OperatoerDTO operatingOperator;
+	
+	public OpView(MainView main, OperatoerDTO operatingOperator){
 		initWidget(this.vPanel);
-		this.passwordMenu = passwordMenu;
+		this.main = main;
+		this.operatingOperator = operatingOperator;
 		
-		Label txt = new Label("Change Your Password Menu");
+		Label txt = new Label("Aendre dit Password");
 		hPanel.add(txt);
 		vPanel.add(hPanel);
 		
-		this.lbl1 = new Label("Enter Old Password");
+		this.lbl1 = new Label("Indtast gammelt Password");
 		vPanel.add(this.lbl1);	
 		this.txt2 = new PasswordTextBox();
 		vPanel.add(this.txt2);
 		
-		this.lbl1 = new Label("Enter New Password");
+		this.lbl1 = new Label("Indtast nyt Password");
 		vPanel.add(this.lbl1);	
 		this.txt3 = new PasswordTextBox();
 		vPanel.add(this.txt3);
 		
-		this.lbl1 = new Label("Enter New Password Again");
+		this.lbl1 = new Label("Indtast nyt Password igen");
 		vPanel.add(this.lbl1);	
 		this.txt4 = new PasswordTextBox();
 		vPanel.add(this.txt4);
 		
 		
-		Button deleteBtn = new Button("Change Password");
-		deleteBtn.addClickHandler(new passwordClickHandler());
-		this.vPanel.add(deleteBtn);
+		Button changeBtn = new Button("Aendre Password");
+		changeBtn.addClickHandler(new passwordClickHandler());
+		this.vPanel.add(changeBtn);
 		
+		Button deleteBtn = new Button("Slet tekst");
+		deleteBtn.addClickHandler(new deleteClickHandler());
+		this.vPanel.add(deleteBtn);
 	}
 
 	public void createSucces(){
@@ -132,10 +140,15 @@ public class OpView extends Composite {
 				//passwordMenu.openPopout();
 			}
 			else
-			noCreateSucces();
-			
-			
+			noCreateSucces();	
 		}
-		
+	}
+	
+	private class deleteClickHandler implements ClickHandler{
+
+		@Override
+		public void onClick(ClickEvent event) {
+
+		}		
 	}
 }

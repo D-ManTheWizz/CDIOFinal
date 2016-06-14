@@ -1,6 +1,7 @@
 package cdio3.client.gui;
 
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -10,8 +11,11 @@ import cdio3.client.service.OperatorServiceClientImpl;
 import cdio3.shared.OperatoerDTO;
 
 public class MainView extends Composite {
-	private VerticalPanel vPanel = new VerticalPanel();
-	private VerticalPanel contentPanel;
+	private VerticalPanel v1_Panel = new VerticalPanel();
+	private HorizontalPanel h1_in_v1_Panel = new HorizontalPanel();
+	private HorizontalPanel h2_in_v1_Panel = new HorizontalPanel();
+	
+	private OperatoerDTO operatingOperator;
 	
 	private MenuView menu;
 	private FarmaMenu farmaMenu;
@@ -24,59 +28,56 @@ public class MainView extends Composite {
 	private AdmMenu admMenu;
 	
 	public MainView(OperatorServiceClientImpl serviceImpl){
-		initWidget(this.vPanel);
+		initWidget(this.v1_Panel);
 		this.serviceClientImpl = serviceImpl;
-		this.vPanel.setBorderWidth(1);
+		this.v1_Panel.setBorderWidth(1);
 		
 		Login login = new Login(this);
-		this.vPanel.add(login);
-		
-		this.contentPanel = new VerticalPanel();
-		this.vPanel.add(contentPanel);
+		this.v1_Panel.add(login);
 	}
 	
 	public void handleEvent(DataEvent event) {
 		if(event instanceof LoginEvent) {
 			confirmLogin(((LoginEvent) event).getOprDTO());
-//			private void comfirmLogin(OperatoerDTO oprDTO) {
-//				this.main.confirmLogin(oprDTO);
-//			}
 		}
 	}
 	
 	public void setClearance(OperatoerDTO oprDTO) {
+		this.operatingOperator = oprDTO;
 		
-		this.vPanel.clear();
-//		this.contentPanel.clear();
+		this.v1_Panel.clear();
+
 		menu = new MenuView(this, oprDTO);
-		this.vPanel.add(menu);
+		this.h1_in_v1_Panel.add(menu);
+		this.v1_Panel.add(h1_in_v1_Panel);
 	}
 	
 	public void openAdminMenu(){
-		this.vPanel.clear();
+		this.h2_in_v1_Panel.clear();
 		admMenu = new AdmMenu(this);
-		this.vPanel.add(admMenu);	
+		this.h2_in_v1_Panel.add(admMenu);
+		this.v1_Panel.add(h2_in_v1_Panel);
 	}
 	
 	public void openFarmaMenu(){
-		this.vPanel.clear();
+		this.h2_in_v1_Panel.clear();
 		farmaMenu = new FarmaMenu(this);
-		this.vPanel.add(farmaMenu);
-		
+		this.h2_in_v1_Panel.add(farmaMenu);
+		this.v1_Panel.add(h2_in_v1_Panel);		
 	}
 	
 	public void openVfMenu(){
-		this.vPanel.clear();
+		this.h2_in_v1_Panel.clear();
 		VfMenu vfMenu = new VfMenu(this);
-		this.vPanel.add(vfMenu);
-		
+		this.h2_in_v1_Panel.add(vfMenu);
+		this.v1_Panel.add(h2_in_v1_Panel);
 	}
 	
 	public void openOpMenu(){
-		this.vPanel.clear();
-		OpMenu opMenu = new OpMenu(this);
-		this.vPanel.add(opMenu);
-		
+		this.h2_in_v1_Panel.clear();
+		OpMenu opMenu = new OpMenu(this, this.operatingOperator);
+		this.h2_in_v1_Panel.add(opMenu);
+		this.v1_Panel.add(h2_in_v1_Panel);
 	}
 	
 	public void login(int id, String pass, LoginView login) {
