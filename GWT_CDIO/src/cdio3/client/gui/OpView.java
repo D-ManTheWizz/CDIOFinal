@@ -2,7 +2,6 @@ package cdio3.client.gui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -30,8 +29,6 @@ public class OpView extends Composite {
 	private Label lbl1;
 	private Label lbl2;
 	private Label lbl3 = new Label("");
-	
-    private DialogBox dialogBox = new DialogBox();
 	
 	private MainView main;
 	private OperatoerDTO operatingOperator;
@@ -129,42 +126,22 @@ public class OpView extends Composite {
 	}
 	
 	private void popUp() {
-		setDialogBox();    
+	    DialogBox dBox = new DialogBox();
+		VerticalPanel dBoxPanel = new VerticalPanel();
+		Label dBoxlbl = new Label();
+		
+		dBox.setText("Dit Password blev IKKE aendret.");
+	    dBoxlbl.setText("Dit Password blev IKKE aendret.");
+	    dBoxPanel.add(dBoxlbl);
+	    dBox.add(dBoxPanel);
+	    dBox.setGlassEnabled(true);
+	    dBox.setAnimationEnabled(true);
+	    dBox.center();
+		dBox.show();	
+		
+		
+//		popUp.passwordNotChangedPopup();    
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/**
-   * Create the dialog box for this example.
-   *
-   * @return the new dialog box
-   */
-  private void setDialogBox() {
-    this.dialogBox.setText("dialogBox.setText()");
-    this.dialogBox.setGlassEnabled(true);
-    this.dialogBox.setAnimationEnabled(true);
-    this.dialogBox.center();
-    this.dialogBox.show();
-    
-  }
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	private boolean validateInput() {
 		if(this.operatingOperator.getPassword() == this.PasswordOld) {
@@ -193,7 +170,6 @@ public class OpView extends Composite {
 		public void onClick(ClickEvent event) {
 			clearChangePanels();
 			popUp();
-			// Pop-up - "You did not..."
 		}		
 	}
 	
