@@ -144,7 +144,7 @@ public class OpView extends Composite {
 	    
 	    dBoxPanel.setSpacing(4);
 	    
-		Label dBoxlbl = new Label();		
+		Label dBoxlbl = new Label("Der skete en fejl.");		
 	    dBoxPanel.add(dBoxlbl);
 	    
 	    Button closeButton = new Button("Luk", new ClickHandler() {
@@ -167,7 +167,7 @@ public class OpView extends Composite {
 	    
 	    dBoxPanel.setSpacing(4);
 	    
-		Label dBoxlbl = new Label();		
+		Label dBoxlbl = new Label("Dit Password blev IKKE aendret");		
 	    dBoxPanel.add(dBoxlbl);
 	    
 	    Button closeButton = new Button("Luk", new ClickHandler() {
@@ -180,7 +180,7 @@ public class OpView extends Composite {
 	    dNoBox.show();
 	}
 	
-	private void yesPopUp() {
+	private void yesPopUp(OperatoerDTO oprDTO) {
 		dYesBox = new DialogBox();
 		VerticalPanel dBoxPanel = new VerticalPanel();
 		dYesBox.setWidget(dBoxPanel);
@@ -190,7 +190,7 @@ public class OpView extends Composite {
 	    
 	    dBoxPanel.setSpacing(4);
 	    
-		Label dBoxlbl = new Label();		
+		Label dBoxlbl = new Label("Dit Password blev aendret: " + oprDTO.getPassword());		
 	    dBoxPanel.add(dBoxlbl);
 	    
 	    Button closeButton = new Button("Luk", new ClickHandler() {
@@ -231,7 +231,8 @@ public class OpView extends Composite {
 	} 
 	
 	public void updatePasswordReturn(OperatoerDTO oprDTO) {
-		yesPopUp();
+		noPopUp();
+//		yesPopUp(oprDTO);
 //		if(oprDTO.getPassword() == this.PasswordNew1) {
 //			this.operatingOperator = oprDTO;
 //			yesPopUp();
@@ -247,7 +248,8 @@ public class OpView extends Composite {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			updatePassword();
+//			yesPopUp();
+//			updatePassword();
 		}		
 	}
 	
