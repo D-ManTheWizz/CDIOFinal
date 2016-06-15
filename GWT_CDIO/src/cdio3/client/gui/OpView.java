@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
@@ -30,6 +31,8 @@ public class OpView extends Composite {
 	private Label lbl2;
 	private Label lbl3 = new Label("");
 	
+	private DialogBox dBox;
+	
 	private MainView main;
 	private OperatoerDTO operatingOperator;
 	
@@ -45,16 +48,19 @@ public class OpView extends Composite {
 		this.lbl1 = new Label("Indtast gammelt Password");
 		vPanel.add(this.lbl1);	
 		this.txt2 = new PasswordTextBox();
+		this.txt2.setText("4567Pass");
 		vPanel.add(this.txt2);
 		
 		this.lbl1 = new Label("Indtast nyt Password");
 		vPanel.add(this.lbl1);	
 		this.txt3 = new PasswordTextBox();
+		this.txt3.setText("Bo");
 		vPanel.add(this.txt3);
 		
 		this.lbl1 = new Label("Indtast nyt Password igen");
 		vPanel.add(this.lbl1);	
 		this.txt4 = new PasswordTextBox();
+		this.txt4.setText("Bo");
 		vPanel.add(this.txt4);
 		
 		Button changeBtn = new Button("Aendre Password");
@@ -126,21 +132,31 @@ public class OpView extends Composite {
 	}
 	
 	private void popUp() {
-	    DialogBox dBox = new DialogBox();
+	    dBox = new DialogBox();
 		VerticalPanel dBoxPanel = new VerticalPanel();
-		Label dBoxlbl = new Label();
-		
-		dBox.setText("Dit Password blev IKKE aendret.");
-	    dBoxlbl.setText("Dit Password blev IKKE aendret.");
-	    dBoxPanel.add(dBoxlbl);
-	    dBox.add(dBoxPanel);
-	    dBox.setGlassEnabled(true);
+		dBox.setWidget(dBoxPanel);
+		dBox.setGlassEnabled(true);
 	    dBox.setAnimationEnabled(true);
 	    dBox.center();
+	    
+	    dBoxPanel.setSpacing(4);
+	    
+		Label dBoxlbl = new Label("Dit Password blev IKKE aendret.");		
+	    dBoxPanel.add(dBoxlbl);
+	    
+	    Button closeButton = new Button("Luk", new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+	            closePopUp();
+	          }
+	        });
+	    dBoxPanel.add(closeButton);
+	    dBoxPanel.setCellHorizontalAlignment(closeButton, HasHorizontalAlignment.ALIGN_CENTER);
+	 
 		dBox.show();	
-		
-		
-//		popUp.passwordNotChangedPopup();    
+	}
+	
+	private void closePopUp() {
+		dBox.hide();	
 	}
 	
 	private boolean validateInput() {

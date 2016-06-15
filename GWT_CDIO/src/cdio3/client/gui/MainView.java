@@ -1,5 +1,6 @@
 package cdio3.client.gui;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -11,6 +12,11 @@ import cdio3.client.service.OperatorServiceClientImpl;
 import cdio3.shared.OperatoerDTO;
 
 public class MainView extends Composite {
+	private VerticalPanel layoutPanel_1 = new VerticalPanel();
+	private Label layoutLabel_1 = new Label();
+	private HorizontalPanel layoutPanel_2 = new HorizontalPanel();
+	private Label layoutLabel_2 = new Label();
+	
 	private VerticalPanel v1_Panel = new VerticalPanel();
 	private HorizontalPanel h1_in_v1_Panel = new HorizontalPanel();
 	private HorizontalPanel h2_in_v1_Panel = new HorizontalPanel();
@@ -28,10 +34,21 @@ public class MainView extends Composite {
 	private AdmMenu admMenu;
 	
 	public MainView(OperatorServiceClientImpl serviceImpl){
-		initWidget(this.v1_Panel);
+		initWidget(this.layoutPanel_1);
 		this.serviceClientImpl = serviceImpl;
-		this.v1_Panel.setBorderWidth(1);
+		int height = Window.getClientHeight();
+		int width = Window.getClientWidth();
+		int layoutHeight = (height/10);
+		int layoutWidth = (width/4);
 		
+		this.layoutLabel_1.setPixelSize(layoutWidth, layoutHeight);
+		this.layoutPanel_1.add(layoutLabel_1);
+		this.layoutPanel_1.add(layoutPanel_2);
+		this.layoutLabel_2.setPixelSize(layoutWidth, layoutHeight);
+		this.layoutPanel_2.add(layoutLabel_2);
+		this.layoutPanel_2.add(v1_Panel);
+		this.v1_Panel.setBorderWidth(1);
+
 		Login login = new Login(this);
 		this.v1_Panel.add(login);
 	}
