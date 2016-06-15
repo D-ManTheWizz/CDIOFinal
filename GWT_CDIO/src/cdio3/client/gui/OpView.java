@@ -75,7 +75,7 @@ public class OpView extends Composite {
 		vPanel.add(lbl3);
 	}
 
-	public void createSucces(){
+	public void validateChangePassword(){
 		this.vPanelChange.clear();
 		this.hPanelChange.clear();
 		
@@ -171,12 +171,17 @@ public class OpView extends Composite {
 		return false;
 	}
 	
+	private void updatePassword() {
+		this.operatingOperator.setPassword(this.PasswordNew1);
+		this.main.updatePassword(this.operatingOperator);
+	}
+	
 	
 	private class yesClickHandler implements ClickHandler{
 
 		@Override
 		public void onClick(ClickEvent event) {
-			
+			updatePassword();
 		}		
 	}
 	
@@ -197,7 +202,7 @@ public class OpView extends Composite {
 			getText();
 			
 			if(validateInput()) {
-				createSucces();
+				validateChangePassword();
 			} else {
 				// Nothing!
 			}

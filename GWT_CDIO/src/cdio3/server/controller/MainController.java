@@ -58,43 +58,30 @@ public class MainController {
 	
 	/* 
 	*/
-	private boolean validatePassword(int oprID, String pass) throws DALException {
-		if(testing) {
-//			OperatoerDTO oprDTO = new OperatoerDTO(/*testingDAO.getOperatoer(oprID)*/4, "Admin Jensen", "AdJe", "456789-4567", "4567Pass", 4);
-//			if(oprDTO.getPassword() == pass) {
-				return true;
-//			} else {
-//				return false;
-//			}
+	private boolean validatePassword(OperatoerDTO oprDTO) throws DALException {
+		if(oprDTO.getPassword().length() >= 8) {
+			return true;
 		} else {
-			OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
-			if(oprDTO.getPassword().equals(pass)) {
-				return true;
-			} else {
-				return false;
-			}
-		}
+			return false;
+		}	
 	}
 	
-	public boolean changePassword(int oprID, String oldPass, String newPass) throws DALException {
+	public OperatoerDTO updatePassword(OperatoerDTO oprDTO) throws DALException {
 		if(testing) {
-			if (validatePassword(oprID, oldPass)) {	
-				OperatoerDTO oprDTO = new OperatoerDTO(testingDAO.getOperatoer(oprID));
-				oprDTO.setPassword(newPass);
-				testingDAO.updateOperatoer(oprDTO);	
-				return true;
+			if(validatePassword(oprDTO)) {
+				testingDAO.updateOperatoer(oprDTO);
+				return oprDTO;
 			} else {
-				return false;
+				oprDTO.setPassword(testingDAO.getOperatoer(oprDTO.getOprId()).getPassword());
+				return oprDTO;
 			}
 		} else {
-			// check if the ID and password is correspondent
-			if (validatePassword(oprID, oldPass)) {	
-				OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(oprID));
-				oprDTO.setPassword(newPass);
+			if (validatePassword(oprDTO)) {	
 				oprDAO.updateOperatoer(oprDTO);		
-				return true;
+				return oprDTO;
 			} else {
-				return false;
+				oprDTO.setPassword(oprDAO.getOperatoer(oprDTO.getOprId()).getPassword());
+				return oprDTO;
 			}
 		}
 	}

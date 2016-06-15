@@ -25,35 +25,31 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 		return this.main;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void login(int id, String pass) throws IllegalArgumentException {
 		this.service.login(id, pass, new DefaultCallback());
 	}
 	
-//	@SuppressWarnings("unchecked")
 //	@Override
 //	public void createOperator(int oprId, String firstName, String lastName, String CPR, int stilling) {
 //		this.service.createOperator(oprId, firstName, lastName, CPR, stilling, new DefaultCallback());
 //	}
 	
-//	@SuppressWarnings("unchecked")
 //	@Override
 //	public void changeOperator(String ID, String firstName, String lastName) {
 //		this.service.changeOperator(ID, firstName, lastName, new DefaultCallback());
 //	}
 	
-//	@SuppressWarnings("unchecked")
 //	@Override
 //	public void deleteOperator(String ID) {
 //		this.service.deleteOperator(ID, new DefaultCallback());
 //	}
 	
-//	@SuppressWarnings("unchecked")
-//	@Override
-//	public void changePassword(int oprID, String oldPass, String newPass) {
-//		this.service.changePassword(oprID, oldPass, newPass, new DefaultCallback());
-//	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public void updatePassword(OperatoerDTO oprDTO) {
+		this.service.updatePassword(oprDTO, new DefaultCallback());
+	}
 
 	@SuppressWarnings("rawtypes")
 	private class DefaultCallback implements AsyncCallback<DataEvent> {

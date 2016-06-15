@@ -2,10 +2,10 @@ package cdio3.client.events;
 
 import cdio3.shared.OperatoerDTO;
 
-public class LoginEvent extends DataEvent{
+public class UpdatePasswordEvent extends DataEvent{
 	private static final long serialVersionUID = 1L;
 	private OperatoerDTO oprDTO;
-
+	
 	public OperatoerDTO getOprDTO() {
 		return oprDTO;
 	}
