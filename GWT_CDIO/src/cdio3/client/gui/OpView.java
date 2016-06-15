@@ -32,7 +32,7 @@ public class OpView extends Composite {
 	private Label lbl2;
 	private Label lbl3 = new Label("");
 	
-	private DialogBox dBox;
+	private DialogBox dNoBox;
 	private DialogBox dYesBox;
 	private DialogBox dErrorBox;
 	
@@ -134,17 +134,17 @@ public class OpView extends Composite {
 		this.hPanelChange.clear();
 	}
 	
-	private void popUp() {
-	    dBox = new DialogBox();
+	private void errorPopUp() {
+		dErrorBox = new DialogBox();
 		VerticalPanel dBoxPanel = new VerticalPanel();
-		dBox.setWidget(dBoxPanel);
-		dBox.setGlassEnabled(true);
-	    dBox.setAnimationEnabled(true);
-	    dBox.center();
+		dErrorBox.setWidget(dBoxPanel);
+		dErrorBox.setGlassEnabled(true);
+		dErrorBox.setAnimationEnabled(true);
+		dErrorBox.center();
 	    
 	    dBoxPanel.setSpacing(4);
 	    
-		dBoxlbl = new Label();		
+		Label dBoxlbl = new Label();		
 	    dBoxPanel.add(dBoxlbl);
 	    
 	    Button closeButton = new Button("Luk", new ClickHandler() {
@@ -154,19 +154,30 @@ public class OpView extends Composite {
 	        });
 	    dBoxPanel.add(closeButton);
 	    dBoxPanel.setCellHorizontalAlignment(closeButton, HasHorizontalAlignment.ALIGN_CENTER);
-	 	
-	}
-	
-	private void errorPopUp() {
-	    popUp();	    
-		dBoxlbl.setText("Der skete en uventet fejl.");		
-		dBox.show();
+	    dErrorBox.show();
 	}
 	
 	private void noPopUp() {
-	    popUp();
-		dBoxlbl.setText("Dit Password blev IKKE aendret.");		
-		dBox.show();	
+		dNoBox = new DialogBox();
+		VerticalPanel dBoxPanel = new VerticalPanel();
+		dNoBox.setWidget(dBoxPanel);
+		dNoBox.setGlassEnabled(true);
+		dNoBox.setAnimationEnabled(true);
+		dNoBox.center();
+	    
+	    dBoxPanel.setSpacing(4);
+	    
+		Label dBoxlbl = new Label();		
+	    dBoxPanel.add(dBoxlbl);
+	    
+	    Button closeButton = new Button("Luk", new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+	            closePopUp();
+	          }
+	        });
+	    dBoxPanel.add(closeButton);
+	    dBoxPanel.setCellHorizontalAlignment(closeButton, HasHorizontalAlignment.ALIGN_CENTER);
+	    dNoBox.show();
 	}
 	
 	private void yesPopUp() {
@@ -179,27 +190,27 @@ public class OpView extends Composite {
 	    
 	    dBoxPanel.setSpacing(4);
 	    
-		dBoxlbl = new Label();		
+		Label dBoxlbl = new Label();		
 	    dBoxPanel.add(dBoxlbl);
 	    
 	    Button closeButton = new Button("Luk", new ClickHandler() {
 	          public void onClick(ClickEvent event) {
-	            closeYesPopUp();
+	            closePopUp();
 	          }
 	        });
 	    dBoxPanel.add(closeButton);
 	    dBoxPanel.setCellHorizontalAlignment(closeButton, HasHorizontalAlignment.ALIGN_CENTER);
-	 	
-	    dBoxlbl.setText("Dit Password blev aendret.");	
-	    dYesBox.show();	
+	    dYesBox.show();
 	}
 	
 	private void closePopUp() {
-		dBox.hide();	
-	}
-	
-	private void closeYesPopUp() {
-		dYesBox.hide();	
+		if(dYesBox.isShowing()) {
+			dYesBox.hide();
+		} else if(dNoBox.isShowing()) {
+			dNoBox.hide();
+		} else if(dErrorBox.isShowing()) {
+			dErrorBox.hide();
+		}
 	}
 	
 	private boolean validateInput() {
