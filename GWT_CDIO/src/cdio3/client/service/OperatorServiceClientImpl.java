@@ -50,7 +50,6 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 		this.service.updatePassword(oprDTO, new DefaultCallback());
 	}
 
-	@SuppressWarnings("rawtypes")
 	private class DefaultCallback implements AsyncCallback<DataEvent> {
 
 		@Override

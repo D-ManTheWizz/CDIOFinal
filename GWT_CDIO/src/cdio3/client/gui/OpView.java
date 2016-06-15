@@ -33,6 +33,8 @@ public class OpView extends Composite {
 	private Label lbl3 = new Label("");
 	
 	private DialogBox dBox;
+	private DialogBox dYesBox;
+	private DialogBox dErrorBox;
 	
 	private MainView main;
 	private OperatoerDTO operatingOperator;
@@ -168,13 +170,36 @@ public class OpView extends Composite {
 	}
 	
 	private void yesPopUp() {
-		popUp();
-	    dBoxlbl.setText("Dit Password blev aendret.");		
-		dBox.show();	
+		dYesBox = new DialogBox();
+		VerticalPanel dBoxPanel = new VerticalPanel();
+		dYesBox.setWidget(dBoxPanel);
+		dYesBox.setGlassEnabled(true);
+		dYesBox.setAnimationEnabled(true);
+		dYesBox.center();
+	    
+	    dBoxPanel.setSpacing(4);
+	    
+		dBoxlbl = new Label();		
+	    dBoxPanel.add(dBoxlbl);
+	    
+	    Button closeButton = new Button("Luk", new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+	            closeYesPopUp();
+	          }
+	        });
+	    dBoxPanel.add(closeButton);
+	    dBoxPanel.setCellHorizontalAlignment(closeButton, HasHorizontalAlignment.ALIGN_CENTER);
+	 	
+	    dBoxlbl.setText("Dit Password blev aendret.");	
+	    dYesBox.show();	
 	}
 	
 	private void closePopUp() {
 		dBox.hide();	
+	}
+	
+	private void closeYesPopUp() {
+		dYesBox.hide();	
 	}
 	
 	private boolean validateInput() {
@@ -195,25 +220,15 @@ public class OpView extends Composite {
 	} 
 	
 	public void updatePasswordReturn(OperatoerDTO oprDTO) {
-		if(returnGood(oprDTO) == "yes") {
-			this.operatingOperator = oprDTO;
-			yesPopUp();
-		} else if(returnGood(oprDTO) == "noOld") {
-			noPopUp();
-		} else if(returnGood(oprDTO) == "error") {
-			this.operatingOperator = oprDTO;
-			errorPopUp();
-		}
-	}
-	
-	private String returnGood(OperatoerDTO oprDTO) {
-		if(this.PasswordNew1 == oprDTO.getPassword()) {
-			return "yes";
-		} else if(this.PasswordOld == oprDTO.getPassword()) {
-			return "noOld";
-		} else {
-			return "error";
-		}
+		yesPopUp();
+//		if(oprDTO.getPassword() == this.PasswordNew1) {
+//			this.operatingOperator = oprDTO;
+//			yesPopUp();
+//		} else if(oprDTO.getPassword() == this.PasswordOld) {
+//			noPopUp();
+//		} else {
+//			errorPopUp();
+//		}
 	}
 	
 	

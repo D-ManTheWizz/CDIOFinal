@@ -110,7 +110,6 @@ public class MainView extends Composite {
 	}
 	
 	public void updatePassword(OperatoerDTO operatingOperator) {
-		this.operatingOperator = operatingOperator;
 		this.serviceClientImpl.updatePassword(this.operatingOperator);
 	}
 	
