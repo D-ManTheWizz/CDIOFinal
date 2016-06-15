@@ -7,7 +7,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import cdio3.client.events.DataEvent;
-import cdio3.client.events.LoginEvent;
+import cdio3.client.events.*;
 import cdio3.client.service.OperatorServiceClientImpl;
 import cdio3.shared.OperatoerDTO;
 
@@ -26,7 +26,7 @@ public class MainView extends Composite {
 	private MenuView menu;
 	private FarmaMenu farmaMenu;
 	private VfMenu vfMenu;
-	private OpMenu opMenu;
+	private OpView opView;
 	private LoginView login;
 	
 	// Old
@@ -56,6 +56,8 @@ public class MainView extends Composite {
 	public void handleEvent(DataEvent event) {
 		if(event instanceof LoginEvent) {
 			confirmLogin(((LoginEvent) event).getOprDTO());
+		} else if(event instanceof UpdatePasswordEvent) {
+			updatePasswordReturn(((UpdatePasswordEvent) event).getOprDTO());
 		}
 	}
 	
@@ -112,22 +114,11 @@ public class MainView extends Composite {
 		this.serviceClientImpl.updatePassword(this.operatingOperator);
 	}
 	
-	
+	public void updatePasswordReturn(OperatoerDTO oprDTO) {
+		this.opView.updatePasswordReturn(oprDTO);		
+	}
 	
 	// Old methods
-//	
-//	public void openPassMenu(){
-//		this.contentPanel.clear();
-//		PasswordMenu passMenu = new PasswordMenu(this);
-//		this.contentPanel.add(passMenu);
-//	}
-//	
-//	public void openWeighMenu(){
-//		this.contentPanel.clear();
-//		WeighMenu weighMenu = new WeighMenu();
-//		this.contentPanel.add(weighMenu);
-//	}
-//
 //	public void createOperator(int oprId, String firstName, String lastName, String CPR, int stilling, CreateView createView) {
 //		this.createView = createView;
 //		this.serviceClientImpl.createOperator(oprId, firstName, lastName, CPR, stilling);

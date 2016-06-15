@@ -23,6 +23,7 @@ public class OpView extends Composite {
 	private HorizontalPanel h2Panel = new HorizontalPanel();
 	private HorizontalPanel hPanelChange = new HorizontalPanel();
 	private VerticalPanel vPanelChange = new VerticalPanel();
+	private Label dBoxlbl;
 	
 	private PasswordTextBox txt2;
 	private PasswordTextBox txt3;
@@ -75,7 +76,7 @@ public class OpView extends Composite {
 		vPanel.add(lbl3);
 	}
 
-	public void validateChangePassword(){
+	private void validateChangePassword(){
 		this.vPanelChange.clear();
 		this.hPanelChange.clear();
 		
@@ -141,7 +142,7 @@ public class OpView extends Composite {
 	    
 	    dBoxPanel.setSpacing(4);
 	    
-		Label dBoxlbl = new Label("Dit Password blev IKKE aendret.");		
+		dBoxlbl = new Label();		
 	    dBoxPanel.add(dBoxlbl);
 	    
 	    Button closeButton = new Button("Luk", new ClickHandler() {
@@ -151,7 +152,24 @@ public class OpView extends Composite {
 	        });
 	    dBoxPanel.add(closeButton);
 	    dBoxPanel.setCellHorizontalAlignment(closeButton, HasHorizontalAlignment.ALIGN_CENTER);
-	 
+	 	
+	}
+	
+	private void errorPopUp() {
+	    popUp();	    
+		dBoxlbl.setText("Der skete en uventet fejl.");		
+		dBox.show();
+	}
+	
+	private void noPopUp() {
+	    popUp();
+		dBoxlbl.setText("Dit Password blev IKKE aendret.");		
+		dBox.show();	
+	}
+	
+	private void yesPopUp() {
+		popUp();
+	    dBoxlbl.setText("Dit Password blev aendret.");		
 		dBox.show();	
 	}
 	
@@ -174,6 +192,28 @@ public class OpView extends Composite {
 	private void updatePassword() {
 		this.operatingOperator.setPassword(this.PasswordNew1);
 		this.main.updatePassword(this.operatingOperator);
+	} 
+	
+	public void updatePasswordReturn(OperatoerDTO oprDTO) {
+		if(returnGood(oprDTO) == "yes") {
+			this.operatingOperator = oprDTO;
+			yesPopUp();
+		} else if(returnGood(oprDTO) == "noOld") {
+			noPopUp();
+		} else if(returnGood(oprDTO) == "error") {
+			this.operatingOperator = oprDTO;
+			errorPopUp();
+		}
+	}
+	
+	private String returnGood(OperatoerDTO oprDTO) {
+		if(this.PasswordNew1 == oprDTO.getPassword()) {
+			return "yes";
+		} else if(this.PasswordOld == oprDTO.getPassword()) {
+			return "noOld";
+		} else {
+			return "error";
+		}
 	}
 	
 	
@@ -190,7 +230,7 @@ public class OpView extends Composite {
 		@Override
 		public void onClick(ClickEvent event) {
 			clearChangePanels();
-			popUp();
+			noPopUp();
 		}		
 	}
 	

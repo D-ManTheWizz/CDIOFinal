@@ -45,7 +45,6 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 //		this.service.deleteOperator(ID, new DefaultCallback());
 //	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void updatePassword(OperatoerDTO oprDTO) {
 		this.service.updatePassword(oprDTO, new DefaultCallback());
@@ -62,35 +61,6 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 		@Override
 		public void onSuccess(DataEvent result) {
 			main.handleEvent(result);
-//			if(result instanceof DataEvent) {
-//				
-//			} else if(result instanceof String) {
-//				if(result.toString() == "changed") {
-//					changed();
-//				} else if(result.toString() == "deleted") {
-//					deleted();
-//				}
-//			} else if (result instanceof OperatoerDTO) {
-//				comfirmLogin((OperatoerDTO) result);			
-//			} else if (result instanceof boolean[]) {
-//				boolean res = (boolean) result;
-//				
-//				if(res==true) {
-//					//METODE DER SENDER TRUE TIL CHANGE PASSWORD//
-//				}
-//			}
 		}	
-	}
-	
-	private void changed() {
-		this.main.changed();
-	}
-	
-	private void deleted() {
-		this.main.deleted();
-	}
-
-	private void comfirmLogin(OperatoerDTO oprDTO) {
-		this.main.confirmLogin(oprDTO);
 	}
 }
