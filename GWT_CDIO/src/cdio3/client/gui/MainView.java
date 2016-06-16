@@ -27,7 +27,6 @@ public class MainView extends Composite {
 	private FarmaMenu farmaMenu;
 //	private VfMenu vfMenu;
 	private OpView opView;
-	private LoginView login;
 	
 	// Old
 	private OperatorServiceClientImpl serviceClientImpl;

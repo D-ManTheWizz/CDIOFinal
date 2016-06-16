@@ -56,8 +56,6 @@ public class MainController {
 		}
 	}
 	
-	/* 
-	*/
 	private boolean validatePassword(OperatoerDTO oprDTO) throws DALException {
 		if(oprDTO.getPassword().length() >= 8) {
 			return true;
@@ -203,8 +201,6 @@ public class MainController {
 		}
 	}
 	
-	/*
-	 */
 	public OperatoerDTO createOperator(int id, String firstName, String lastName, String cpr, int stilling) /*throws DALException*/ {
 		if(testing) {
 			
@@ -241,9 +237,6 @@ public class MainController {
 		}
 	}
 	
-	/*
-	 *  deleting an Operator containing the ID the admin provides, confirming the deletion.
-	 */
 	public boolean deleteOperator(/*OperatoerDTO opr*/) /*throws DALException*/ {
 		if(testing) {
 			
