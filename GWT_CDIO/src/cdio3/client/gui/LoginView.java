@@ -2,25 +2,18 @@ package cdio3.client.gui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import cdio3.shared.OperatoerDTO;
-
 public class LoginView extends Composite{
 	private VerticalPanel vPanel = new VerticalPanel();
-	private VerticalPanel vPanelLoggedIn = new VerticalPanel();
-	private HorizontalPanel hPanelLoggedIn = new HorizontalPanel();
 	public TextBox txt1;
 	public PasswordTextBox txt2;
 	private Label lbl1;
-	private Label lbl2;
 	boolean login = false;
 	
 	private MainView main;
@@ -46,7 +39,6 @@ public class LoginView extends Composite{
 		Button loginBtn = new Button("Login");
 		loginBtn.addClickHandler(new loginClickHandler());
 		this.vPanel.add(loginBtn);
-
 	}
 
 	private class loginClickHandler implements ClickHandler{
@@ -61,6 +53,6 @@ public class LoginView extends Composite{
 	}
 
 	private void login(int id, String password) {
-		this.main.login(id, password, this);
+		this.main.login(id, password);
 	}
 }

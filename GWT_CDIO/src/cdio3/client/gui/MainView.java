@@ -25,7 +25,7 @@ public class MainView extends Composite {
 	
 	private MenuView menu;
 	private FarmaMenu farmaMenu;
-	private VfMenu vfMenu;
+//	private VfMenu vfMenu;
 	private OpView opView;
 	private LoginView login;
 	
@@ -99,9 +99,7 @@ public class MainView extends Composite {
 		this.v1_Panel.add(h2_in_v1_Panel);
 	}
 	
-	public void login(int id, String pass, LoginView login) {
-		this.login = login;
-
+	public void login(int id, String pass) {
 		this.serviceClientImpl.login(id, pass);
 	}
 	
