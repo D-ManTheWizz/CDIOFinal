@@ -34,10 +34,14 @@ public class ChangeUserView extends Composite {
 	boolean CPRContainNumbers = false;
 	boolean createOperator = false;
 	private ChangeUser changeUser;
-	String User_ID;
-	String User_Name;
-	String CPR;
-	String Role;
+	String User_IDOld = "10";
+	String User_IDNew;
+	String User_NameOld = "Ole";
+	String User_NameNew;
+	String CPROld = "100194-1111";
+	String CPRNew;
+	String RoleOld = "Operatør";
+	String RoleNew;
 	
 	
 	public ChangeUserView(ChangeUser changeUser){
@@ -45,14 +49,14 @@ public class ChangeUserView extends Composite {
 		this.changeUser = changeUser;
 		
 		Label lbl1 = new Label("Indtast Bruger ID eller Bruger Navn");
-		hPanel.add(lbl1);
-		vPanel.add(hPanel);
+		vPanel.add(lbl1);
 		this.txt3 = new TextBox();
 		hPanel.add(this.txt3);
 		
 		Button searchBtn = new Button("Soeg");
 		searchBtn.addClickHandler(new searchClickHandler());
 		this.hPanel.add(searchBtn);
+		vPanel.add(hPanel);
 		
 	}
 
@@ -63,30 +67,30 @@ public class ChangeUserView extends Composite {
 		this.vPanelError.clear();
 		
 		//Hardcoded start values
-		User_ID = "10";
-		User_Name = "Ole";
-		CPR = "100194-1111";
-		Role = "Operatør";
+//		User_IDOld = "10";
+//		User_NameOld = "Ole";
+//		CPROld = "100194-1111";
+//		RoleOld = "Operatoer";
 		
-		this.lbl2 = new Label("Bruger ID " + User_ID);
+		this.lbl2 = new Label("Bruger ID " + User_IDOld);
 		this.vPanelChange.add(lbl2);
 		this.txt1 = new TextBox();
-		txt1.setText(User_ID);
+		txt1.setText(User_IDOld);
 		vPanelChange.add(this.txt1);
 		
-		this.lbl2 = new Label("Bruger Navn " + User_Name); 
+		this.lbl2 = new Label("Bruger Navn " + User_NameOld); 
 		this.vPanelChange.add(lbl2);
 		this.txt2 = new TextBox();
-		txt2.setText(User_Name);
+		txt2.setText(User_NameOld);
 		vPanelChange.add(this.txt2);
 		
-		this.lbl2 = new Label("CPR " + CPR);
+		this.lbl2 = new Label("CPR " + CPROld);
 		this.vPanelChange.add(lbl2);
 		this.txt3 = new TextBox();
-		txt3.setText(CPR);
+		txt3.setText(CPROld);
 		vPanelChange.add(this.txt3);
 		
-		this.lbl2 = new Label("Rolle " + Role); 
+		this.lbl2 = new Label("Rolle " + RoleOld); 
 		this.vPanelChange.add(lbl2);
 	    listBox1 = new ListBox();
 	    listBox1.addItem("Operatoer");
@@ -130,36 +134,39 @@ public class ChangeUserView extends Composite {
 	    dBoxvPanel.setSpacing(4);
 	    
 	    
-		dBoxlbl = new Label("Er du sikker paa at du vil rette en " + Role + "med foelgende information:");		
+		dBoxlbl = new Label("Er du sikker paa at du vil rette en " + RoleOld + " med foelgende information");		
 		dBoxvPanelPop1.add(dBoxlbl);
-		dBoxlbl = new Label("ID " + User_ID);		
+		dBoxlbl = new Label("ID " + User_IDOld);		
 		dBoxvPanelPop1.add(dBoxlbl);
-		dBoxlbl = new Label("Brugernavn " +User_Name);		
+		dBoxlbl = new Label("Brugernavn " +User_NameOld);		
 		dBoxvPanelPop1.add(dBoxlbl);
-		dBoxlbl = new Label("CPR " + CPR);		
+		dBoxlbl = new Label("CPR " + CPROld);		
 		dBoxvPanelPop1.add(dBoxlbl);
 		
 		dBoxhPanelPop.add(dBoxvPanelPop1);
 		
-		i = listBox1.getVisibleItemCount();
+		i = listBox1.getSelectedIndex();
 		
 		if(i == 0){
-			Role = "Operatoer";
+			RoleNew = "Operatoer";
 		}
 		else if (i == 1)
-			Role = "Vaerkfoerer";
+			RoleNew = "Vaerkfoerer";
 		else if (i == 2)
-			Role = "Farmaceut";
+			RoleNew = "Farmaceut";
 		else if (i == 3)
-			Role = "Administrator";
+			RoleNew = "Administrator";
+		User_IDNew = txt1.getText();
+		User_NameNew = txt2.getText();
+		CPRNew = txt3.getText();
 		
-		dBoxlbl = new Label("Til en " + Role + " med foelgende information");		
+		dBoxlbl = new Label("Til en " + RoleNew + " med foelgende information");		
 		dBoxvPanelPop2.add(dBoxlbl);
-		dBoxlbl = new Label("ID " + User_ID);		
+		dBoxlbl = new Label("ID " + User_IDNew);		
 		dBoxvPanelPop2.add(dBoxlbl);
-		dBoxlbl = new Label("Brugernavn " +User_Name);		
+		dBoxlbl = new Label("Brugernavn " + User_NameNew);		
 		dBoxvPanelPop2.add(dBoxlbl);
-		dBoxlbl = new Label("CPR " + CPR);		
+		dBoxlbl = new Label("CPR " + CPRNew);		
 		dBoxvPanelPop2.add(dBoxlbl);
 	    
 		dBoxhPanelPop.add(dBoxvPanelPop2);
@@ -171,10 +178,15 @@ public class ChangeUserView extends Composite {
 	        	  dBox.hide();
 	          }
 	        });
-	    Button yesButton = new Button("Opret Bruger", new ClickHandler() {
+	    Button yesButton = new Button("Ret Bruger", new ClickHandler() {
 	          public void onClick(ClickEvent event) {
 	  			dBox.hide();
 				new Popup().center();
+				User_IDOld = User_IDNew;
+				User_NameOld = User_NameNew;
+				CPROld = CPRNew;
+				RoleOld = RoleNew;
+				createSucces();
 	          }
 	        });
 		
@@ -184,6 +196,7 @@ public class ChangeUserView extends Composite {
 	    dBoxhPanel.setCellHorizontalAlignment(cancelButton, HasHorizontalAlignment.ALIGN_CENTER);
 	    dBoxvPanel.add(dBoxhPanel);
 		dBox.show();	
+		
 		txt1.setText("");
 		txt2.setText("");
 		txt3.setText("");
