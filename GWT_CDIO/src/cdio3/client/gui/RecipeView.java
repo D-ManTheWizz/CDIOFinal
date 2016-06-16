@@ -1,72 +1,91 @@
 package cdio3.client.gui;
 
+import java.util.ArrayList;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class RecipeView extends Composite {
-
+	private String Recipe_ID;
+	private String Recipe_Name;
+	
+	private HorizontalPanel hPanel_Holding_vPanel = new HorizontalPanel();
 	private VerticalPanel vPanel = new VerticalPanel();
 	private HorizontalPanel hPanel = new HorizontalPanel();
 	private HorizontalPanel hPanelChange = new HorizontalPanel();
 	private VerticalPanel vPanelChange = new VerticalPanel();
 	private VerticalPanel vPanelError = new VerticalPanel();
+	private VerticalPanel vPanelLabels = new VerticalPanel();
+	
 	private TextBox txt1;
 	private TextBox txt2;
-	private TextBox txt3;
 	private TextBox txt4;
+	private ListBox listBox;
 	private Label lbl1;
 	private Label lbl2;
-	private Label lbl3;
-	boolean CPRContainNumbers = false;
-	boolean createOperator = false;
-	private RecipeMenu recipeMenu;
-	String Recipe_ID;
-	String Recipe_Name;
-	String Raavare = "";
+	private Label lbl3 = new Label();
+	private Label lbl4 = new Label();
+	private Label lbl5 = new Label();
+
+	private ArrayList<String> raavareList = new ArrayList<String>();
 	
+	@SuppressWarnings("unused")
 	private MainView main;
-	
-	
-	public RecipeView(MainView main, RecipeMenu recipeMenu){
-		initWidget(this.vPanel);
-		this.main = main;
-		this.recipeMenu = recipeMenu;
 		
-		Label txt = new Label("Change Your Password Menu");
+	public RecipeView(MainView main){
+		initWidget(this.hPanel_Holding_vPanel);
+		this.main = main;
+		
+		this.hPanel_Holding_vPanel.add(vPanel);
+		
+		Label txt = new Label("Opret en Recept");
 		hPanel.add(txt);
 		vPanel.add(hPanel);
 		
-		this.lbl1 = new Label("Enter Recipe ID");
+		this.lbl1 = new Label("Indtast Recept ID");
 		vPanel.add(this.lbl1);	
 		this.txt1 = new TextBox();
 		vPanel.add(this.txt1);
 		
-		this.lbl1 = new Label("Enter Recipe Name");
+		this.lbl1 = new Label("Indtast Recept Navn");
 		vPanel.add(this.lbl1);	
 		this.txt2 = new TextBox();
 		vPanel.add(this.txt2);
 		
-		this.lbl1 = new Label("Enter Raavare");
+		this.lbl1 = new Label("Tilfoej Raavare");
 		vPanel.add(this.lbl1);	
-		this.txt3 = new TextBox();
-		vPanel.add(this.txt3);
-		Button addBtn = new Button("Add Raavare To Recipe");
-		addBtn.addClickHandler(new addClickHandler());
+		
+		listBox = new ListBox();
+	    listBox.addItem("Vealg en vare");
+		listBox.addItem("Vare 0");
+	    listBox.addItem("Vare 1");
+	    listBox.addItem("Vare 2");
+	    listBox.addItem("Vare 3");
+	    listBox.addItem("Vare 4");
+	    listBox.setVisibleItemCount(1);
+		vPanel.add(listBox);
+		
+		Button addBtn = new Button("Tilfoej Raavare");
+		addBtn.addClickHandler(new addRaavareClickHandler());
 		this.vPanel.add(addBtn);
 		
-		
-
-		
-		Button createBtn = new Button("Create Recipe");
+		Button createBtn = new Button("Opret Recept");
 		createBtn.addClickHandler(new okClickHandler());
 		this.vPanel.add(createBtn);
 		
+		this.vPanelError.add(lbl3);
+		this.vPanel.add(vPanelError);
+
+		this.vPanelLabels.add(lbl4);
+		this.vPanelLabels.add(lbl5);
+		this.hPanel_Holding_vPanel.add(vPanelLabels);
 	}
 
 	public void createSucces(){
@@ -78,7 +97,7 @@ public class RecipeView extends Composite {
 		this.vPanelChange.add(lbl2);
 		this.lbl2 = new Label("Recipe Name " + Recipe_Name); 
 		this.vPanelChange.add(lbl2);
-		this.lbl2 = new Label("Ingredients " + Raavare);
+		this.lbl2 = new Label("Ingredients ");
 		this.vPanelChange.add(lbl2);
 
 		Button yesBtn = new Button("Yes");
@@ -93,21 +112,33 @@ public class RecipeView extends Composite {
 		this.vPanel.add(hPanelChange);
 		
 		this.txt2.setText("");
-		this.txt3.setText("");
-		this.txt4.setText("");
-
-		
-		
+		this.txt4.setText("");		
 	}
+	
 	public void noCreateSucces(){
-		this.lbl3 = new Label("Password Change Unsuccesfull");
-		this.vPanelError.add(lbl3);
-		this.vPanel.add(vPanelError);
+		this.lbl3.setText("Recepten blev ikke oprettet");
 	}
-	private void RaavareList() {
-		lbl2.setText(Raavare);
-		this.vPanel.add(lbl1);
+	
+	private void makeRaavareList() {
+		this.lbl3.setText("");
+		this.lbl4.setText("Raavarer tilfoejet:");
+		String raavare = listBox.getSelectedValue();
+		
+		if(raavare == "Vealg en vare") {
+			this.lbl3.setText("Husk at vaelge en vare");
+		} else {
+			this.raavareList.add(raavare);
+			
+			String raavarerShown = new String("");
+			
+			for(String temp : raavareList) {
+				raavarerShown = raavarerShown + temp + ", ";
+			}
+			this.lbl5.setText(raavarerShown);
+			listBox.setItemSelected(0, true);
+		}
 	}
+	
 	
 	private class yesClickHandler implements ClickHandler{
 
@@ -132,26 +163,20 @@ public class RecipeView extends Composite {
 			Recipe_ID = txt1.getText();
 			Recipe_Name = txt2.getText();
 			
-			if(Recipe_ID.isEmpty()==false && Recipe_Name.isEmpty()==false && Raavare.isEmpty()==false){
+			if(Recipe_ID.isEmpty()==false && Recipe_Name.isEmpty()==false){
 				createSucces();	
 				//passwordMenu.openPopout();
 			}
 			else
-			noCreateSucces();
-			
-			
-		}
-		
+			noCreateSucces();			
+		}	
 	}
-	private class addClickHandler implements ClickHandler{
+	
+	private class addRaavareClickHandler implements ClickHandler{
 
 		@Override
 		public void onClick(ClickEvent event) {
-			Raavare = Raavare + txt3.getText() + " ";
-			txt3.setText("");
-			RaavareList();
-		}
-
-		
+			makeRaavareList();
+		}		
 	}
 }

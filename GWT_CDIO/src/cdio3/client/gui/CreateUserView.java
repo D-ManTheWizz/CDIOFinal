@@ -32,57 +32,55 @@ public class CreateUserView extends Composite{
 	//private popUp popup;
 	boolean CPRContainNumbers = false;
 	boolean createOperator = false;
+	@SuppressWarnings("unused")
 	private CreateUser createUser;
 	String User_ID;
 	String UserName;
 	String CPR;
 	String Role;
+	
 	public CreateUserView() {
 		initWidget(vPanel);
-	this.createUser = createUser;
-
-	vPanel.add(hPanel);
-	this.lbl1 = new Label("Indtast Brugerens ID");
-	vPanelCMenu.add(this.lbl1);	
-	this.txt1 = new TextBox();
-	vPanelCMenu.add(this.txt1);
 	
-	this.lbl2 = new Label("Indtast Brugerens Navn");
-	vPanelCMenu.add(this.lbl2);	
-	this.txt2 = new TextBox();
-	vPanelCMenu.add(this.txt2);
+		vPanel.add(hPanel);
+		this.lbl1 = new Label("Indtast Brugerens ID");
+		vPanelCMenu.add(this.lbl1);	
+		this.txt1 = new TextBox();
+		vPanelCMenu.add(this.txt1);
+		
+		this.lbl2 = new Label("Indtast Brugerens Navn");
+		vPanelCMenu.add(this.lbl2);	
+		this.txt2 = new TextBox();
+		vPanelCMenu.add(this.txt2);
+		
+		this.lbl3 = new Label("Indtast Brugerens CPR-nummer");
+		vPanelCMenu.add(this.lbl3);	
+		this.txt3 = new TextBox();
+		vPanelCMenu.add(this.txt3);
+		
+		this.lbl4 = new Label("Vaelg Burgerens Rolle");
+		vPanelCMenu.add(this.lbl4);	
+		
+	    listBox1 = new ListBox();
+	    listBox1.addItem("Operatoer");
+	    listBox1.addItem("Vaerkfoerer");
+	    listBox1.addItem("Farmaceut");
+	    listBox1.addItem("Administrator");
+	    listBox1.setVisibleItemCount(1);
+		vPanelCMenu.add(listBox1);
+		
+		Button okBtn = new Button("Opret");
+		okBtn.addClickHandler(new okClickHandler());
+		this.hPanel.add(okBtn);
+		
+		Button cancelBtn = new Button("Annuller");
+		cancelBtn.addClickHandler(new cancelClickHandler());
+		this.hPanel.add(cancelBtn);
+		
+		this.vPanelCMenu.add(hPanel);
+		this.vPanel.add(vPanelCMenu);
+	}
 	
-	this.lbl3 = new Label("Indtast Brugerens CPR-nummer");
-	vPanelCMenu.add(this.lbl3);	
-	this.txt3 = new TextBox();
-	vPanelCMenu.add(this.txt3);
-	
-	this.lbl4 = new Label("Vaelg Burgerens Rolle");
-	vPanelCMenu.add(this.lbl4);	
-	
-    listBox1 = new ListBox();
-    listBox1.addItem("Operatoer");
-    listBox1.addItem("Vaerkfoerer");
-    listBox1.addItem("Farmaceut");
-    listBox1.addItem("Administrator");
-    listBox1.setVisibleItemCount(1);
-	vPanelCMenu.add(listBox1);
-	
-	
-	
-	Button okBtn = new Button("Opret");
-	okBtn.addClickHandler(new okClickHandler());
-	this.hPanel.add(okBtn);
-	
-	Button cancelBtn = new Button("Annuller");
-	cancelBtn.addClickHandler(new cancelClickHandler());
-	this.hPanel.add(cancelBtn);
-	
-	this.vPanelCMenu.add(hPanel);
-	this.vPanel.add(vPanelCMenu);
-}
-	
-
 	public void noCreateSucces(){
 		this.vPanelError.clear();
 		this.lbl3 = new Label("Der skete en fejl. Udfyld alle vaerdierne og proev igen");
@@ -110,8 +108,7 @@ public class CreateUserView extends Composite{
 			Role = "Farmaceut";
 		else if (i == 3)
 			Role = "Administrator";
-	    
-	    
+	     
 		dBoxlbl = new Label("Er du sikker paa at du vil oprette en " + Role + " med foelgende information:");		
 		dBoxvPanel.add(dBoxlbl);
 		dBoxlbl = new Label("ID " + User_ID);		
@@ -126,6 +123,7 @@ public class CreateUserView extends Composite{
 	        	  dBox.hide();
 	          }
 	        });
+	    
 	    Button yesButton = new Button("Opret Bruger", new ClickHandler() {
 	          public void onClick(ClickEvent event) {
 	  			dBox.hide();
@@ -173,8 +171,8 @@ public class CreateUserView extends Composite{
 			else
 			noCreateSucces();
 		}
-
 	}
+	
 	public class cancelClickHandler implements ClickHandler {
 
 		@Override
@@ -183,8 +181,5 @@ public class CreateUserView extends Composite{
 			txt2.setText("");
 			txt3.setText("");
 		}
-
 	}
-
-
 }
