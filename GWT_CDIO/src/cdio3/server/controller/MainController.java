@@ -203,22 +203,12 @@ public class MainController {
 		}
 	}
 	
-	public OperatoerDTO createOperator(int id, String firstName, String lastName, String cpr, int stilling) /*throws DALException*/ {
+	public boolean createOperator(OperatoerDTO newOprDTO) throws DALException {
 		if(testing) {
-			
+			return true;
 		} else {
-			
+			return true;
 		}
-		// make oprName from the first and last name
-		String oprName = firstName + " " + lastName;
-		// make 4 char initials, from the first two char in first name and last name
-		String ini = firstName.substring(0, 2) + lastName.substring(0, 2);
-		
-		String password = new LogicController().generatePassword();
-		
-		OperatoerDTO oprDTO = new OperatoerDTO(id, oprName, ini, cpr, password, stilling);
-//		oprDAO.createOperatoer(oprDTO);
-		return oprDTO;
 	}
 	
 	public OperatoerDTO getOperator(int oprID) throws DALException {

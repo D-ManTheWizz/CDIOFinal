@@ -2,6 +2,7 @@
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import cdio3.client.events.CreateOperatorEvent;
 import cdio3.client.events.DataEvent;
 import cdio3.client.events.LoginEvent;
 import cdio3.client.events.UpdatePasswordEvent;
@@ -13,16 +14,6 @@ import cdio3.shared.OperatoerDTO;
 public class OperatorServiceImpl extends RemoteServiceServlet implements OperatorService {
 	private static final long serialVersionUID = 1L;
 	MainController main = new MainController();
-	
-//	@Override
-//	public OperatorDTO login(int id, String pass) {
-//		return main.login(id, pass);
-//	}
-	
-//	@Override
-//	public boolean changePassword(int oprID, String oldPass, String newPass) throws DALException {
-//		return main.changePassword(oprID, oldPass, newPass);
-//	}
 	
 //	@Override
 //	public List getRaavareBatchList() {
@@ -79,10 +70,12 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 //		return main.createRecept(receptId, receptNavn, kompList);
 //	}
 	
-//	@Override
-//	public OperatoerDTO createOperator(int id, String firstName, String lastName, String cpr, int stilling) {
-//		return main.createOperator(id, firstName, lastName, cpr, stilling);
-//	}
+	@Override
+	public DataEvent createOperator(OperatoerDTO newOprDTO) throws DALException {
+		CreateOperatorEvent createOprEvent = new CreateOperatorEvent();
+		createOprEvent.setAnswer(main.createOperator(newOprDTO));
+		return createOprEvent;
+	}
 	
 //	@Override
 //	public OperatoerDTO getOperator(int oprID) {

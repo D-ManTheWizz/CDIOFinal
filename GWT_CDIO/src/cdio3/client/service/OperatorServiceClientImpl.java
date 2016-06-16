@@ -29,6 +29,11 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 		this.service.login(id, pass, new DefaultCallback());
 	}
 	
+	@Override
+	public void createOperator(OperatoerDTO newOprDTO) {
+		this.service.createOperator(newOprDTO, new DefaultCallback()); 		
+	}
+	
 //	@Override
 //	public void createOperator(int oprId, String firstName, String lastName, String CPR, int stilling) {
 //		this.service.createOperator(oprId, firstName, lastName, CPR, stilling, new DefaultCallback());

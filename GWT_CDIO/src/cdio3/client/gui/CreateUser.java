@@ -4,16 +4,15 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class CreateUser extends Composite{
-
 	private VerticalPanel vPanel = new VerticalPanel();
-	private VerticalPanel contentPanel;
-	public CreateUser(){
+	
+	private MainView main;
+
+	public CreateUser(MainView main){
 		initWidget(vPanel);
+		this.main = main;
 		
-		CreateUserView createUserView = new CreateUserView();
+		CreateUserView createUserView = new CreateUserView(this.main);
 		this.vPanel.add(createUserView);
-		
-		this.contentPanel = new VerticalPanel();
-		this.vPanel.add(contentPanel);
 	}
 }

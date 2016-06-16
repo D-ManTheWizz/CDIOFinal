@@ -13,34 +13,41 @@ import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import cdio3.shared.OperatoerDTO;
+
 public class CreateUserView extends Composite{
 	private VerticalPanel vPanel = new VerticalPanel();
 	private HorizontalPanel hPanel = new HorizontalPanel();
 	private VerticalPanel vPanelCMenu = new VerticalPanel();
 	private VerticalPanel vPanelError = new VerticalPanel();
 	private DialogBox dBox;
-	private int i;
 	private ListBox listBox1;
 	private TextBox txt1;
 	private TextBox txt2;
 	private TextBox txt3;
+	private TextBox txt5;
 	private Label lbl1;
 	private Label lbl2;
 	private Label lbl3;
 	private Label lbl4;
+	private Label lbl5;
 	private Label dBoxlbl;
-	//private popUp popup;
+	
+	private int User_ID;
+	private String UserFirstName;
+	private String UserSurName;
+	private String CPR;
+	private String Role;
+	private int selected;
+	
 	boolean CPRContainNumbers = false;
 	boolean createOperator = false;
-	@SuppressWarnings("unused")
-	private CreateUser createUser;
-	String User_ID;
-	String UserName;
-	String CPR;
-	String Role;
 	
-	public CreateUserView() {
+	private MainView main;
+	
+	public CreateUserView(MainView main) {
 		initWidget(vPanel);
+		this.main = main;
 	
 		vPanel.add(hPanel);
 		this.lbl1 = new Label("Indtast Brugerens ID");
@@ -48,10 +55,15 @@ public class CreateUserView extends Composite{
 		this.txt1 = new TextBox();
 		vPanelCMenu.add(this.txt1);
 		
-		this.lbl2 = new Label("Indtast Brugerens Navn");
+		this.lbl2 = new Label("Indtast Brugerens Fornavn");
 		vPanelCMenu.add(this.lbl2);	
 		this.txt2 = new TextBox();
 		vPanelCMenu.add(this.txt2);
+		
+		this.lbl5 = new Label("Indtast Brugerens Efternavn");
+		vPanelCMenu.add(this.lbl5);	
+		this.txt5 = new TextBox();
+		vPanelCMenu.add(this.txt5);
 		
 		this.lbl3 = new Label("Indtast Brugerens CPR-nummer");
 		vPanelCMenu.add(this.lbl3);	
@@ -88,7 +100,7 @@ public class CreateUserView extends Composite{
 		this.vPanel.add(vPanelError);
 	}
 	
-	private void popUp() {
+	private void popUpConfirmAndCreate() {
 	    dBox = new DialogBox();
 		VerticalPanel dBoxvPanel = new VerticalPanel();
 		HorizontalPanel dBoxhPanel = new HorizontalPanel();
@@ -99,21 +111,21 @@ public class CreateUserView extends Composite{
 	    
 	    dBoxvPanel.setSpacing(4);
 	    
-		if(i == 0){
+		if(selected == 0){
 			Role = "Operatoer";
 		}
-		else if (i == 1)
+		else if (selected == 1)
 			Role = "Vaerkfoerer";
-		else if (i == 2)
+		else if (selected == 2)
 			Role = "Farmaceut";
-		else if (i == 3)
+		else if (selected == 3)
 			Role = "Administrator";
 	     
 		dBoxlbl = new Label("Er du sikker paa at du vil oprette en " + Role + " med foelgende information:");		
 		dBoxvPanel.add(dBoxlbl);
 		dBoxlbl = new Label("ID " + User_ID);		
 		dBoxvPanel.add(dBoxlbl);
-		dBoxlbl = new Label("Brugernavn " + UserName);		
+		dBoxlbl = new Label("Brugernavn " + UserFirstName + " " + UserSurName);		
 		dBoxvPanel.add(dBoxlbl);
 		dBoxlbl = new Label("CPR " + CPR);		
 		dBoxvPanel.add(dBoxlbl);
@@ -126,8 +138,7 @@ public class CreateUserView extends Composite{
 	    
 	    Button yesButton = new Button("Opret Bruger", new ClickHandler() {
 	          public void onClick(ClickEvent event) {
-	  			dBox.hide();
-				new Popup().center();
+	        	createUser();
 	          }
 	        });
 		
@@ -137,14 +148,19 @@ public class CreateUserView extends Composite{
 	    dBoxhPanel.setCellHorizontalAlignment(cancelButton, HasHorizontalAlignment.ALIGN_CENTER);
 	    dBoxvPanel.add(dBoxhPanel);
 		dBox.show();	
-		txt1.setText("");
-		txt2.setText("");
-		txt3.setText("");
+		clearText();
 	}
 	
-	private class Popup extends PopupPanel{
+	private void createUser() {
+		dBox.hide();
+		OperatoerDTO newOprDTO = new OperatoerDTO(User_ID, UserFirstName, UserSurName, CPR, null, selected);
+			
+		main.createOperator(this, newOprDTO);
+	}
+	
+	private class popUpUserCreated extends PopupPanel{
 		VerticalPanel vPanelCon = new VerticalPanel();
-		public Popup(){
+		public popUpUserCreated(){
 			super(true);
 			lbl2 = new Label("Brugeren er oprettet");
 			this.vPanelCon.add(lbl2);
@@ -156,17 +172,32 @@ public class CreateUserView extends Composite{
 		}
 	}
 	
+	private void clearText() {
+		txt1.setText("");
+		txt2.setText("");
+		txt3.setText("");
+		txt5.setText("");
+	}
+	
+	public void createUserReturn(boolean answer) {
+		// Handle the answer here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		new popUpUserCreated().center();
+	}
+	
+	
 	public class okClickHandler implements ClickHandler {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			User_ID = txt1.getText();
-			UserName = txt2.getText();
+			User_ID = Integer.parseInt(txt1.getText());
+			UserFirstName = txt2.getText();
+			UserSurName = txt5.getText();
 			CPR = txt3.getText();
-			i = listBox1.getSelectedIndex();
+			selected = listBox1.getSelectedIndex();
 			
-			if(User_ID.isEmpty()==false && UserName.isEmpty()==false && CPR.isEmpty()==false){
-				popUp();
+			if(!txt1.getText().isEmpty() || !txt2.getText().isEmpty() || !txt5.getText().isEmpty() || !txt3.getText().isEmpty()){
+				clearText();
+				popUpConfirmAndCreate();
 			}
 			else
 			noCreateSucces();
@@ -177,9 +208,7 @@ public class CreateUserView extends Composite{
 
 		@Override
 		public void onClick(ClickEvent event) {
-			txt1.setText("");
-			txt2.setText("");
-			txt3.setText("");
+			clearText();
 		}
 	}
 }

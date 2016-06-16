@@ -5,28 +5,20 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
-
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class AdmView extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();
 	private HorizontalPanel hPanel = new HorizontalPanel();
-	private Label lbl1;
 	boolean CPRContainNumbers = false;
 	boolean createOperator = false;
+
 	private AdmMenu admMenu;
-	String firstName;
-	String lastName;
-	String CPR;
-	
+
 	public AdmView(AdmMenu admMenu){
 		initWidget(this.vPanel);
 		this.admMenu = admMenu;
 		
-//		lbl1.setText("VF Menu");
-//		this.vPanel.add(lbl1);
 		Button createBtn = new Button("Opret Bruger");
 		createBtn.addClickHandler(new createClickHandler());
 		hPanel.add(createBtn);
@@ -44,11 +36,7 @@ public class AdmView extends Composite {
 		this.hPanel.add(showBtn);
 		
 		this.vPanel.add(hPanel);
-//		this.vPanelCMenu.add(hPanel);
-//		this.vPanel.add(vPanelCMenu);
 	}
-	
-
 			
 			
 	private class createClickHandler implements ClickHandler{
@@ -72,17 +60,14 @@ public class AdmView extends Composite {
 		@Override
 		public void onClick(ClickEvent event) {
 			admMenu.openDeleteMenu();
-
 		}
-
 	}
+	
 	public class showClickHandler implements ClickHandler {
 
 		@Override
 		public void onClick(ClickEvent event) {
 			admMenu.openShowMenu();
-
 		}
-
 	}
 }

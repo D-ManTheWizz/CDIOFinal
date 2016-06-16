@@ -23,15 +23,13 @@ public class MainView extends Composite {
 	
 	private OperatoerDTO operatingOperator;
 	
+	private OperatorServiceClientImpl serviceClientImpl;
+	private AdmMenu admMenu;
 	private MenuView menu;
 	private LoginView loginView;
 	private FarmaMenu farmaMenu;
-//	private VfMenu vfMenu;
+	private CreateUserView createUserView;
 	private OpView opView;
-	
-	// Old
-	private OperatorServiceClientImpl serviceClientImpl;
-	private AdmMenu admMenu;
 	
 	public MainView(OperatorServiceClientImpl serviceImpl){
 		initWidget(this.layoutPanel_1);
@@ -58,10 +56,12 @@ public class MainView extends Composite {
 			confirmLogin(((LoginEvent) event).getOprDTO());
 		} else if(event instanceof UpdatePasswordEvent) {
 			updatePasswordReturn(((UpdatePasswordEvent) event).getOprDTO());
+		} else if(event instanceof CreateOperatorEvent) {
+			createOperatorReturn(((CreateOperatorEvent) event).getAnswer());
 		}
 	}
 	
-	public void setClearance(OperatoerDTO oprDTO) {
+	private void setClearance(OperatoerDTO oprDTO) {
 		if(oprDTO.getStilling() == 666666) {
 			loginView.passwordNotValidated();
 		} else {
@@ -109,7 +109,7 @@ public class MainView extends Composite {
 		this.serviceClientImpl.login(id, pass);
 	}
 	
-	public void confirmLogin(OperatoerDTO oprDTO) {
+	private void confirmLogin(OperatoerDTO oprDTO) {
 		setClearance(oprDTO);
 	}
 	
@@ -118,10 +118,18 @@ public class MainView extends Composite {
 		this.serviceClientImpl.updatePassword(this.operatingOperator);
 	}
 	
-	public void updatePasswordReturn(OperatoerDTO oprDTO) {
+	private void updatePasswordReturn(OperatoerDTO oprDTO) {
 		this.opView.updatePasswordReturn(oprDTO);		
 	}
 	
+	public void createOperator(CreateUserView createUserView, OperatoerDTO newOprDTO) {
+		this.createUserView = createUserView;
+		this.serviceClientImpl.createOperator(newOprDTO);
+	}
+	
+	private void createOperatorReturn(boolean answer) {
+		this.createUserView.createUserReturn(answer);
+	}
 	// Old methods
 //	public void createOperator(int oprId, String firstName, String lastName, String CPR, int stilling, CreateView createView) {
 //		this.createView = createView;
