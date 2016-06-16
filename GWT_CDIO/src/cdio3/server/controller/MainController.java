@@ -44,14 +44,16 @@ public class MainController {
 			if(pass.equals(oprDTO.getPassword())) {
 				return oprDTO;
 			} else {
-				return null;
+				oprDTO = new OperatoerDTO(666666, null, null, null, null, 666666);
+				return oprDTO;
 			}
 		} else {
 			OperatoerDTO oprDTO = new OperatoerDTO(oprDAO.getOperatoer(id));
 			if(pass.equals(oprDTO.getPassword())) {
 				return oprDTO;
 			} else {
-				return null;
+				oprDTO = new OperatoerDTO(666666, null, null, null, null, 666666);
+				return oprDTO;
 			}
 		}
 	}

@@ -5,7 +5,6 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import cdio3.client.events.DataEvent;
 import cdio3.client.events.LoginEvent;
 import cdio3.client.events.UpdatePasswordEvent;
-import cdio3.client.gui.LoginView;
 import cdio3.client.service.OperatorService;
 import cdio3.server.controller.MainController;
 import cdio3.shared.DALException;
@@ -115,6 +114,7 @@ public class OperatorServiceImpl extends RemoteServiceServlet implements Operato
 		OperatoerDTO oprDTO_Back = new OperatoerDTO(main.updatePassword(oprDTO));
 		UpdatePasswordEvent updatePasswordEvent = new UpdatePasswordEvent();
 		updatePasswordEvent.setOprDTO(oprDTO_Back);
+		
 		return updatePasswordEvent;
 	}
 

@@ -5,7 +5,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 import cdio3.client.events.DataEvent;
-import cdio3.client.gui.LoginView;
 import cdio3.client.gui.MainView;
 import cdio3.shared.OperatoerDTO;
 
@@ -54,7 +53,7 @@ public class OperatorServiceClientImpl implements OperatorServiceClientInt{
 
 		@Override
 		public void onFailure(Throwable caught) {
-			System.out.println("Der skete en fejl...");
+			main.layoutLabel_1.setText("Der skete en fejl, kontakt systemadministratoren for yderligere info.");
 		}
 
 		@Override

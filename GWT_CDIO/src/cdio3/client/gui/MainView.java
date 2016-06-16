@@ -13,7 +13,7 @@ import cdio3.shared.OperatoerDTO;
 
 public class MainView extends Composite {
 	private VerticalPanel layoutPanel_1 = new VerticalPanel();
-	private Label layoutLabel_1 = new Label();
+	public Label layoutLabel_1 = new Label();
 	private HorizontalPanel layoutPanel_2 = new HorizontalPanel();
 	private Label layoutLabel_2 = new Label();
 	
@@ -24,6 +24,7 @@ public class MainView extends Composite {
 	private OperatoerDTO operatingOperator;
 	
 	private MenuView menu;
+	private LoginView loginView;
 	private FarmaMenu farmaMenu;
 //	private VfMenu vfMenu;
 	private OpView opView;
@@ -61,13 +62,18 @@ public class MainView extends Composite {
 	}
 	
 	public void setClearance(OperatoerDTO oprDTO) {
-		this.operatingOperator = oprDTO;
-		
-		this.v1_Panel.clear();
-
-		menu = new MenuView(this, oprDTO);
-		this.h1_in_v1_Panel.add(menu);
-		this.v1_Panel.add(h1_in_v1_Panel);
+		if(oprDTO.getStilling() == 666666) {
+			loginView.passwordNotValidated();
+		} else {
+			this.operatingOperator = oprDTO;
+			
+			this.layoutLabel_1.setText("");
+			this.v1_Panel.clear();
+	
+			menu = new MenuView(this, oprDTO);
+			this.h1_in_v1_Panel.add(menu);
+			this.v1_Panel.add(h1_in_v1_Panel);
+		}
 	}
 	
 	public void openAdminMenu(){
@@ -98,7 +104,8 @@ public class MainView extends Composite {
 		this.v1_Panel.add(h2_in_v1_Panel);
 	}
 	
-	public void login(int id, String pass) {
+	public void login(int id, String pass, LoginView loginView) {
+		this.loginView = loginView;
 		this.serviceClientImpl.login(id, pass);
 	}
 	

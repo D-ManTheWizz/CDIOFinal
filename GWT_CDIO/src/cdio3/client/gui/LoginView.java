@@ -4,6 +4,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -15,6 +17,8 @@ public class LoginView extends Composite{
 	public PasswordTextBox txt2;
 	private Label lbl1;
 	boolean login = false;
+	
+	private DialogBox notValidatedBox;
 	
 	private MainView main;
 	
@@ -53,6 +57,34 @@ public class LoginView extends Composite{
 	}
 
 	private void login(int id, String password) {
-		this.main.login(id, password);
+		this.main.login(id, password, this);
+	}
+
+	public void passwordNotValidated() {
+
+		notValidatedBox = new DialogBox();
+		VerticalPanel dBoxPanel = new VerticalPanel();
+		notValidatedBox.setWidget(dBoxPanel);
+		notValidatedBox.setGlassEnabled(true);
+		notValidatedBox.setAnimationEnabled(true);
+		notValidatedBox.center();
+	    
+	    dBoxPanel.setSpacing(4);
+	    
+		Label dBoxlbl = new Label("Det indtastede Id eller password er ikke korrekt.");		
+	    dBoxPanel.add(dBoxlbl);
+	    
+	    Button closeButton = new Button("Luk", new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+	            closePopUp();
+	          }
+	        });
+	    dBoxPanel.add(closeButton);
+	    dBoxPanel.setCellHorizontalAlignment(closeButton, HasHorizontalAlignment.ALIGN_CENTER);
+	    notValidatedBox.show();
+	}
+	
+	private void closePopUp() {
+		notValidatedBox.hide();
 	}
 }

@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 
 
-public class ShowUsersView extends Composite{
+public class ShowUserView extends Composite{
 	private VerticalPanel vPanel = new VerticalPanel();
 	private VerticalPanel vPanelCMenu = new VerticalPanel();
 	private HorizontalPanel hPanel = new HorizontalPanel();
@@ -25,13 +25,13 @@ public class ShowUsersView extends Composite{
 	private Label dBoxlbl;
 	boolean CPRContainNumbers = false;
 	boolean createOperator = false;
-	private ShowUsers showUser;
+	private ShowUser showUser;
 	private String Role;
 	private String User_ID;
 	private String UserName;
 	private String CPR;
 	
-	public ShowUsersView() {
+	public ShowUserView() {
 		initWidget(vPanel);
 	this.showUser = showUser;
 //	Label txt = new Label("Create New Operator Menu");

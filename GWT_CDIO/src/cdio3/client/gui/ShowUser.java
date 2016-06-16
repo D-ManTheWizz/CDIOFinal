@@ -3,14 +3,14 @@ package cdio3.client.gui;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class ShowUsers extends Composite{
+public class ShowUser extends Composite{
 
 	private VerticalPanel vPanel = new VerticalPanel();
 	private VerticalPanel contentPanel;
-	public ShowUsers(){
+	public ShowUser(){
 		initWidget(vPanel);
 		
-		ShowUsersView showUsersView = new ShowUsersView();
+		ShowUserView showUsersView = new ShowUserView();
 		this.vPanel.add(showUsersView);
 		
 		this.contentPanel = new VerticalPanel();
