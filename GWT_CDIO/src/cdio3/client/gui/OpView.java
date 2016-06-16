@@ -23,7 +23,6 @@ public class OpView extends Composite {
 	private HorizontalPanel h2Panel = new HorizontalPanel();
 	private HorizontalPanel hPanelChange = new HorizontalPanel();
 	private VerticalPanel vPanelChange = new VerticalPanel();
-	private Label dBoxlbl;
 	
 	private PasswordTextBox txt2;
 	private PasswordTextBox txt3;
@@ -167,7 +166,7 @@ public class OpView extends Composite {
 	    
 	    dBoxPanel.setSpacing(4);
 	    
-		Label dBoxlbl = new Label("Dit Password blev IKKE aendret");		
+		Label dBoxlbl = new Label("Dit Password blev IKKE aendret.");		
 	    dBoxPanel.add(dBoxlbl);
 	    
 	    Button closeButton = new Button("Luk", new ClickHandler() {
@@ -180,7 +179,7 @@ public class OpView extends Composite {
 	    dNoBox.show();
 	}
 	
-	private void yesPopUp(OperatoerDTO oprDTO) {
+	private void yesPopUp() {
 		dYesBox = new DialogBox();
 		VerticalPanel dBoxPanel = new VerticalPanel();
 		dYesBox.setWidget(dBoxPanel);
@@ -190,7 +189,7 @@ public class OpView extends Composite {
 	    
 	    dBoxPanel.setSpacing(4);
 	    
-		Label dBoxlbl = new Label("Dit Password blev aendret: " + oprDTO.getPassword());		
+		Label dBoxlbl = new Label("Dit Password blev aendret.");		
 	    dBoxPanel.add(dBoxlbl);
 	    
 	    Button closeButton = new Button("Luk", new ClickHandler() {
@@ -227,20 +226,18 @@ public class OpView extends Composite {
 	
 	private void updatePassword() {
 		this.operatingOperator.setPassword(this.PasswordNew1);
-		this.main.updatePassword(this.operatingOperator);
+		this.main.updatePassword(this, this.operatingOperator);
 	} 
 	
 	public void updatePasswordReturn(OperatoerDTO oprDTO) {
-		noPopUp();
-//		yesPopUp(oprDTO);
-//		if(oprDTO.getPassword() == this.PasswordNew1) {
-//			this.operatingOperator = oprDTO;
-//			yesPopUp();
-//		} else if(oprDTO.getPassword() == this.PasswordOld) {
-//			noPopUp();
-//		} else {
-//			errorPopUp();
-//		}
+		if(oprDTO.getPassword() == this.PasswordNew1) {
+			this.operatingOperator = oprDTO;
+			yesPopUp();
+		} else if(oprDTO.getPassword() == this.PasswordOld) {
+			noPopUp();
+		} else {
+			errorPopUp();
+		}
 	}
 	
 	
@@ -248,8 +245,8 @@ public class OpView extends Composite {
 
 		@Override
 		public void onClick(ClickEvent event) {
-//			yesPopUp();
-//			updatePassword();
+			clearChangePanels();
+			updatePassword();
 		}		
 	}
 	

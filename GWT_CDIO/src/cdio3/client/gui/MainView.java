@@ -109,7 +109,8 @@ public class MainView extends Composite {
 		setClearance(oprDTO);
 	}
 	
-	public void updatePassword(OperatoerDTO operatingOperator) {
+	public void updatePassword(OpView opView, OperatoerDTO operatingOperator) {
+		this.opView = opView;
 		this.serviceClientImpl.updatePassword(this.operatingOperator);
 	}
 	
