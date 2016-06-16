@@ -30,9 +30,12 @@ public class RecipeView extends Composite {
 	String Recipe_Name;
 	String Raavare = "";
 	
+	private MainView main;
 	
-	public RecipeView(RecipeMenu recipeMenu){
+	
+	public RecipeView(MainView main, RecipeMenu recipeMenu){
 		initWidget(this.vPanel);
+		this.main = main;
 		this.recipeMenu = recipeMenu;
 		
 		Label txt = new Label("Change Your Password Menu");
