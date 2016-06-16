@@ -17,13 +17,16 @@ public class VfView extends Composite {
 	private Label lbl1;
 	boolean CPRContainNumbers = false;
 	boolean createOperator = false;
+	
+	private MainView main;
 	private VfMenu vfMenu;
 	String firstName;
 	String lastName;
 	String CPR;
 	
-	public VfView(VfMenu vfMenu){
+	public VfView(MainView main, VfMenu vfMenu){
 		initWidget(this.vPanel);
+		this.main = main;
 		this.vfMenu = vfMenu;
 		
 //		lbl1.setText("VF Menu");
@@ -44,7 +47,6 @@ public class VfView extends Composite {
 //		this.vPanelCMenu.add(hPanel);
 //		this.vPanel.add(vPanelCMenu);
 	}
-	
 			
 			
 	private class productClickHandler implements ClickHandler{
@@ -68,8 +70,6 @@ public class VfView extends Composite {
 		@Override
 		public void onClick(ClickEvent event) {
 			vfMenu.openShowRMenu();
-
 		}
-
 	}
 }

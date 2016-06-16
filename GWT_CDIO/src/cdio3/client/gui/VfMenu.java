@@ -14,7 +14,7 @@ public class VfMenu extends Composite {
 		initWidget(vPanel);
 		this.main = main;
 		
-		VfView vfView = new VfView(this);
+		VfView vfView = new VfView(this.main, this);
 		this.vPanel.add(vfView);
 		
 		this.contentPanel = new VerticalPanel();
