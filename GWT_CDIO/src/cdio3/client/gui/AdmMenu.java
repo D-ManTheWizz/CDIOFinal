@@ -50,7 +50,7 @@ public class AdmMenu extends Composite {
 	
 	public void openShowMenu(){
 		this.contentPanel.clear();
-		ShowUsers show = new ShowUsers();
+		ShowUser show = new ShowUser();
 		this.contentPanel.add(show);
 		
 	}

@@ -39,7 +39,7 @@ public class AdmView extends Composite {
 		deleteBtn.addClickHandler(new deleteClickHandler());
 		this.hPanel.add(deleteBtn);
 		
-		Button showBtn = new Button("Vis Brugere");
+		Button showBtn = new Button("Vis Bruger");
 		showBtn.addClickHandler(new showClickHandler());
 		this.hPanel.add(showBtn);
 		

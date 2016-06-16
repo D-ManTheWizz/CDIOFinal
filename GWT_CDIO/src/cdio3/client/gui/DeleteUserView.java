@@ -9,12 +9,11 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class ChangeUserView extends Composite {
+public class DeleteUserView extends Composite {
 
 	private VerticalPanel vPanel = new VerticalPanel();
 	private HorizontalPanel hPanel = new HorizontalPanel();
@@ -26,24 +25,18 @@ public class ChangeUserView extends Composite {
 	private TextBox txt3;
 	private Label dBoxlbl;
 	private DialogBox dBox;
-	private int i;
 	private Label lbl1;
 	private Label lbl2;
-	private ListBox listBox1;
-	private ChangeUser changeUser;
-	String User_IDOld = "10";
-	String User_IDNew;
-	String User_NameOld = "Ole";
-	String User_NameNew;
-	String CPROld = "100194-1111";
-	String CPRNew;
-	String RoleOld = "Operatør";
-	String RoleNew;
+	private DeleteUser deleteUser;
+	String User_ID = "10";
+	String User_Name = "Ole";
+	String CPR = "100194-1111";
+	String Role = "Operatoer";
 	
 	
-	public ChangeUserView(ChangeUser changeUser){
+	public DeleteUserView(DeleteUser changeUser){
 		initWidget(this.vPanel);
-		this.changeUser = changeUser;
+		this.deleteUser = deleteUser;
 		
 		Label lbl1 = new Label("Indtast Bruger ID eller Bruger Navn");
 		vPanel.add(lbl1);
@@ -63,43 +56,20 @@ public class ChangeUserView extends Composite {
 		this.hPanelChange.clear();
 		this.vPanelError.clear();
 		
-		//Hardcoded start values
-//		User_IDOld = "10";
-//		User_NameOld = "Ole";
-//		CPROld = "100194-1111";
-//		RoleOld = "Operatoer";
-		
-		this.lbl1 = new Label("Bruger ID " + User_IDOld);
+		this.lbl1 = new Label("Bruger ID " + User_ID);
 		this.vPanelChange.add(lbl1);
-		this.txt1 = new TextBox();
-		txt1.setText(User_IDOld);
-		vPanelChange.add(this.txt1);
 		
-		this.lbl1 = new Label("Bruger Navn " + User_NameOld); 
+		this.lbl1 = new Label("Bruger Navn " + User_Name); 
 		this.vPanelChange.add(lbl1);
-		this.txt2 = new TextBox();
-		txt2.setText(User_NameOld);
-		vPanelChange.add(this.txt2);
 		
-		this.lbl1 = new Label("CPR " + CPROld);
+		this.lbl1 = new Label("CPR " + CPR);
 		this.vPanelChange.add(lbl1);
-		this.txt3 = new TextBox();
-		txt3.setText(CPROld);
-		vPanelChange.add(this.txt3);
 		
-		this.lbl1 = new Label("Rolle " + RoleOld); 
+		this.lbl1 = new Label("Rolle " + Role); 
 		this.vPanelChange.add(lbl1);
-	    listBox1 = new ListBox();
-	    listBox1.addItem("Operatoer");
-	    listBox1.addItem("Vaerkfoerer");
-	    listBox1.addItem("Farmaceut");
-	    listBox1.addItem("Administrator");
-	    listBox1.setVisibleItemCount(1);
-		vPanelChange.add(listBox1);
 
-
-		Button yesBtn = new Button("Ret Bruger");
-		yesBtn.addClickHandler(new changeClickHandler());
+		Button yesBtn = new Button("Slet Bruger");
+		yesBtn.addClickHandler(new deleteClickHandler());
 		this.hPanelChange.add(yesBtn);
 		
 		Button noBtn = new Button("Annuller");
@@ -119,10 +89,7 @@ public class ChangeUserView extends Composite {
 	private void popUp() {
 	    dBox = new DialogBox();
 		VerticalPanel dBoxvPanel = new VerticalPanel();
-		VerticalPanel dBoxvPanelPop1 = new VerticalPanel();
-		VerticalPanel dBoxvPanelPop2 = new VerticalPanel();
 		HorizontalPanel dBoxhPanel = new HorizontalPanel();
-		HorizontalPanel dBoxhPanelPop = new HorizontalPanel();
 		dBox.setWidget(dBoxvPanel);
 		dBox.setGlassEnabled(true);
 	    dBox.setAnimationEnabled(true);
@@ -131,58 +98,28 @@ public class ChangeUserView extends Composite {
 	    dBoxvPanel.setSpacing(4);
 	    
 	    
-		dBoxlbl = new Label("Er du sikker paa at du vil rette en " + RoleOld + " med foelgende information");		
-		dBoxvPanelPop1.add(dBoxlbl);
-		dBoxlbl = new Label("ID " + User_IDOld);		
-		dBoxvPanelPop1.add(dBoxlbl);
-		dBoxlbl = new Label("Brugernavn " +User_NameOld);		
-		dBoxvPanelPop1.add(dBoxlbl);
-		dBoxlbl = new Label("CPR " + CPROld);		
-		dBoxvPanelPop1.add(dBoxlbl);
-		
-		dBoxhPanelPop.add(dBoxvPanelPop1);
-		
-		i = listBox1.getSelectedIndex();
-		
-		if(i == 0){
-			RoleNew = "Operatoer";
-		}
-		else if (i == 1)
-			RoleNew = "Vaerkfoerer";
-		else if (i == 2)
-			RoleNew = "Farmaceut";
-		else if (i == 3)
-			RoleNew = "Administrator";
-		User_IDNew = txt1.getText();
-		User_NameNew = txt2.getText();
-		CPRNew = txt3.getText();
-		
-		dBoxlbl = new Label("Til en " + RoleNew + " med foelgende information");		
-		dBoxvPanelPop2.add(dBoxlbl);
-		dBoxlbl = new Label("ID " + User_IDNew);		
-		dBoxvPanelPop2.add(dBoxlbl);
-		dBoxlbl = new Label("Brugernavn " + User_NameNew);		
-		dBoxvPanelPop2.add(dBoxlbl);
-		dBoxlbl = new Label("CPR " + CPRNew);		
-		dBoxvPanelPop2.add(dBoxlbl);
-	    
-		dBoxhPanelPop.add(dBoxvPanelPop2);
-		
-		dBoxvPanel.add(dBoxhPanelPop);
+		dBoxlbl = new Label("Er du sikker paa at du vil SLETTE følgende " + Role + "?");		
+		dBoxvPanel.add(dBoxlbl);
+		dBoxlbl = new Label("ID " + User_ID);		
+		dBoxvPanel.add(dBoxlbl);
+		dBoxlbl = new Label("Brugernavn " +User_Name);		
+		dBoxvPanel.add(dBoxlbl);
+		dBoxlbl = new Label("CPR " + CPR);		
+		dBoxvPanel.add(dBoxlbl);
 		
 	    Button cancelButton = new Button("Luk", new ClickHandler() {
 	          public void onClick(ClickEvent event) {
 	        	  dBox.hide();
 	          }
 	        });
-	    Button yesButton = new Button("Ret Bruger", new ClickHandler() {
+	    Button yesButton = new Button("Slet Bruger", new ClickHandler() {
 	          public void onClick(ClickEvent event) {
 	  			dBox.hide();
-				new Popup().center();
-				User_IDOld = User_IDNew;
-				User_NameOld = User_NameNew;
-				CPROld = CPRNew;
-				RoleOld = RoleNew;
+				new Popup("Brugeren er Slettet").center();
+				User_ID ="";
+				User_Name = "";
+				CPR = "";
+				Role = "";
 				createSucces();
 	          }
 	        });
@@ -201,9 +138,9 @@ public class ChangeUserView extends Composite {
 	
 	private class Popup extends PopupPanel{
 		VerticalPanel vPanelCon = new VerticalPanel();
-		public Popup(){
+		public Popup(String popTxt){
 			super(true);
-			lbl1 = new Label("Brugeren er rettet");
+			lbl1 = new Label(popTxt);
 			this.vPanelCon.add(lbl1);
 			lbl1 = new Label(" ");
 			this.vPanelCon.add(lbl1);
@@ -217,15 +154,7 @@ public class ChangeUserView extends Composite {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			//search for Raavare ID or Raavare Name
-			int k = 1;
-			if(k==1){
 				createSucces();
-				
-			}
-			else{
-				noCreateSucces();
-			}
 		}		
 	}
 	private class cancelClickHandler implements ClickHandler{
@@ -237,13 +166,17 @@ public class ChangeUserView extends Composite {
 			txt3.setText("");
 		}		
 	}
-	private class changeClickHandler implements ClickHandler{
+	private class deleteClickHandler implements ClickHandler{
 
 		@Override
 		public void onClick(ClickEvent event) {
-			popUp();
+			if (User_ID.isEmpty()==false)
+					popUp();
+		
+		else{
+			new Popup("Der er ingen Bruger at Slette").center();
 		}
-
 	
 	}
+}
 }
