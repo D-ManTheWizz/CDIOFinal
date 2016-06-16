@@ -5,14 +5,11 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class ChangeUser extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();
-	private VerticalPanel contentPanel;
-	public ChangeUser(){
+	
+	public ChangeUser(MainView main){
 		initWidget(vPanel);
 		
-		ChangeUserView userView = new ChangeUserView(this);
+		ChangeUserView userView = new ChangeUserView(main);
 		this.vPanel.add(userView);
-		
-		this.contentPanel = new VerticalPanel();
-		this.vPanel.add(contentPanel);
 	}
 }

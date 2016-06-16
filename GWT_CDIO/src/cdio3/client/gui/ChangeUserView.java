@@ -14,6 +14,8 @@ import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import cdio3.shared.OperatoerDTO;
+
 public class ChangeUserView extends Composite {
 
 	private VerticalPanel vPanel = new VerticalPanel();
@@ -21,31 +23,33 @@ public class ChangeUserView extends Composite {
 	private HorizontalPanel hPanelChange = new HorizontalPanel();
 	private VerticalPanel vPanelChange = new VerticalPanel();
 	private VerticalPanel vPanelError = new VerticalPanel();
-	private TextBox txt1;
-	private TextBox txt2;
+	private TextBox txt1 = new TextBox();
+	private TextBox txt2 = new TextBox();
 	private TextBox txt3;
+	private TextBox txt4 = new TextBox();
 	private Label dBoxlbl;
 	private DialogBox dBox;
 	private int i;
 	private Label lbl1;
 	private Label lbl2;
 	private ListBox listBox1;
-	private ChangeUser changeUser;
-	String User_IDOld = "10";
-	String User_IDNew;
+	
+	private MainView main;
+	
+	String User_IdOld = "10";
+	String User_IdNew;
 	String User_NameOld = "Ole";
 	String User_NameNew;
 	String CPROld = "100194-1111";
 	String CPRNew;
 	String RoleOld = "Operatør";
 	String RoleNew;
-	
-	
-	public ChangeUserView(ChangeUser changeUser){
-		initWidget(this.vPanel);
-		this.changeUser = changeUser;
 		
-		Label lbl1 = new Label("Indtast Bruger ID eller Bruger Navn");
+	public ChangeUserView(MainView main){
+		initWidget(this.vPanel);
+		this.main = main;
+		
+		Label lbl1 = new Label("Indtast Bruger ID eller Bruger Navn (fulde navn).");
 		vPanel.add(lbl1);
 		this.txt3 = new TextBox();
 		hPanel.add(this.txt3);
@@ -53,51 +57,48 @@ public class ChangeUserView extends Composite {
 		Button searchBtn = new Button("Soeg");
 		searchBtn.addClickHandler(new searchClickHandler());
 		this.hPanel.add(searchBtn);
-		vPanel.add(hPanel);
-		
+		vPanel.add(hPanel);		
 	}
 
-	public void createSucces(){
-		
+	public void setFoundOpr(OperatoerDTO foundOprDTO){		
 		this.vPanelChange.clear();
 		this.hPanelChange.clear();
 		this.vPanelError.clear();
 		
-		//Hardcoded start values
-//		User_IDOld = "10";
-//		User_NameOld = "Ole";
-//		CPROld = "100194-1111";
-//		RoleOld = "Operatoer";
-		
-		this.lbl1 = new Label("Bruger ID " + User_IDOld);
-		this.vPanelChange.add(lbl1);
-		this.txt1 = new TextBox();
-		txt1.setText(User_IDOld);
-		vPanelChange.add(this.txt1);
-		
-		this.lbl1 = new Label("Bruger Navn " + User_NameOld); 
-		this.vPanelChange.add(lbl1);
-		this.txt2 = new TextBox();
-		txt2.setText(User_NameOld);
-		vPanelChange.add(this.txt2);
-		
-		this.lbl1 = new Label("CPR " + CPROld);
-		this.vPanelChange.add(lbl1);
-		this.txt3 = new TextBox();
-		txt3.setText(CPROld);
-		vPanelChange.add(this.txt3);
-		
-		this.lbl1 = new Label("Rolle " + RoleOld); 
-		this.vPanelChange.add(lbl1);
-	    listBox1 = new ListBox();
+		int stilling = foundOprDTO.getStilling();
+		listBox1 = new ListBox();
 	    listBox1.addItem("Operatoer");
 	    listBox1.addItem("Vaerkfoerer");
 	    listBox1.addItem("Farmaceut");
 	    listBox1.addItem("Administrator");
 	    listBox1.setVisibleItemCount(1);
+	    listBox1.setItemSelected(stilling-1, true);
+	    String rolle = new String(listBox1.getItemText(stilling-1));
+		
+		this.lbl1 = new Label("Bruger ID: " + foundOprDTO.getOprId());
+		this.vPanelChange.add(lbl1);
+		this.txt1 = new TextBox();
+		txt1.setText("No " + foundOprDTO.getOprId());
+		vPanelChange.add(this.txt1);
+		
+		this.lbl1 = new Label("Bruger Navn: " + foundOprDTO.getOprNavn()); 
+		this.vPanelChange.add(lbl1);
+		this.txt2 = new TextBox();
+		txt2.setText(foundOprDTO.getOprNavn());
+		vPanelChange.add(this.txt2);
+		
+		this.lbl1 = new Label("CPR: " + foundOprDTO.getCpr());
+		this.vPanelChange.add(lbl1);
+		this.txt4 = new TextBox();
+		txt4.setText(foundOprDTO.getCpr());
+		vPanelChange.add(this.txt4);
+		
+		this.lbl1 = new Label(); 
+		lbl1.setText("Rolle: " + rolle);
+		this.vPanelChange.add(lbl1);
+
 		vPanelChange.add(listBox1);
-
-
+		
 		Button yesBtn = new Button("Ret Bruger");
 		yesBtn.addClickHandler(new changeClickHandler());
 		this.hPanelChange.add(yesBtn);
@@ -107,7 +108,7 @@ public class ChangeUserView extends Composite {
 		this.hPanelChange.add(noBtn);
 		
 		this.vPanel.add(vPanelChange);
-		this.vPanel.add(hPanelChange);			
+		this.vPanel.add(hPanelChange);
 	}
 	
 	public void noCreateSucces(){
@@ -129,11 +130,10 @@ public class ChangeUserView extends Composite {
 	    dBox.center();
 	    
 	    dBoxvPanel.setSpacing(4);
-	    
-	    
+	    	    
 		dBoxlbl = new Label("Er du sikker paa at du vil rette en " + RoleOld + " med foelgende information");		
 		dBoxvPanelPop1.add(dBoxlbl);
-		dBoxlbl = new Label("ID " + User_IDOld);		
+		dBoxlbl = new Label("ID " + User_IdOld);		
 		dBoxvPanelPop1.add(dBoxlbl);
 		dBoxlbl = new Label("Brugernavn " +User_NameOld);		
 		dBoxvPanelPop1.add(dBoxlbl);
@@ -153,13 +153,13 @@ public class ChangeUserView extends Composite {
 			RoleNew = "Farmaceut";
 		else if (i == 3)
 			RoleNew = "Administrator";
-		User_IDNew = txt1.getText();
+		User_IdNew = txt1.getText();
 		User_NameNew = txt2.getText();
 		CPRNew = txt3.getText();
 		
 		dBoxlbl = new Label("Til en " + RoleNew + " med foelgende information");		
 		dBoxvPanelPop2.add(dBoxlbl);
-		dBoxlbl = new Label("ID " + User_IDNew);		
+		dBoxlbl = new Label("ID " + User_IdNew);		
 		dBoxvPanelPop2.add(dBoxlbl);
 		dBoxlbl = new Label("Brugernavn " + User_NameNew);		
 		dBoxvPanelPop2.add(dBoxlbl);
@@ -175,15 +175,16 @@ public class ChangeUserView extends Composite {
 	        	  dBox.hide();
 	          }
 	        });
+	    
 	    Button yesButton = new Button("Ret Bruger", new ClickHandler() {
 	          public void onClick(ClickEvent event) {
 	  			dBox.hide();
 				new Popup().center();
-				User_IDOld = User_IDNew;
+				User_IdOld = User_IdNew;
 				User_NameOld = User_NameNew;
 				CPROld = CPRNew;
 				RoleOld = RoleNew;
-				createSucces();
+//				createSucces();
 	          }
 	        });
 		
@@ -194,9 +195,7 @@ public class ChangeUserView extends Composite {
 	    dBoxvPanel.add(dBoxhPanel);
 		dBox.show();	
 		
-		txt1.setText("");
-		txt2.setText("");
-		txt3.setText("");
+		clearText();
 	}
 	
 	private class Popup extends PopupPanel{
@@ -213,37 +212,44 @@ public class ChangeUserView extends Composite {
 		}
 	}
 	
+	private void clearText() {
+		txt1.setText("");
+		txt2.setText("");
+		txt3.setText("");
+	}
+	
+	private void searchAndSet() {
+		String searchString = new String(this.txt3.getText());
+		clearText();	
+		this.main.getOperator(this, searchString);
+	}
+	
+	public void getOperatorReturn(OperatoerDTO foundOprDTO) {
+		setFoundOpr(foundOprDTO);
+	}
+	
+	
 	private class searchClickHandler implements ClickHandler{
 
 		@Override
 		public void onClick(ClickEvent event) {
-			//search for Raavare ID or Raavare Name
-			int k = 1;
-			if(k==1){
-				createSucces();
-				
-			}
-			else{
-				noCreateSucces();
-			}
+			searchAndSet();
 		}		
 	}
+	
 	private class cancelClickHandler implements ClickHandler{
 
 		@Override
 		public void onClick(ClickEvent event) {
-			txt1.setText("");
-			txt2.setText("");
-			txt3.setText("");
+			clearText();
 		}		
 	}
+	
 	private class changeClickHandler implements ClickHandler{
 
 		@Override
 		public void onClick(ClickEvent event) {
 			popUp();
 		}
-
-	
 	}
 }

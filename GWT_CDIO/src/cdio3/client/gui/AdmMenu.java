@@ -28,7 +28,7 @@ public class AdmMenu extends Composite {
 	
 	public void openChangeMenu(){
 		this.contentPanel.clear();
-		ChangeUser change = new ChangeUser(/*this.main*/);
+		ChangeUser change = new ChangeUser(this.main);
 		this.contentPanel.add(change);
 	}
 	

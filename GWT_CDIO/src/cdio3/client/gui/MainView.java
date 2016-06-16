@@ -30,6 +30,7 @@ public class MainView extends Composite {
 	private FarmaMenu farmaMenu;
 	private CreateUserView createUserView;
 	private OpView opView;
+	private ChangeUserView changeUserView;
 	
 	public MainView(OperatorServiceClientImpl serviceImpl){
 		initWidget(this.layoutPanel_1);
@@ -130,12 +131,19 @@ public class MainView extends Composite {
 	private void createOperatorReturn(boolean answer) {
 		this.createUserView.createUserReturn(answer);
 	}
+	
+	public void getOperator(ChangeUserView changeUserView, String searchString) {
+		this.changeUserView = changeUserView;
+		OperatoerDTO foundOprDTO = new OperatoerDTO(4, "Admin Jensen", "AdJe", "4567-8901", "4567Pass", 4);
+		getOperatorReturn(foundOprDTO);
+		///////////////////////
+	}
+	
+	private void getOperatorReturn(OperatoerDTO foundOprDTO) {
+		this.changeUserView.getOperatorReturn(foundOprDTO);
+	}
+	
 	// Old methods
-//	public void createOperator(int oprId, String firstName, String lastName, String CPR, int stilling, CreateView createView) {
-//		this.createView = createView;
-//		this.serviceClientImpl.createOperator(oprId, firstName, lastName, CPR, stilling);
-//	}
-//
 //	public void changeOperator(String ID, String firstName, String lastName) {
 //		this.serviceClientImpl.changeOperator(ID, firstName, lastName);
 //	}
