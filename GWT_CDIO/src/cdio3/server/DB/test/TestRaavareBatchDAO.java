@@ -56,7 +56,7 @@ public class TestRaavareBatchDAO {
 		int currentList = list.get(list.size()-1).getRbId();
 		
 		int expected = rbDAO.getRaavareBatchList().size()+1;
-		rbDAO.createRaavareBatch(new RaavareBatchDTO(currentList+1, 7, 23));
+		rbDAO.createRaavareBatch(new RaavareBatchDTO(currentList+1, 3, 5));
 		int actual = rbDAO.getRaavareBatchList().size();
 		
 		assertEquals(expected, actual);
