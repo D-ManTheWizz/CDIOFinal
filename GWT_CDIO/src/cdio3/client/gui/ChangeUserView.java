@@ -34,6 +34,8 @@ public class ChangeUserView extends Composite {
 	private Label lbl2;
 	private ListBox listBox1;
 	
+	private OperatoerDTO foundOprDTO = new OperatoerDTO();
+	
 	private MainView main;
 	
 	String User_IdOld = "10";
@@ -42,7 +44,7 @@ public class ChangeUserView extends Composite {
 	String User_NameNew;
 	String CPROld = "100194-1111";
 	String CPRNew;
-	String RoleOld = "Operatør";
+	String RoleOld = "Operatoer";
 	String RoleNew;
 		
 	public ChangeUserView(MainView main){
@@ -60,7 +62,7 @@ public class ChangeUserView extends Composite {
 		vPanel.add(hPanel);		
 	}
 
-	public void setFoundOpr(OperatoerDTO foundOprDTO){		
+	public void setFoundOpr(){		
 		this.vPanelChange.clear();
 		this.hPanelChange.clear();
 		this.vPanelError.clear();
@@ -73,8 +75,14 @@ public class ChangeUserView extends Composite {
 	    listBox1.addItem("Administrator");
 	    listBox1.setVisibleItemCount(1);
 	    listBox1.setItemSelected(stilling-1, true);
-	    String rolle = new String(listBox1.getItemText(stilling-1));
-		
+	    String rolle = new String();
+	    
+	    if(stilling == 0) {
+	    	rolle = "Ikke ansat";
+	    } else {
+	    	rolle = listBox1.getItemText(stilling-1);
+	    }
+	    
 		this.lbl1 = new Label("Bruger ID: " + foundOprDTO.getOprId());
 		this.vPanelChange.add(lbl1);
 		this.txt1 = new TextBox();
@@ -117,7 +125,7 @@ public class ChangeUserView extends Composite {
 		this.vPanel.add(vPanelError);
 	}
 	
-	private void popUp() {
+	private void changeConfirmationPopUp() {
 	    dBox = new DialogBox();
 		VerticalPanel dBoxvPanel = new VerticalPanel();
 		VerticalPanel dBoxvPanelPop1 = new VerticalPanel();
@@ -131,13 +139,13 @@ public class ChangeUserView extends Composite {
 	    
 	    dBoxvPanel.setSpacing(4);
 	    	    
-		dBoxlbl = new Label("Er du sikker paa at du vil rette en " + RoleOld + " med foelgende information");		
+		dBoxlbl = new Label("Er du sikker paa at du vil rette en " + listBox1.getValue(foundOprDTO.getStilling()-1) + " med foelgende information");		
 		dBoxvPanelPop1.add(dBoxlbl);
-		dBoxlbl = new Label("ID " + User_IdOld);		
+		dBoxlbl = new Label("ID " + foundOprDTO.getOprId());		
 		dBoxvPanelPop1.add(dBoxlbl);
-		dBoxlbl = new Label("Brugernavn " +User_NameOld);		
+		dBoxlbl = new Label("Brugernavn " + foundOprDTO.getOprNavn());		
 		dBoxvPanelPop1.add(dBoxlbl);
-		dBoxlbl = new Label("CPR " + CPROld);		
+		dBoxlbl = new Label("CPR " + foundOprDTO.getCpr());		
 		dBoxvPanelPop1.add(dBoxlbl);
 		
 		dBoxhPanelPop.add(dBoxvPanelPop1);
@@ -155,7 +163,7 @@ public class ChangeUserView extends Composite {
 			RoleNew = "Administrator";
 		User_IdNew = txt1.getText();
 		User_NameNew = txt2.getText();
-		CPRNew = txt3.getText();
+		CPRNew = txt4.getText();
 		
 		dBoxlbl = new Label("Til en " + RoleNew + " med foelgende information");		
 		dBoxvPanelPop2.add(dBoxlbl);
@@ -179,12 +187,11 @@ public class ChangeUserView extends Composite {
 	    Button yesButton = new Button("Ret Bruger", new ClickHandler() {
 	          public void onClick(ClickEvent event) {
 	  			dBox.hide();
-				new Popup().center();
-				User_IdOld = User_IdNew;
-				User_NameOld = User_NameNew;
-				CPROld = CPRNew;
-				RoleOld = RoleNew;
-//				createSucces();
+	  			foundOprDTO.setOprId(Integer.parseInt(User_IdNew));
+	  			foundOprDTO.setOprNavn(User_NameNew);
+	  			foundOprDTO.setCpr(CPRNew);
+	  			foundOprDTO.setStilling(i);
+	  			main.updateUser(foundOprDTO);
 	          }
 	        });
 		
@@ -193,6 +200,32 @@ public class ChangeUserView extends Composite {
 	    dBoxhPanel.add(cancelButton);
 	    dBoxhPanel.setCellHorizontalAlignment(cancelButton, HasHorizontalAlignment.ALIGN_CENTER);
 	    dBoxvPanel.add(dBoxhPanel);
+		dBox.show();	
+		
+		clearText();
+	}
+	
+	private void invalidInputPopUp() {
+	    dBox = new DialogBox();
+		VerticalPanel dBoxvPanel = new VerticalPanel();
+		dBox.setWidget(dBoxvPanel);
+		dBox.setGlassEnabled(true);
+	    dBox.setAnimationEnabled(true);
+	    dBox.center();
+	    
+	    dBoxvPanel.setSpacing(4);
+	    	    
+		dBoxlbl = new Label("Dine input var ikke korrekte, proev venligst igen.");		
+		dBoxvPanel.add(dBoxlbl);
+		
+	    Button cancelButton = new Button("Luk", new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+	        	  dBox.hide();
+	          }
+	        });
+	    
+	    dBoxvPanel.add(cancelButton);
+	    dBoxvPanel.setCellHorizontalAlignment(cancelButton, HasHorizontalAlignment.ALIGN_CENTER);
 		dBox.show();	
 		
 		clearText();
@@ -215,7 +248,7 @@ public class ChangeUserView extends Composite {
 	private void clearText() {
 		txt1.setText("");
 		txt2.setText("");
-		txt3.setText("");
+		txt4.setText("");
 	}
 	
 	private void searchAndSet() {
@@ -225,7 +258,43 @@ public class ChangeUserView extends Composite {
 	}
 	
 	public void getOperatorReturn(OperatoerDTO foundOprDTO) {
-		setFoundOpr(foundOprDTO);
+		this.foundOprDTO = foundOprDTO;
+		setFoundOpr();
+	}
+	
+	private boolean testInput() {
+		String newIdString = new String(this.txt1.getText());
+		int newId = 666666;
+		txt3.setText("Foer try1");
+		try {
+			newId = Integer.parseInt(newIdString);
+		} catch(Exception e) {
+			txt3.setText("try1");
+			return false;
+		} 
+		String newName = new String(this.txt2.getText());
+		String newCPR = new String(this.txt4.getText());
+		String newStilling = new String(listBox1.getSelectedItemText());
+		txt3.setText("newId: " + newId + " newName: " + newName + " newCPR: " + newCPR + " newStilling: " 
+				+ newStilling + " .getStilling(): " + foundOprDTO.getStilling());
+		String thisStillingString = new String(listBox1.getValue((foundOprDTO.getStilling()-1)));
+		txt3.setText("try2");
+		
+		if(newId == foundOprDTO.getOprId() && newName.equals(foundOprDTO.getOprNavn()) 
+				&& newCPR.equals(foundOprDTO.getCpr()) && newStilling.equals(thisStillingString)) {
+			txt3.setText("if(ens)");
+			return false;
+		} else if(newCPR.length() != 11) {
+			txt3.setText("if(CPR != 11");
+			return false;
+		} else {
+			txt3.setText("return true?");
+			return true;
+		}
+	}
+	
+	public void createUserReturn(boolean answer) {
+		new Popup().center();
 	}
 	
 	
@@ -249,7 +318,11 @@ public class ChangeUserView extends Composite {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			popUp();
+			if(testInput()) {
+				changeConfirmationPopUp();
+			} else {
+				invalidInputPopUp();
+			}
 		}
 	}
 }

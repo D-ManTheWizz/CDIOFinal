@@ -143,6 +143,15 @@ public class MainView extends Composite {
 		this.changeUserView.getOperatorReturn(foundOprDTO);
 	}
 	
+	public void updateUser(OperatoerDTO updatedOprDTO) {
+		updateUserReturn(true);
+		//////////////////////////////////
+	}
+	
+	private void updateUserReturn(boolean answer) {
+		this.changeUserView.createUserReturn(answer);
+	}
+	
 	// Old methods
 //	public void changeOperator(String ID, String firstName, String lastName) {
 //		this.serviceClientImpl.changeOperator(ID, firstName, lastName);
