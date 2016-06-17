@@ -26,14 +26,13 @@ public class WeightController implements IWeightController{
 	public void connectToWeight() {
 		
 		try {
-			System.out.println("1");
 			socket = new Socket(ip, port);
-			System.out.println("2");
+
 			inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			System.out.println("3");
 			outputStream = new DataOutputStream(socket.getOutputStream());
 		
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -48,8 +47,9 @@ public class WeightController implements IWeightController{
 			outputStream.flush();
 			return inputStream.readLine();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 		return output;
 	}
 
@@ -63,87 +63,104 @@ public class WeightController implements IWeightController{
 			System.out.println("READ FAILED");
 			e.printStackTrace();
 		}
+		
 		return input;
 	}
+	
+	public String rm20(String output){
+		
+		writeToSocket("RM20 8 \"" + output + "\" \" \" \" \"\r\n");
 
+		String input = "";
+		
+			
+			try {
+				input = inputStream.readLine();
+				System.out.println(input);
+				input = inputStream.readLine();
+				System.out.println(input);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+				
+			
+		
+
+		if (input.startsWith("RM20 A ")) {
+			input = input.substring(8, input.length());
+			input = input.replaceAll("[\"]", "");
+
+		}
+		if(input.startsWith("ES")){
+			input = rm20(output);
+		}
+		return input;
+	}
+	
+	
 	@Override
 	public int askForUserID(String output) {
-
-		writeToSocket("RM20 8 " +output);
-		String input = readSocket();
-		System.out.println(input);
-		int intInput = Integer.parseInt(input.substring(7, input.length()-5));
 		
+		String input = rm20(output);
+		
+		int intInput = Integer.parseInt(input);
+	
 		return intInput;
 	}
 
 	@Override
-	public void sendMessage(String output) {
-		writeToSocket("D " + output + "\r\n");
+	public String sendMessage(String output) {
+		
+		String input = rm20(output);
+		
+		return input;
+		
 	}
 
 	@Override
 	public int askForPBID(String output) {
 		
-		writeToSocket("RM20 8 " + output);
-		String input = readSocket();
-		int intInput = Integer.parseInt(input.substring(7, input.length()-5));
+		String input = rm20(output);
+	
+		int intInput = Integer.parseInt(input);
 		
 		return intInput;
 	}
 
 	@Override
 	public String checkIfEmpty(String output) {
+		String input = rm20(output);
 		
-		writeToSocket("RM20 8 " +output);
-		String input = readSocket();
-		input= input.substring(7,input.length()-5);
-		if(input.equals("OK")){
-			return input;
-		}
-		else{
-			checkIfEmpty(output);
-		}
 		return input;
 	}
 
 	@Override
 	public String askUserToTaraWeight(String output) {
+	
+		String input = rm20(output);
+		System.out.println(input);
 		
-		writeToSocket("RM20 8 " +output);
-		String input = readSocket();
-		input= input.substring(7,input.length()-5);
-		if(input.equals("OK")){
-			return input;
-		}
-		else{
-			askUserToTaraWeight(output);
-		}
 		return input;
 	}
 
 	@Override
 	public int getRBID(String output) {
 		
-		writeToSocket("RM20 8 " +output);
-		String input = readSocket();
+		
+		String input = rm20(output);
+		
 		int intInput = -1;
-		input= input.substring(7,input.length()-5);
-		intInput = Integer.parseInt(input.substring(7,input.length()-5));
+		intInput = Integer.parseInt(input);
 		return intInput;
 	}
 
 	@Override
 	public String completeWeighing(String output) {
-		writeToSocket("RM20 8 " +output);
-		String input = readSocket();
-		input= input.substring(7,input.length()-5);
-		if(input.equals("OK")){
-			return input;
-		}
-		else{
-			completeWeighing(output);
-		}
+		
+		String input = rm20(output);
+		
 		return input;
 	}
 
@@ -151,15 +168,31 @@ public class WeightController implements IWeightController{
 	public String taraWeight() {
 		writeToSocket("T\r\n");
 		String input = readSocket();
-		input= input.substring(7,input.indexOf("kg"));
+		input = input.replaceAll("[STkg ]", "");
+		if(input.equals("E")){
+			input = taraWeight();
+		}
 		return input;
 	}
 
 	@Override
 	public String getWeight() {
-		writeToSocket("S\r\n");
-		String input = readSocket();
-		input = input.substring(7, input.indexOf("kg"));
+		String input = writeToSocket("S\r\n");
+		//String input = readSocket();
+		if(input.startsWith("ES")){
+			input = readSocket();
+		}
+		input = input.replaceAll("[STkg ]", "");
+		return input;
+	}
+
+	@Override
+	public String checkName(String output) {
+		String input = rm20(output);
+		if(input.equals("RM20 C")){
+			input = "wrong name";
+		}
+		
 		return input;
 	}
 

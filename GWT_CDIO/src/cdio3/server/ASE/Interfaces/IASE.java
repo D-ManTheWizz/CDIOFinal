@@ -1,5 +1,6 @@
 package cdio3.server.ASE.Interfaces;
 
+
 public interface IASE {
 
 	public void run();
@@ -7,6 +8,7 @@ public interface IASE {
 	public void chooseUser();
 	public void choosePB();
 	public void weightProduct(int ingreNumber);
+	public void connectToDatabase();
 	public void endProduction();
 	public void weightCheck();
 }

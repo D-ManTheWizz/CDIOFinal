@@ -2,6 +2,7 @@ package cdio3.server.ASE.Interfaces;
 
 public interface IDBController {
 
+	public void connectToDatabase();
 	public String getOperatorName(int input);
 	public String checkUserID(int input);
 	public String getRCName(int input);
@@ -14,6 +15,7 @@ public interface IDBController {
 	public double getNomNetto(int RCID, int RAAID);
 	public int getNumberOfIngre(int input);
 	public int getRCID(int input);
-	public void writeTaraAtPBK(int input);
+	public void writeTaraAtPBK(int PBK, double tara);
+	public void writeWeightToPBK(int PBK, double weight);
 	
 }
