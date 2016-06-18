@@ -83,4 +83,4 @@ List<ProduktBatchKompDTO> list = pbkDAO.getProduktBatchKompList();
 		
 		assertEquals(expected, actual, 0);
 	}
-	
+}

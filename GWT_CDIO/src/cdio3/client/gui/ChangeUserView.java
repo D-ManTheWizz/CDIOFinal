@@ -86,7 +86,7 @@ public class ChangeUserView extends Composite {
 		this.lbl1 = new Label("Bruger ID: " + foundOprDTO.getOprId());
 		this.vPanelChange.add(lbl1);
 		this.txt1 = new TextBox();
-		txt1.setText("No " + foundOprDTO.getOprId());
+		txt1.setText(Integer.toString(foundOprDTO.getOprId()));
 		vPanelChange.add(this.txt1);
 		
 		this.lbl1 = new Label("Bruger Navn: " + foundOprDTO.getOprNavn()); 
@@ -231,6 +231,32 @@ public class ChangeUserView extends Composite {
 		clearText();
 	}
 	
+	private void userNotUpdatedPopUp() {
+	    dBox = new DialogBox();
+		VerticalPanel dBoxvPanel = new VerticalPanel();
+		dBox.setWidget(dBoxvPanel);
+		dBox.setGlassEnabled(true);
+	    dBox.setAnimationEnabled(true);
+	    dBox.center();
+	    
+	    dBoxvPanel.setSpacing(4);
+	    	    
+		dBoxlbl = new Label("Dine aendringer blev ikke gennemfoert.");		
+		dBoxvPanel.add(dBoxlbl);
+		
+	    Button cancelButton = new Button("Luk", new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+	        	  dBox.hide();
+	          }
+	        });
+	    
+	    dBoxvPanel.add(cancelButton);
+	    dBoxvPanel.setCellHorizontalAlignment(cancelButton, HasHorizontalAlignment.ALIGN_CENTER);
+		dBox.show();	
+		
+		clearText();
+	}
+	
 	private class Popup extends PopupPanel{
 		VerticalPanel vPanelCon = new VerticalPanel();
 		public Popup(){
@@ -265,38 +291,35 @@ public class ChangeUserView extends Composite {
 	private boolean testInput() {
 		String newIdString = new String(this.txt1.getText());
 		int newId = 666666;
-		txt3.setText("Foer try1");
 		try {
 			newId = Integer.parseInt(newIdString);
 		} catch(Exception e) {
-			txt3.setText("try1");
 			return false;
 		} 
 		String newName = new String(this.txt2.getText());
 		String newCPR = new String(this.txt4.getText());
 		String newStilling = new String(listBox1.getSelectedItemText());
-		txt3.setText("newId: " + newId + " newName: " + newName + " newCPR: " + newCPR + " newStilling: " 
-				+ newStilling + " .getStilling(): " + foundOprDTO.getStilling());
 		String thisStillingString = new String(listBox1.getValue((foundOprDTO.getStilling()-1)));
-		txt3.setText("try2");
 		
 		if(newId == foundOprDTO.getOprId() && newName.equals(foundOprDTO.getOprNavn()) 
 				&& newCPR.equals(foundOprDTO.getCpr()) && newStilling.equals(thisStillingString)) {
-			txt3.setText("if(ens)");
 			return false;
 		} else if(newCPR.length() != 11) {
-			txt3.setText("if(CPR != 11");
 			return false;
 		} else {
-			txt3.setText("return true?");
 			return true;
 		}
 	}
 	
-	public void createUserReturn(boolean answer) {
-		new Popup().center();
+	public void updateUserReturn(boolean answer) {
+		if(answer) {
+			new Popup().center();
+		} else if(answer == false) {
+			userNotUpdatedPopUp();
+		} else {
+			txt3.setText("En boolsk vaerdi der hverken er sand eller falsk?");
+		}
 	}
-	
 	
 	private class searchClickHandler implements ClickHandler{
 

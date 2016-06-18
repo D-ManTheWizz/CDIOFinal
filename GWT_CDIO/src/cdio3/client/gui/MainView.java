@@ -1,6 +1,9 @@
 package cdio3.client.gui;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -16,10 +19,18 @@ public class MainView extends Composite {
 	public Label layoutLabel_1 = new Label();
 	private HorizontalPanel layoutPanel_2 = new HorizontalPanel();
 	private Label layoutLabel_2 = new Label();
+	public VerticalPanel layoutPanel_3 = new VerticalPanel();
 	
 	private VerticalPanel v1_Panel = new VerticalPanel();
 	private HorizontalPanel h1_in_v1_Panel = new HorizontalPanel();
 	private HorizontalPanel h2_in_v1_Panel = new HorizontalPanel();
+	
+	private boolean testing = true;
+	public Button test_btn1;
+	public Button test_btn2;
+	public Button test_btn3;
+	public Button test_btn4;
+	public Button test_btn5;
 	
 	private OperatoerDTO operatingOperator;
 	
@@ -46,12 +57,13 @@ public class MainView extends Composite {
 		this.layoutLabel_2.setPixelSize(layoutWidth, layoutHeight);
 		this.layoutPanel_2.add(layoutLabel_2);
 		this.layoutPanel_2.add(v1_Panel);
+		this.layoutPanel_2.add(layoutPanel_3);
 		this.v1_Panel.setBorderWidth(1);
-
+		
 		Login login = new Login(this);
 		this.v1_Panel.add(login);
 	}
-	
+
 	public void handleEvent(DataEvent event) {
 		if(event instanceof LoginEvent) {
 			confirmLogin(((LoginEvent) event).getOprDTO());
@@ -70,6 +82,8 @@ public class MainView extends Composite {
 			
 			this.layoutLabel_1.setText("");
 			this.v1_Panel.clear();
+			
+			if(testing) {layoutPanel_3.clear();}
 	
 			menu = new MenuView(this, oprDTO);
 			this.h1_in_v1_Panel.add(menu);
@@ -82,6 +96,42 @@ public class MainView extends Composite {
 		admMenu = new AdmMenu(this);
 		this.h2_in_v1_Panel.add(admMenu);
 		this.v1_Panel.add(h2_in_v1_Panel);
+		
+		if(testing) {
+			this.layoutPanel_3.clear();
+//			admMenu.setTesting();
+			Button test_btn1 = new Button("setForkertBruger", new ClickHandler() {
+	          public void onClick(ClickEvent event) {
+	        	    
+	          }
+	        });
+//			this.test_btn1.setVisible(true);
+			this.layoutPanel_3.add(test_btn1);
+		
+//			Button closeButton = new Button("Luk", new ClickHandler() {
+//	          public void onClick(ClickEvent event) {
+//	            
+//	          }
+//	        });
+//		
+//		Button closeButton = new Button("Luk", new ClickHandler() {
+//	          public void onClick(ClickEvent event) {
+//	            
+//	          }
+//	        });
+//		
+//		Button closeButton = new Button("Luk", new ClickHandler() {
+//	          public void onClick(ClickEvent event) {
+//	            
+//	          }
+//	        });
+//		
+//		Button closeButton = new Button("Luk", new ClickHandler() {
+//	          public void onClick(ClickEvent event) {
+//	            
+//	          }
+//	        });
+		}
 	}
 	
 	public void openFarmaMenu(){
@@ -149,7 +199,7 @@ public class MainView extends Composite {
 	}
 	
 	private void updateUserReturn(boolean answer) {
-		this.changeUserView.createUserReturn(answer);
+		this.changeUserView.updateUserReturn(answer);
 	}
 	
 	// Old methods

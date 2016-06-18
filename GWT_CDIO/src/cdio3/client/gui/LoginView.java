@@ -16,7 +16,7 @@ public class LoginView extends Composite{
 	public TextBox txt1;
 	public PasswordTextBox txt2;
 	private Label lbl1;
-	boolean login = false;
+	private boolean testing = true;
 	
 	private DialogBox notValidatedBox;
 	
@@ -43,6 +43,10 @@ public class LoginView extends Composite{
 		Button loginBtn = new Button("Login");
 		loginBtn.addClickHandler(new loginClickHandler());
 		this.vPanel.add(loginBtn);
+		
+		if(testing) {
+			setTesting();
+		}
 	}
 
 	private class loginClickHandler implements ClickHandler{
@@ -54,6 +58,25 @@ public class LoginView extends Composite{
 		
 			login(id, password);
 		}
+	}
+	
+	private void setTesting() {
+		Button test_btn1 = new Button("setForkertPassword()", new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				txt1.setText("4");
+				txt2.setText("ForkertPass");
+			}
+	    });
+
+		Button test_btn2 = new Button("setRigtigtPassword()", new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				txt1.setText("4");
+				txt2.setText("4567Pass");
+			}
+	    });
+		
+		this.main.layoutPanel_3.add(test_btn1);
+		this.main.layoutPanel_3.add(test_btn2);
 	}
 
 	private void login(int id, String password) {
@@ -79,6 +102,7 @@ public class LoginView extends Composite{
 	            closePopUp();
 	          }
 	        });
+	    
 	    dBoxPanel.add(closeButton);
 	    dBoxPanel.setCellHorizontalAlignment(closeButton, HasHorizontalAlignment.ALIGN_CENTER);
 	    notValidatedBox.show();

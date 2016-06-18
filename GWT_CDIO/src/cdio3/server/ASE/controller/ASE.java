@@ -13,13 +13,15 @@ public class ASE implements IASE {
 	private IWeightController wc;
 	private ITUIController tuic = new TUIController();
 	
+	@SuppressWarnings("unused")
 	private String weightChoice= "", user="", rcName="", currentTara="", OK="", raaName="";
 	private int oprID = 0, pbID = 0,raaID = 0, rcID = 0, raaBID = 0, numberOfIngre = 3, ingreNumber = 0;
 	private double tolerance = 0, nomNetto = 0, currentWeight  = 0, posTole = 0, negTole = 0,TARA = 0, finalWeight = 0;
 	
 	public void run(){
-		connectToDatabase();
+		
 		chooseWeight();
+		connectToDatabase();
 		runProduction();
 	}
 	
